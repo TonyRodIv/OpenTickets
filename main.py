@@ -6,8 +6,8 @@ from routes.vend import vend_route
 
 # inicialização do app
 app = Flask(__name__)
-app.register_blueprint(login_route)
 app.register_blueprint(adm_route, url_prefix='/adm')
+app.register_blueprint(login_route)
 app.register_blueprint(vend_route, url_prefix='/vend')
 app.secret_key = 's3nha'
 # rotas

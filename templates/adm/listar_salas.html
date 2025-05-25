@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>Salas Cadastradas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <h1>Lista de Salas</h1>
   <ul>
+
   {% for sala in salas %}
     <li>{{ sala }}</li>
   {% endfor %}

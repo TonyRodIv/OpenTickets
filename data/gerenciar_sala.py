@@ -1,5 +1,6 @@
 import json
 import os
+from typing import Optional, Tuple
 
 ARQUIVO_SALAS = os.path.join('data', 'temp', 'salas.json')
 
@@ -57,15 +58,45 @@ def listar_salas():
         resultado.append(f"Sala {s['numero']} – {total} cadeiras")
     return resultado
 
-# def editar_sala():
-#     listar_salas()
-#     numero = input("Sala a editar: ").strip()
-#     for s in salas:
-#         if s["numero"] == numero:
-#             novo_cad = input(f"Novo total de linhas (atual {s['cadeiras']}): ").strip()
-#             if novo_cad:
-#                 s["cadeiras"] = int(novo_cad)
-#             salvar_salas(salas)
-#             print(f"> Sala atualizada para {numero} – {s['cadeiras']} cadeiras.")
-#             return
-#     print(f"> Sala {numero} não encontrada.")
+def editar_sala(numero: str,linhas: int,colunas: int) -> Tuple[Optional[dict], Optional[str]]:
+    """
+    Atualiza linhas e colunas da sala indicada.
+    Retorna (sala_atualizada, None) ou (None, mensagem_de_erro).
+    """
+    salas = carregar_salas()
+    if not salas:
+        return None, "Nenhuma sala cadastrada."
+    for s in salas:
+        if s["numero"] == numero:
+            # Validações
+            if linhas < 1:
+                return None, "❌ Quantidade de fileiras inválida. Deve ser >= 1."
+            if linhas > 10:
+                return None, "⚠️ Atenção: fileiras acima de 10 podem não ser exibidas corretamente."
+            if colunas < 1:
+                return None, "❌ Quantidade de colunas inválida. Deve ser >= 1."
+            if colunas > 15:
+                return None, "⚠️ Atenção: colunas acima de 15 podem não ser exibidas corretamente."
+
+            # Atualiza e salva
+            s["linhas"] = linhas
+            s["colunas"] = colunas
+            salvar_salas(salas)
+            return s, None
+
+    return None, f"Sala {numero} não encontrada."
+
+def deletar_sala(numero: str) -> Optional[str]:
+    """
+    Remove a sala indicada.
+    Retorna mensagem de erro ou None se a sala foi removida com sucesso.
+    """
+    salas = carregar_salas()
+    if not salas:
+        return "Nenhuma sala cadastrada."
+    for s in salas:
+        if s["numero"] == numero:
+            salas.remove(s)
+            salvar_salas(salas)
+            return None
+    return f"Sala {numero} não encontrada."

@@ -7,8 +7,6 @@
 </head>
 <body>
   <h1>Adicionar Nova Sala</h1>
-
-  {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
       <ul class="flashes">
       {% for categoria, msg in messages %}
@@ -16,7 +14,7 @@
       {% endfor %}
       </ul>
     {% endif %}
-  {% endwith %}
+
 
   <form action="{{ url_for('adm.adicionar_sala_view') }}" method="post">
     <div>
