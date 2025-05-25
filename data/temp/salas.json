@@ -1,0 +1,22 @@
+[
+    {
+        "numero": "1",
+        "linhas": 5,
+        "colunas": 10
+    },
+    {
+        "numero": "2",
+        "linhas": 7,
+        "colunas": 8
+    },
+    {
+        "numero": "3",
+        "linhas": 7,
+        "colunas": 8
+    },
+    {
+        "numero": "4",
+        "linhas": 9,
+        "colunas": 4
+    }
+]

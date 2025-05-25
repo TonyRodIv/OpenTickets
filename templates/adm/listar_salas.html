@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Salas Cadastradas</title>
+</head>
+<body>
+  <h1>Lista de Salas</h1>
+  <ul>
+  {% for sala in salas %}
+    <li>{{ sala }}</li>
+  {% endfor %}
+  </ul>
+  <a href="{{ url_for('adm.admInit') }}">Voltar</a>
+</body>
+</html>
