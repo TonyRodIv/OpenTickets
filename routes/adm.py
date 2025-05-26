@@ -9,7 +9,8 @@ def admInit():
     adicionarSala = url_for('adm.adicionar_sala_view')
     editarSala = url_for('adm.editar_sala_view')
     deletarSala = url_for('adm.deletar_sala_view')
-    return render_template('admHome.html', listarSala=listarSala, adicionarSala=adicionarSala, editarSala=editarSala, deletarSala=deletarSala)
+    return render_template('admHome.html', listarSala=listarSala, adicionarSala=adicionarSala,
+                           editarSala=editarSala, deletarSala=deletarSala)
 
 @adm_route.route('/listar_salas')
 def listar_salas_view():

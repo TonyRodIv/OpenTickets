@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Venda de Ingressos</h2>
+    <a href="{{ url_for('vend.escolher_filme') }}" class="btn btn-primary">
+        Iniciar Nova Venda
+    </a>
+</div>
+{% endblock %}
