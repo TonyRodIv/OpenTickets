@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Seleção de Filme</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>{{titulo}}</h1>
+    {% for sala in salas %}
+    <p>Nome: {{sala.Nome}} ||| Capacidade: {{sala.Capacidade}}</p>
+    {% endfor %}
+    <p></p>
+    <img src={{fotoFilme}} alt="" srcset="">
+</body>
+</html> 
