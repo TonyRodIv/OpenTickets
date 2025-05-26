@@ -7,10 +7,10 @@ vend_route = Blueprint('vend', __name__, url_prefix='/vend', template_folder='..
 
 @vend_route.route('/')
 def vendInit():
-    escolher_filme = url_for('vend.escolher_filme_view')
-    escolher_sala = url_for('vend.escolher_sala_view')
-    mapa_assentos = url_for('vend.mapa_assentos_view')
-    confirmar_venda = url_for('vend.confirmar_venda_view')
+    escolher_filme = url_for('vend.escolher_filme')
+    escolher_sala = url_for('vend.escolher_sala')
+    mapa_assentos = url_for('vend.mapa_assentos')
+    confirmar_venda = url_for('vend.confirmar_venda')
     return render_template('vendHome.html', escolher_filme=escolher_filme, escolher_sala=escolher_sala,
                            mapa_assentos=mapa_assentos, confirmar_venda=confirmar_venda)
 

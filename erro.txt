@@ -1,5 +1,5 @@
-werkzeug.routing.exceptions.BuildError
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'vend.escolher_filme_view'. Did you mean 'vend.escolher_filme' instead?
+TypeError
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
 
 Traceback (most recent call last)
 File "C:\Users\Olivia\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 1536, in __call__
@@ -20,26 +20,5 @@ rv = self.dispatch_request()
 File "C:\Users\Olivia\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 902, in dispatch_request
 return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-File "c:\Users\Olivia\Downloads\TrabFinal-FlaskPy-main\TrabFinal-FlaskPy-main\routes\vend.py", line 10, in vendInit
-escolher_filme = url_for('vend.escolher_filme_view')
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-File "C:\Users\Olivia\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\helpers.py", line 232, in url_for
-return current_app.url_for(
-       
-File "C:\Users\Olivia\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 1121, in url_for
-return self.handle_url_build_error(error, endpoint, values)
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-File "C:\Users\Olivia\AppData\Local\Programs\Python\Python313\Lib\site-packages\flask\app.py", line 1110, in url_for
-rv = url_adapter.build(  # type: ignore[union-attr]
-     
-File "C:\Users\Olivia\AppData\Local\Programs\Python\Python313\Lib\site-packages\werkzeug\routing\map.py", line 924, in build
-raise BuildError(endpoint, values, method, self)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'vend.escolher_filme_view'. Did you mean 'vend.escolher_filme' instead?
-The debugger caught an exception in your WSGI application. You can now look at the traceback which led to the error.
-To switch between the interactive traceback and the plaintext one, you can click on the "Traceback" headline. From the text traceback you can also create a paste of it. For code execution mouse-over the frame you want to debug and click on the console icon on the right side.
-
-You can execute arbitrary Python code in the stack frames and there are some extra helpers available for introspection:
-
-dump() shows all variables in the frame
-dump(obj) dumps all that's known about the object
+File "c:\Users\Olivia\Downloads\TrabFinal-FlaskPy-main\TrabFinal-FlaskPy-main\routes\vend.py", line 20, in escolher_filme
+filme_idx = int(request.for

@@ -2,19 +2,19 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Escolher Filme</title>
+    <title>Escolher Sala</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container mt-5">
-        <h3>Selecione o Filme</h3>
+        <h3>Selecione a Sala</h3>
         <form method="POST">
-            {% for filme in filmes %}
+            {% for sala in salas %}
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="filme" 
-                       id="filme{{ loop.index }}" value="{{ loop.index }}">
-                <label class="form-check-label" for="filme{{ loop.index }}">
-                    {{ filme.titulo }}
+                <input class="form-check-input" type="radio" name="sala" 
+                       id="sala{{ sala.numero }}" value="{{ sala.numero }}">
+                <label class="form-check-label" for="sala{{ sala.numero }}">
+                    Sala {{ sala.numero }} ({{ sala.linhas }}x{{ sala.colunas }})
                 </label>
             </div>
             {% endfor %}
