@@ -52,6 +52,7 @@ def adicionar_filme():
     print("=== Adicionar Filme ===")
     titulo = input("Título: ").strip()
     chave  = titulo.lower()
+    urlFoto = input("URL da foto (opcional): ").strip()
     if any(f['titulo'].lower() == chave for f in filmes):
         print(f"❌ Filme '{titulo}' já existe.")
         return

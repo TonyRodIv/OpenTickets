@@ -1,16 +1,128 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Seleção de Filme</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Login - Bilheteria OpenTickets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+            width: 350px;
+            text-align: left;
+        }
+        .login-container h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .login-container p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background-color: #f7f7f7;
+            box-sizing: border-box; /* Garante que padding não aumente a largura */
+            font-size: 1em;
+        }
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4a90e2; /* Azul similar ao da imagem */
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .login-container button:hover {
+            background-color: #357abd; /* Tom mais escuro para hover */
+        }
+        .flashes {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 15px;
+        }
+        .flashes li {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .flash-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+         .flash-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
 </head>
 <body>
-    <h1>{{titulo}}</h1>
-    {% for sala in salas %}
-    <p>Nome: {{sala.Nome}} ||| Capacidade: {{sala.Capacidade}}</p>
-    {% endfor %}
-    <p></p>
-    <img src={{fotoFilme}} alt="" srcset="">
+    <div class="login-container">
+        <h1>Realize seu login</h1>
+        <p>Precisamos de alguns dados</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="flash-{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form method="post" action="{{ url_for('login.login') }}">
+            <div class="form-group">
+                <label for="username">Nome de Usuário</label>
+                <input type="text" id="username" name="username" placeholder="ExemploUsuario" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Senha123" required>
+            </div>
+            <div class="form-group">
+                <label for="user_type">Tipo de Usuário</label>
+                <select id="user_type" name="user_type" required>
+                    <option value="adm">Administrador</option>
+                    <option value="vend">Vendedor</option>
+                </select>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
 </body>
-</html> 
+</html>
