@@ -12,6 +12,8 @@ def admInit():
     return render_template('admHome.html', listarSala=listarSala, adicionarSala=adicionarSala,
                            editarSala=editarSala, deletarSala=deletarSala)
 
+# GERENCIAR SALAS
+
 @adm_route.route('/listar_salas')
 def listar_salas_view():
     salas = listar_salas()
@@ -73,3 +75,15 @@ def deletar_sala_view():
     # GET: apresenta formulário com todas as salas
     salas = carregar_salas()
     return render_template('deletar_sala.html', salas=salas)
+
+# GERENCIAR FILMES
+
+
+
+
+
+
+
+# GERENCIAR ASSENTOS
+
+
