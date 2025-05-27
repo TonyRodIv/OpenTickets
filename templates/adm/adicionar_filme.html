@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Filme</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+     <h1>Adicionar Novo Filme</h1>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flashes">
+      {% for category, message in messages %}
+        <li class="flash-{{ category }}">{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <form method="post">
+    <div class="form-group">
+      <label for="titulo">Título:</label>
+      <input type="text" id="titulo" name="titulo" required>
+    </div>
+    <div class="form-group">
+      <label for="duracao">Duração (minutos):</label>
+      <input type="number" id="duracao" name="duracao" min="1" required>
+    </div>
+    <div class="form-group">
+      <label for="classificacao">Classificação Etária:</label>
+      <input type="text" id="classificacao" name="classificacao" required>
+    </div>
+    <div class="form-group">
+      <label for="genero">Gênero:</label>
+      <input type="text" id="genero" name="genero" required>
+    </div>
+    <div class="form-group">
+      <label for="urlFoto">URL da Foto (opcional):</label>
+      <input type="url" id="urlFoto" name="urlFoto" placeholder="https://exemplo.com/imagem.jpg">
+    </div>
+
+    <div class="form-group">
+      <label>Selecione as Salas:</label>
+      <div class="salas-group">
+        {% if salas %}
+          {% for sala in salas %}
+            <div class="sala-check">
+              <input type="checkbox" id="sala{{ sala.numero }}" name="salas" value="{{ sala.numero }}">
+              <label for="sala{{ sala.numero }}">
+                Sala {{ sala.numero }} ({{ sala.linhas }}x{{ sala.colunas }})
+              </label>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>Nenhuma sala cadastrada. Adicione salas antes de adicionar filmes.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <button type="submit">Adicionar Filme</button>
+  </form>
+
+  <p><a href="{{ url_for('adm.admInit') }}">← Voltar</a></p>
+</body>
+</html>
