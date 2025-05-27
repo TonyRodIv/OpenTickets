@@ -5,3 +5,11 @@ body {
   padding: 0 20px;
   color: #333;
 }
+button{
+  background-color:rgb(17, 109, 121);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+}
+
