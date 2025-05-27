@@ -3,22 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Filme</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Editar Filme</h1>
-    <form method="post">
-        <label>Título: <input type="text" name="titulo" value="{{ filme.titulo }}" required></label><br>
-        <label>Duração (min): <input type="number" name="duracao" value="{{ filme.duracao }}" required></label><br>
-        <label>Classificação: <input type="text" name="classificacao" value="{{ filme.classificacao }}" required></label><br>
-        <label>Gênero: <input type="text" name="genero" value="{{ filme.genero }}" required></label><br>
-        <label>Salas:</label><br>
-        {% for sala in salas %}
-            <input type="checkbox" name="salas" value="{{ sala.numero }}"
-            {% if sala.numero in filme.salas %}checked{% endif %}>
-            Sala {{ sala.numero }}<br>
-        {% endfor %}
-        <button type="submit">Salvar</button>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+                <li class="flash-{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('adm.editar_filme_view') }}" method="post">
+        <div>
+            <label for="titulo_original">Selecione o filme para editar:</label>
+            <select id="titulo_original" name="titulo_original" required>
+                <option value="">-- escolha um filme --</option>
+                {% for f in filmes %}
+                    <option value="{{ f.titulo }}">{{ f.titulo }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <hr>
+        <h3>Digite os Novos Dados do Filme</h3>
+        <p><strong>Atenção:</strong> Você deve preencher todos os campos abaixo com os valores desejados (atuais ou novos).</p>
+
+        <div>
+            <label>Título:
+                <input type="text" id="titulo" name="titulo" placeholder="Digite o título" required>
+            </label>
+        </div>
+        <div>
+            <label>Duração (min):
+                <input type="number" id="duracao" name="duracao" placeholder="Ex: 120" required>
+            </label>
+        </div>
+        <div>
+            <label>Classificação:
+                <input type="text" id="classificacao" name="classificacao" placeholder="Ex: 14 anos" required>
+            </label>
+        </div>
+        <div>
+            <label>Gênero:
+                <input type="text" id="genero" name="genero" placeholder="Ex: Ação" required>
+            </label>
+        </div>
+        <div>
+            <label>Salas:</label><br>
+            {% for sala in salas %}
+                <input type="checkbox" id="sala_{{ sala.numero }}" name="salas" value="{{ sala.numero }}">
+                <label for="sala_{{ sala.numero }}">Sala {{ sala.numero }}</label><br>
+            {% endfor %}
+        </div>
+        <button type="submit">Atualizar Filme</button>
     </form>
-    <a href="{{ url_for('adm.listar_filmes_view') }}">Voltar</a>
+
+    <p><a href="{{ url_for('adm.admInit') }}">← Voltar ao Painel ADM</a></p>
 </body>
 </html>

@@ -79,72 +79,49 @@ def listar_filmes():
     """Carrega e retorna a lista completa de filmes."""
     return carregar_json(ARQUIVO_FILMES)
 
-# def remover_filme():
-#     print("=== Remover Filme ===")
-#     listar_filmes()
-#     if not filmes:
-#         return
+def buscar_filme_por_titulo(titulo):
+    """Busca um filme específico pelo título (case-insensitive)."""
+    filmes = carregar_json(ARQUIVO_FILMES)
+    for filme in filmes:
+        if filme['titulo'].lower() == titulo.lower():
+            return filme
+    return None
 
-#     titulo = input("Título do filme a remover: ").strip()
-#     antes  = len(filmes)
-#     filmes[:] = [f for f in filmes if f['titulo'].lower() != titulo.lower()]
+def editar_filme(titulo_original, dados_novos):
+    """
+    Valida e edita um filme existente.
+    Retorna uma tupla: (sucesso, mensagem_ou_filme_atualizado)
+    """
+    filmes = carregar_json(ARQUIVO_FILMES)
+    salas_todas = carregar_salas()
+    filme_para_editar = buscar_filme_por_titulo(titulo_original)
 
-#     if len(filmes) < antes:
-#         salvar_json(filmes, ARQUIVO_FILMES)
-#         print(f"✅ Filme '{titulo}' removido.")
-#     else:
-#         print(f"❌ Filme '{titulo}' não encontrado.")
+    if not filme_para_editar:
+        return False, f"Filme '{titulo_original}' não encontrado."
 
+    novo_titulo = dados_novos['titulo'].strip()
+    salas_escolhidas = dados_novos.get('salas', [])
 
-# def editar_filme():
-#     print("=== Editar Filme ===")
-#     listar_filmes()
-#     if not filmes:
-#         return
+    # Valida se o novo título já existe (e não é o filme atual)
+    if novo_titulo.lower() != filme_para_editar['titulo'].lower():
+        if buscar_filme_por_titulo(novo_titulo):
+            return False, f"Já existe um filme com o título '{novo_titulo}'."
 
-#     titulo = input("Título do filme a editar: ").strip()
-#     for f in filmes:
-#         if f['titulo'].lower() == titulo.lower():
-  
-#             novo_titulo = input(f"Título (atual: {f['titulo']}): ").strip() or f['titulo']
-#             if novo_titulo.lower() != f['titulo'].lower() and \
-#                any(x['titulo'].lower() == novo_titulo.lower() for x in filmes):
-#                 print(f"❌ Já existe filme com título '{novo_titulo}'.")
-#                 return
+    # Valida se as salas escolhidas existem e não estão ocupadas por OUTRO filme
+    numeros_salas_existentes = {s['numero'] for s in salas_todas}
+    for s_id in salas_escolhidas:
+        if s_id not in numeros_salas_existentes:
+            return False, f"A Sala {s_id} não existe."
+        for f in filmes:
+            if f['titulo'].lower() != filme_para_editar['titulo'].lower() and s_id in f.get('salas', []):
+                 return False, f"A Sala {s_id} já está ocupada por outro filme."
 
-#             ndur = input(f"Duração (atual: {f['duracao']}): ").strip()
-#             ncla = input(f"Classif. (atual: {f['classificacao']}): ").strip()
-#             ngen = input(f"Gênero (atual: {f['genero']}): ").strip()
+    # Atualiza os dados
+    filme_para_editar['titulo'] = novo_titulo
+    filme_para_editar['duracao'] = int(dados_novos['duracao'])
+    filme_para_editar['classificacao'] = dados_novos['classificacao'].strip()
+    filme_para_editar['genero'] = dados_novos['genero'].strip()
+    filme_para_editar['salas'] = salas_escolhidas
 
-#             salas_atual = f.get('salas', [])
-#             atual_str   = ', '.join(salas_atual)
-#             listar_salas()
-#             inp = input(f"Salas (atual: {atual_str}) [separe por vírgula]: ").strip()
-#             if inp:
-#                 novas_salas = [s.strip() for s in inp.split(',') if s.strip()]
-#             else:
-#                 novas_salas = salas_atual
-
-#             for s_id in novas_salas:
-#                 if not any(s['numero'] == s_id for s in salas):
-#                     print(f"❌ Sala {s_id} não existe.")
-#                     return
-                
-#                 if s_id not in salas_atual and \
-#                    any(s_id in x.get('salas', []) for x in filmes):
-#                     print(f"❌ Sala {s_id} já está ocupada por outro filme.")
-#                     return
-
-#             f['titulo']  = novo_titulo
-#             if ndur: f['duracao']= int(ndur)
-#             if ncla: f['classificacao']= ncla
-#             if ngen: f['genero']= ngen
-#             f['salas']= novas_salas
-
-#             salvar_json(filmes, ARQUIVO_FILMES)
-#             print(f"✅ Filme '{novo_titulo}' atualizado.")
-#             return
-
-#     print(f"❌ Filme '{titulo}' não encontrado.")
-    
-# FALTA REESCREVER O CÓDIGO PARA SE ADAPTAR AS ROTAS COM FLASK
+    salvar_json(filmes, ARQUIVO_FILMES)
+    return True, filme_para_editar

@@ -9,5 +9,16 @@
             "2",
             "3"
         ]
+    },
+    {
+        "titulo": "Coringa: Delírio a Dois",
+        "duracao": 146,
+        "classificacao": "18",
+        "genero": "Ação",
+        "urlFoto": "https://ingresso-a.akamaihd.net/prd/img/movie/coringa-delirio-a-dois/6eb6b44d-859b-4ffe-87fd-e728d55dc2f5.webp",
+        "salas": [
+            "1",
+            "4"
+        ]
     }
 ]
