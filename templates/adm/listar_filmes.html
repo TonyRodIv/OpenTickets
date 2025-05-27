@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Filmes Cadastrados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
-    <h1>Filmes</h1>
-    <a href="{{ url_for('adm.adicionar_filme_view') }}">Adicionar Filme</a>
+    <h1>Filmes Cadastrados</h1>
+    <a href="{{ url_for('adm.adicionar_filme_view') }}">Adicionar Novo Filme</a>
+    <hr>
+
+    {% if filmes %}
     <ul>
         {% for filme in filmes %}
         <li>
-            <strong>{{ filme.titulo }}</strong> | {{ filme.duracao }}min | {{ filme.genero }} | Classificação: {{ filme.classificacao }} | Salas: {{ ', '.join(filme.salas) }}
-            <a href="{{ url_for('adm.editar_filme_view', titulo=filme.titulo) }}">Editar</a>
-            <form action="{{ url_for('adm.remover_filme_view', titulo=filme.titulo) }}" method="post" style="display:inline;">
-                <button type="submit" onclick="return confirm('Remover filme?')">Remover</button>
+            <strong>{{ filme.titulo }}</strong> |
+            {{ filme.duracao }}min |
+            {{ filme.genero }} |
+            Classificação: {{ filme.classificacao }} |
+            Salas: {{ filme.salas|join(', ') }} <a
+                href="{{ url_for('adm.editar_filme_view', titulo=filme.titulo) }}"><button>Editar</button></a>
+            <form action="{{ url_for('adm.remover_filme_view', titulo=filme.titulo) }}" method="post"
+                style="display:inline;">
+                <button type="submit"
+                    onclick="return confirm('Tem certeza que deseja remover este filme?')">Remover</button>
             </form>
         </li>
         {% endfor %}
     </ul>
+    {% else %}
+    <p>⚠️ Nenhum filme cadastrado no momento.</p>
+    {% endif %}
+
+    <p><a href="{{ url_for('adm.admInit') }}">Voltar ao Painel ADM</a></p>
+
 </body>
+
 </html>

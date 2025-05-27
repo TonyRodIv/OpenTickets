@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from data.gerenciar_sala import listar_salas, adicionar_sala, editar_sala, carregar_salas, deletar_sala
-from data.gerenciar_filmes import carregar_json, salvar_json, ARQUIVO_FILMES, ARQUIVO_SALAS
+from data.gerenciar_filmes import adicionar_filme_web, carregar_filmes, salvar_json, buscar_filme_por_titulo, editar_filme
 
 adm_route = Blueprint('adm', __name__, url_prefix='/adm', template_folder='../templates/adm')
 
@@ -13,14 +13,11 @@ def admInit():
     deletarSala = url_for('adm.deletar_sala_view')
 
     # Filmes - Adm
-    listarFilmes = url_for('listar_filmes_view')
-    adicionarFilme = url_for('adicionar_filme_view')
-    editarFilme = url_for('editar_filme_view')
-    deletarFilme = url_for('remover_filme_view')
+    adicionarFilme = url_for('adm.adicionar_filme_view')
+    listarFilmes = url_for('adm.listar_filmes_view')
+    editarFilme = url_for('adm.editar_filme_view')
     return render_template('admHome.html', listarSala=listarSala, adicionarSala=adicionarSala,
-                           editarSala=editarSala, deletarSala=deletarSala,
-                           listarFilmes=listarFilmes, adicionarFilme=adicionarFilme,
-                           editarFilme=editarFilme, deletarFilme=deletarFilme)
+                           editarSala=editarSala, deletarSala=deletarSala, adicionarFilme=adicionarFilme, listarFilmes=listarFilmes, editarFilme=editarFilme)
 
 # GERENCIAR SALAS
 
@@ -87,89 +84,97 @@ def deletar_sala_view():
     return render_template('deletar_sala.html', salas=salas)
 
 # GERENCIAR FILMES
-def carregar_filmes():
-    return carregar_json(ARQUIVO_FILMES)
+@adm_route.route('/adicionar_filme', methods=['GET', 'POST'])
+def adicionar_filme_view():
+    if request.method == 'POST':
+        titulo = request.form.get('titulo', '').strip()
+        duracao = request.form.get('duracao', '').strip()
+        classificacao = request.form.get('classificacao', '').strip()
+        genero = request.form.get('genero', '').strip()
+        urlFoto = request.form.get('urlFoto', '').strip()
+        salas_escolhidas = request.form.getlist('salas') # Usa getlist para múltiplos checkboxes
 
-def carregar_salas():
-    return carregar_json(ARQUIVO_SALAS)
+        sucesso, mensagem = adicionar_filme_web(
+            titulo, duracao, classificacao, genero, urlFoto, salas_escolhidas
+        )
+
+        if sucesso:
+            flash(mensagem, 'success')
+            return redirect(url_for('adm.admInit')) # Redireciona para o início por enquanto
+        else:
+            flash(mensagem, 'danger')
+            # Se der erro, renderiza o formulário novamente com as salas
+            salas_disponiveis = carregar_salas()
+            return render_template('adicionar_filme.html', salas=salas_disponiveis)
+
+    # GET: Carrega as salas e exibe o formulário
+    salas_disponiveis = carregar_salas()
+    return render_template('adicionar_filme.html', salas=salas_disponiveis)
 
 @adm_route.route('/listar_filmes')
 def listar_filmes_view():
-    filmes = carregar_filmes()
+    """Rota para carregar e exibir a lista de filmes."""
+    filmes = carregar_filmes() # Usa a função para pegar os dados do JSON
+    # Renderiza o template, passando a lista de filmes para ele
     return render_template('listar_filmes.html', filmes=filmes)
 
-@adm_route.route('/adicionar_filme', methods=['GET', 'POST'])
-def adicionar_filme_view():
+@adm_route.route('/editar_filme', methods=['GET', 'POST']) # REMOVIDO <titulo> da URL
+def editar_filme_view():
+    """
+    Rota para selecionar um filme e editar seus dados,
+    similar à editar_sala_view.
+    """
+    filmes = carregar_filmes()  # Carrega a lista de filmes
     salas = carregar_salas()
-    if request.method == 'POST':
-        titulo = request.form['titulo'].strip()
-        duracao = int(request.form['duracao'])
-        classificacao = request.form['classificacao'].strip()
-        genero = request.form['genero'].strip()
-        salas_escolhidas = request.form.getlist('salas')
-        filmes = carregar_filmes()
-        if any(f['titulo'].lower() == titulo.lower() for f in filmes):
-            flash(f"Filme '{titulo}' já existe.", 'danger')
-            return redirect(url_for('adm.adicionar_filme_view'))
-        for s_id in salas_escolhidas:
-            if any(s_id in f.get('salas', []) for f in filmes):
-                flash(f"Sala {s_id} já está ocupada por outro filme.", 'danger')
-                return redirect(url_for('adm.adicionar_filme_view'))
-        filmes.append({
-            "titulo": titulo,
-            "duracao": duracao,
-            "classificacao": classificacao,
-            "genero": genero,
-            "salas": salas_escolhidas
-        })
-        salvar_json(filmes, ARQUIVO_FILMES)
-        flash(f"Filme '{titulo}' adicionado.", 'success')
-        return redirect(url_for('adm.listar_filmes_view'))
-    return render_template('adicionar_filme.html', salas=salas)
 
-@adm_route.route('/editar_filme/<titulo>', methods=['GET', 'POST'])
-def editar_filme_view(titulo):
-    filmes = carregar_filmes()
-    salas = carregar_salas()
-    filme = next((f for f in filmes if f['titulo'].lower() == titulo.lower()), None)
-    if not filme:
-        flash(f"Filme '{titulo}' não encontrado.", 'danger')
-        return redirect(url_for('adm.listar_filmes_view'))
     if request.method == 'POST':
-        novo_titulo = request.form['titulo'].strip()
-        duracao = int(request.form['duracao'])
-        classificacao = request.form['classificacao'].strip()
-        genero = request.form['genero'].strip()
-        salas_escolhidas = request.form.getlist('salas')
-        if novo_titulo.lower() != filme['titulo'].lower() and any(f['titulo'].lower() == novo_titulo.lower() for f in filmes):
-            flash(f"Já existe filme com título '{novo_titulo}'.", 'danger')
-            return redirect(url_for('adm.editar_filme_view', titulo=titulo))
-        for s_id in salas_escolhidas:
-            if s_id not in filme['salas'] and any(s_id in f.get('salas', []) for f in filmes):
-                flash(f"Sala {s_id} já está ocupada por outro filme.", 'danger')
-                return redirect(url_for('adm.editar_filme_view', titulo=titulo))
-        filme['titulo'] = novo_titulo
-        filme['duracao'] = duracao
-        filme['classificacao'] = classificacao
-        filme['genero'] = genero
-        filme['salas'] = salas_escolhidas
-        salvar_json(filmes, ARQUIVO_FILMES)
-        flash(f"Filme '{novo_titulo}' atualizado.", 'success')
-        return redirect(url_for('adm.listar_filmes_view'))
-    return render_template('editar_filme.html', filme=filme, salas=salas)
+        # Pega o título original do <select>
+        titulo_original = request.form.get('titulo_original')
+        if not titulo_original:
+            flash("Você precisa selecionar um filme para editar.", 'danger')
+            return render_template('editar_filme.html', filmes=filmes, salas=salas)
 
-@adm_route.route('/remover_filme/<titulo>', methods=['GET', 'POST'])
+        # Pega os novos dados dos inputs
+        dados_novos = {
+            'titulo': request.form['titulo'],
+            'duracao': request.form['duracao'],
+            'classificacao': request.form['classificacao'],
+            'genero': request.form['genero'],
+            'salas': request.form.getlist('salas')
+        }
+
+        # Validações básicas (pode adicionar mais se necessário)
+        if not all(dados_novos.values()): # Verifica se algum campo está vazio (exceto salas)
+             flash("Todos os campos de texto e número são obrigatórios.", 'danger')
+             return render_template('editar_filme.html', filmes=filmes, salas=salas)
+
+        # Chama a função de negócio
+        sucesso, resultado = editar_filme(titulo_original, dados_novos)
+
+        if sucesso:
+            flash(f"Filme '{resultado['titulo']}' atualizado com sucesso.", 'success')
+            return redirect(url_for('adm.listar_filmes_view'))
+        else:
+            flash(resultado, 'danger') # Mostra o erro vindo da função
+            # Re-renderiza a página mostrando o erro
+            return render_template('editar_filme.html', filmes=filmes, salas=salas)
+
+    # GET: Apenas mostra o formulário com a lista de filmes e salas
+    return render_template('editar_filme.html', filmes=filmes, salas=salas)
+
+@adm_route.route('/remover_filme/<titulo>', methods=['POST'])
 def remover_filme_view(titulo):
-    filmes = carregar_filmes()
-    filme = next((f for f in filmes if f['titulo'].lower() == titulo.lower()), None)
-    if not filme:
-        flash("Filme não encontrado.", 'danger')
-        return redirect(url_for('adm.listar_filmes_view'))
-    if request.method == 'POST':
-        # Lógica de remoção aqui
-        return redirect(url_for('adm.listar_filmes_view'))
-    return render_template('remover_filme.html', filme=filme)
+    """Rota para remover um filme pelo título."""
+    filmes = carregar_filmes()  
+    filmes_filtrados = [f for f in filmes if f['titulo'].lower() != titulo.lower()]
 
+    if len(filmes_filtrados) < len(filmes):
+        salvar_json(filmes_filtrados, carregar_filmes())
+        flash(f"Filme '{titulo}' removido com sucesso!", 'success')
+    else:
+        flash(f"Filme '{titulo}' não encontrado.", 'danger')
+
+    return redirect(url_for('adm.listar_filmes_view'))
 
 # GERENCIAR ASSENTOS
 

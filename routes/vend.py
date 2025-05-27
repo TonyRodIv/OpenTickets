@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from data.gerenciar_sala import carregar_salas
-from data.gerenciar_filmes import filmes as lista_filmes
+from data.gerenciar_filmes import carregar_filmes # Importa a função
 from data.gerenciar_assentos import carregar_assentos, salvar_assentos, init_sala, gerar_mapa
 
 vend_route = Blueprint('vend', __name__, url_prefix='/vend', template_folder='../templates/vend')
@@ -16,6 +16,7 @@ def vendInit():
 
 @vend_route.route('/escolher_filme', methods=['GET', 'POST'])
 def escolher_filme():
+    lista_filmes = carregar_filmes()
     if request.method == 'POST':
         filme_idx = int(request.form.get('filme')) - 1
         session['filme'] = lista_filmes[filme_idx]
@@ -27,7 +28,9 @@ def escolher_filme():
 def escolher_sala():
     filme = session.get('filme')
     salas = carregar_salas()
-    salas_filme = [s for s in salas if s['numero'] in filme.get('salas', [])]
+    # Garante que 'salas' em filme seja uma lista antes de usar 'in'
+    salas_do_filme_ids = filme.get('salas', [])
+    salas_filme = [s for s in salas if s.get('numero') in salas_do_filme_ids]
 
     if request.method == 'POST':
         sala_num = int(request.form.get('sala'))
