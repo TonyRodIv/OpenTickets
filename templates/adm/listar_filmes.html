@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmes Cadastrados</title>
+</head>
+<body>
+    <h1>Filmes</h1>
+    <a href="{{ url_for('adm.adicionar_filme_view') }}">Adicionar Filme</a>
+    <ul>
+        {% for filme in filmes %}
+        <li>
+            <strong>{{ filme.titulo }}</strong> | {{ filme.duracao }}min | {{ filme.genero }} | Classificação: {{ filme.classificacao }} | Salas: {{ ', '.join(filme.salas) }}
+            <a href="{{ url_for('adm.editar_filme_view', titulo=filme.titulo) }}">Editar</a>
+            <form action="{{ url_for('adm.remover_filme_view', titulo=filme.titulo) }}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('Remover filme?')">Remover</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

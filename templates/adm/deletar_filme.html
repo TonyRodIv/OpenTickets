@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmar Remoção</title>
+</head>
+<body>
+    <h1>Remover "{{ filme.titulo }}"?</h1>
+    <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit">Confirmar</button>
+        <a href="{{ url_for('adm.listar_filmes_view') }}">Cancelar</a>
+    </form>
+</body>
+</html>

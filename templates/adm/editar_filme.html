@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Filme</title>
+</head>
+<body>
+    <h1>Editar Filme</h1>
+    <form method="post">
+        <label>Título: <input type="text" name="titulo" value="{{ filme.titulo }}" required></label><br>
+        <label>Duração (min): <input type="number" name="duracao" value="{{ filme.duracao }}" required></label><br>
+        <label>Classificação: <input type="text" name="classificacao" value="{{ filme.classificacao }}" required></label><br>
+        <label>Gênero: <input type="text" name="genero" value="{{ filme.genero }}" required></label><br>
+        <label>Salas:</label><br>
+        {% for sala in salas %}
+            <input type="checkbox" name="salas" value="{{ sala.numero }}"
+            {% if sala.numero in filme.salas %}checked{% endif %}>
+            Sala {{ sala.numero }}<br>
+        {% endfor %}
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="{{ url_for('adm.listar_filmes_view') }}">Voltar</a>
+</body>
+</html>
