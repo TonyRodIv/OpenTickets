@@ -3,8 +3,14 @@ body {
   max-width: 600px;
   margin: 40px auto;
   padding: 0 20px;
+  background-color:rgb(245, 245, 245);
   color: #333;
 }
+/* .mainContainer {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 22px;
+} */
 button{
   background-color:rgb(17, 109, 121);
   color: #fff;

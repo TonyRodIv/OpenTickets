@@ -24,14 +24,9 @@ def salvar_json(objetos, arquivo):
         json.dump(objetos, f, ensure_ascii=False, indent=4)
 
 def carregar_filmes():
-    """Carrega a lista de filmes do arquivo JSON."""
     return carregar_json(ARQUIVO_FILMES)
 
 def adicionar_filme_web(titulo, duracao, classificacao, genero, urlFoto, salas_escolhidas):
-    """
-    Adiciona um novo filme a partir de dados web.
-    Retorna (True, 'Mensagem de sucesso') ou (False, 'Mensagem de erro').
-    """
     filmes = carregar_json(ARQUIVO_FILMES)
     salas_cadastradas = carregar_salas()
 
@@ -75,12 +70,8 @@ def adicionar_filme_web(titulo, duracao, classificacao, genero, urlFoto, salas_e
     salvar_json(filmes, ARQUIVO_FILMES)
     return True, f"✅ Filme '{titulo}' adicionado com sucesso!"
 
-def listar_filmes():
-    """Carrega e retorna a lista completa de filmes."""
-    return carregar_json(ARQUIVO_FILMES)
-
 def buscar_filme_por_titulo(titulo):
-    """Busca um filme específico pelo título (case-insensitive)."""
+
     filmes = carregar_json(ARQUIVO_FILMES)
     for filme in filmes:
         if filme['titulo'].lower() == titulo.lower():
@@ -88,10 +79,6 @@ def buscar_filme_por_titulo(titulo):
     return None
 
 def editar_filme(titulo_original, dados_novos):
-    """
-    Valida e edita um filme existente.
-    Retorna uma tupla: (sucesso, mensagem_ou_filme_atualizado)
-    """
     filmes = carregar_json(ARQUIVO_FILMES)
     salas_todas = carregar_salas()
     filme_para_editar = buscar_filme_por_titulo(titulo_original)
