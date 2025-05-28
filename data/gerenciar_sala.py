@@ -21,10 +21,6 @@ def salvar_salas(salas):
         json.dump(salas, f, ensure_ascii=False, indent=4)
 
 def adicionar_sala(linhas: int, colunas: int) -> dict:
-    """
-    Adiciona uma nova sala com a quantidade de linhas e colunas informada.
-    Retorna o dict da sala criada ou lança ValueError em caso de validação.
-    """
     # Carrega lista atualizada
     salas = carregar_salas()
 
@@ -59,10 +55,6 @@ def listar_salas():
     return resultado
 
 def editar_sala(numero: str,linhas: int,colunas: int) -> Tuple[Optional[dict], Optional[str]]:
-    """
-    Atualiza linhas e colunas da sala indicada.
-    Retorna (sala_atualizada, None) ou (None, mensagem_de_erro).
-    """
     salas = carregar_salas()
     if not salas:
         return None, "Nenhuma sala cadastrada."
@@ -87,10 +79,6 @@ def editar_sala(numero: str,linhas: int,colunas: int) -> Tuple[Optional[dict], O
     return None, f"Sala {numero} não encontrada."
 
 def deletar_sala(numero: str) -> Optional[str]:
-    """
-    Remove a sala indicada.
-    Retorna mensagem de erro ou None se a sala foi removida com sucesso.
-    """
     salas = carregar_salas()
     if not salas:
         return "Nenhuma sala cadastrada."
@@ -100,3 +88,4 @@ def deletar_sala(numero: str) -> Optional[str]:
             salvar_salas(salas)
             return None
     return f"Sala {numero} não encontrada."
+

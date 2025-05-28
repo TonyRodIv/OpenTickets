@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from data.gerenciar_sala import listar_salas, adicionar_sala, editar_sala, carregar_salas, deletar_sala
+from data.gerenciar_sala import listar_salas, adicionar_sala, editar_sala, carregar_salas, deletar_sala, salvar_salas
 from data.gerenciar_filmes import adicionar_filme_web, carregar_filmes, salvar_json, buscar_filme_por_titulo, editar_filme
 
 adm_route = Blueprint('adm', __name__, url_prefix='/adm', template_folder='../templates/adm')
@@ -10,21 +10,20 @@ def admInit():
     listarSala = url_for('adm.listar_salas_view')
     adicionarSala = url_for('adm.adicionar_sala_view')
     editarSala = url_for('adm.editar_sala_view')
-    deletarSala = url_for('adm.deletar_sala_view')
 
     # Filmes - Adm
     adicionarFilme = url_for('adm.adicionar_filme_view')
     listarFilmes = url_for('adm.listar_filmes_view')
     editarFilme = url_for('adm.editar_filme_view')
     return render_template('admHome.html', listarSala=listarSala, adicionarSala=adicionarSala,
-                           editarSala=editarSala, deletarSala=deletarSala, adicionarFilme=adicionarFilme, listarFilmes=listarFilmes, editarFilme=editarFilme)
+                           editarSala=editarSala, adicionarFilme=adicionarFilme, listarFilmes=listarFilmes, editarFilme=editarFilme)
 
-# GERENCIAR SALAS
+# GERENCIAR SALAS - a partir daqui!
 
 @adm_route.route('/listar_salas')
 def listar_salas_view():
-    salas = listar_salas()
-    return render_template('listar_salas.html', salas=salas)
+    salas_dados = carregar_salas() 
+    return render_template('listar_salas.html', salas=salas_dados) 
 
 @adm_route.route('/adicionar_sala', methods=['GET', 'POST'])
 def adicionar_sala_view():
@@ -68,20 +67,23 @@ def editar_sala_view():
     salas = carregar_salas()
     return render_template('editar_sala.html', salas=salas)
 
-@adm_route.route('/deletar_sala', methods=['GET', 'POST'])
+@adm_route.route('/deletar_sala', methods=['POST'])
 def deletar_sala_view():
-    # POST: deleta sala e valida os dados
-    if request.method == 'POST':
-        numero = request.form.get('numero', '').strip()
-        erro = deletar_sala(numero)
+    numero_str = request.form.get('numero', '').strip()
+
+    if not numero_str:
+        flash("Número da sala não fornecido.", 'danger')
+        return redirect(url_for('adm.listar_salas_view'))
+    try:
+        erro = deletar_sala(numero_str) 
         if erro:
             flash(erro, 'danger')
         else:
-            flash(f"Sala {numero} removida com sucesso!", 'success')
-        return redirect(url_for('adm.listar_salas_view'))
-    # GET: apresenta formulário com todas as salas
-    salas = carregar_salas()
-    return render_template('deletar_sala.html', salas=salas)
+            flash(f"Sala {numero_str} removida com sucesso!", 'success') 
+    except Exception as e:
+        flash(f"Ocorreu um erro inesperado: {e}", 'danger')
+        
+    return redirect(url_for('adm.listar_salas_view'))
 
 # GERENCIAR FILMES
 @adm_route.route('/adicionar_filme', methods=['GET', 'POST'])
@@ -92,7 +94,7 @@ def adicionar_filme_view():
         classificacao = request.form.get('classificacao', '').strip()
         genero = request.form.get('genero', '').strip()
         urlFoto = request.form.get('urlFoto', '').strip()
-        salas_escolhidas = request.form.getlist('salas') # Usa getlist para múltiplos checkboxes
+        salas_escolhidas = request.form.getlist('salas') # Usa getlist para váaaarios checkbox
 
         sucesso, mensagem = adicionar_filme_web(
             titulo, duracao, classificacao, genero, urlFoto, salas_escolhidas
@@ -100,7 +102,7 @@ def adicionar_filme_view():
 
         if sucesso:
             flash(mensagem, 'success')
-            return redirect(url_for('adm.admInit')) # Redireciona para o início por enquanto
+            return redirect(url_for('adm.admInit')) # Redireciona para o início por enquanto (lemnbrar mudar depois)
         else:
             flash(mensagem, 'danger')
             # Se der erro, renderiza o formulário novamente com as salas
@@ -113,22 +115,17 @@ def adicionar_filme_view():
 
 @adm_route.route('/listar_filmes')
 def listar_filmes_view():
-    """Rota para carregar e exibir a lista de filmes."""
-    filmes = carregar_filmes() # Usa a função para pegar os dados do JSON
-    # Renderiza o template, passando a lista de filmes para ele
+    filmes = carregar_filmes()
+    # usa a função para peegar os dados do json e dps renderiza o template, passando a lista de filmes para ele
     return render_template('listar_filmes.html', filmes=filmes)
 
-@adm_route.route('/editar_filme', methods=['GET', 'POST']) # REMOVIDO <titulo> da URL
+@adm_route.route('/editar_filme', methods=['GET', 'POST'])
 def editar_filme_view():
-    """
-    Rota para selecionar um filme e editar seus dados,
-    similar à editar_sala_view.
-    """
     filmes = carregar_filmes()  # Carrega a lista de filmes
     salas = carregar_salas()
 
     if request.method == 'POST':
-        # Pega o título original do <select>
+        # Pega o título original do <select> no html por meio do id ou name do input (é um desses dois)
         titulo_original = request.form.get('titulo_original')
         if not titulo_original:
             flash("Você precisa selecionar um filme para editar.", 'danger')

@@ -3,8 +3,14 @@ body {
   max-width: 600px;
   margin: 40px auto;
   padding: 0 20px;
+  background-color:rgb(245, 245, 245);
   color: #333;
 }
+/* .mainContainer {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 22px;
+} */
 button{
   background-color:rgb(17, 109, 121);
   color: #fff;
@@ -12,5 +18,10 @@ button{
   border: none;
   border-radius: 12px;
   cursor: pointer;
+}
+button:hover {
+  background-color: rgb(32, 89, 97);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 1s ease, box-shadow 0.5s ease;
 }
 
