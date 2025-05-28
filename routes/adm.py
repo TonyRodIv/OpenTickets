@@ -10,14 +10,13 @@ def admInit():
     listarSala = url_for('adm.listar_salas_view')
     adicionarSala = url_for('adm.adicionar_sala_view')
     editarSala = url_for('adm.editar_sala_view')
-    deletarSala = url_for('adm.deletar_sala_view')
 
     # Filmes - Adm
     adicionarFilme = url_for('adm.adicionar_filme_view')
     listarFilmes = url_for('adm.listar_filmes_view')
     editarFilme = url_for('adm.editar_filme_view')
     return render_template('admHome.html', listarSala=listarSala, adicionarSala=adicionarSala,
-                           editarSala=editarSala, deletarSala=deletarSala, adicionarFilme=adicionarFilme, listarFilmes=listarFilmes, editarFilme=editarFilme)
+                           editarSala=editarSala, adicionarFilme=adicionarFilme, listarFilmes=listarFilmes, editarFilme=editarFilme)
 
 # GERENCIAR SALAS - a partir daqui!
 
