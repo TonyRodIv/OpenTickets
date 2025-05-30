@@ -11,12 +11,22 @@
     },
     {
         "numero": "3",
-        "linhas": 12,
-        "colunas": 7
+        "linhas": 9,
+        "colunas": 5
     },
     {
         "numero": "4",
         "linhas": 10,
         "colunas": 6
+    },
+    {
+        "numero": "5",
+        "linhas": 8,
+        "colunas": 12
+    },
+    {
+        "numero": "6",
+        "linhas": 5,
+        "colunas": 15
     }
 ]

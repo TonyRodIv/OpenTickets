@@ -20,5 +20,25 @@
             "1",
             "4"
         ]
+    },
+    {
+        "titulo": "Shrek 4",
+        "duracao": 130,
+        "classificacao": "10",
+        "genero": "Aventura",
+        "urlFoto": "https://m.media-amazon.com/images/M/MV5BYzE1NjVhMjItYTE2Yy00YjE5LTg2YjctMGRhNTRiMGM1ZTFkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        "salas": [
+            "6"
+        ]
+    },
+    {
+        "titulo": "Shrek 2",
+        "duracao": 120,
+        "classificacao": "L",
+        "genero": "Aventura",
+        "urlFoto": "https://upload.wikimedia.org/wikipedia/pt/thumb/7/78/Shrek_2_Poster.jpg/250px-Shrek_2_Poster.jpg",
+        "salas": [
+            "5"
+        ]
     }
 ]
