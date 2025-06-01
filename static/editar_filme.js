@@ -22,23 +22,29 @@ document.addEventListener('DOMContentLoaded', function () {
     tituloNovo = document.getElementById('titulo');
     duracaoNovo = document.getElementById('duracao');
     generoNovo = document.getElementById('genero');
-    classificacaoNovo = document.getElementById('classificacao');
+
 
     tituloOriginal.addEventListener('change', function () {
         console.log('Filme selecionado:', tituloOriginal.value);
         todasAsSalas.forEach(sala => {
             const salaCheckbox = document.getElementById(`sala_${sala.numero}`);
             if (salaCheckbox) {
-                salaCheckbox.checked = false; // Desmarca todas as salas
+                salaCheckbox.checked = false;
             }
         });
+
         todosOsFilmes.forEach(filme => {
             if (filme.titulo === tituloOriginal.value) {
                 console.log('Filme encontrado:', filme);
                 tituloNovo.value = filme.titulo;
                 duracaoNovo.value = filme.duracao;
                 generoNovo.value = filme.genero;
-                classificacaoNovo.value = filme.classificacao;
+                const radiosClassificacao = document.querySelectorAll('input[name="classificacao"]');
+                radiosClassificacao.forEach(radio => {
+                    if (radio.value === filme.classificacao) {
+                        radio.checked = true;
+                    }
+                });
                 filme.salas.forEach(sala => {
                     const salaCheckbox = document.getElementById(`sala_${sala}`);
                     if (salaCheckbox) {

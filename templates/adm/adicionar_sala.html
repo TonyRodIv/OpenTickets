@@ -7,14 +7,6 @@
 </head>
 <body>
   <h1>Adicionar Nova Sala</h1>
-    {% if messages %}
-      <ul>
-      {% for categoria, msg in messages %}
-        <li class="flash-{{ categoria }}">{{ msg }}</li>
-      {% endfor %}
-      </ul>
-    {% endif %}
-
 
   <form action="{{ url_for('adm.adicionar_sala_view') }}" method="post">
     <div>

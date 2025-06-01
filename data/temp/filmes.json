@@ -2,7 +2,7 @@
     {
         "titulo": "Taylor Swift: Já Eras Tuor",
         "duracao": 190,
-        "classificacao": "14",
+        "classificacao": "14 anos",
         "genero": "Show",
         "urlFoto": "https://br.web.img3.acsta.net/pictures/23/09/11/09/10/4295874.jpg",
         "salas": [
@@ -14,7 +14,7 @@
     {
         "titulo": "Coringa: Delírio a Dois",
         "duracao": 146,
-        "classificacao": "18",
+        "classificacao": "18 anos",
         "genero": "Ação",
         "urlFoto": "https://ingresso-a.akamaihd.net/prd/img/movie/coringa-delirio-a-dois/6eb6b44d-859b-4ffe-87fd-e728d55dc2f5.webp",
         "salas": [
@@ -25,7 +25,7 @@
     {
         "titulo": "Shrek 4",
         "duracao": 130,
-        "classificacao": "10",
+        "classificacao": "10 anos",
         "genero": "Aventura",
         "urlFoto": "https://m.media-amazon.com/images/M/MV5BYzE1NjVhMjItYTE2Yy00YjE5LTg2YjctMGRhNTRiMGM1ZTFkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
         "salas": [
@@ -42,6 +42,16 @@
         "salas": [
             "4",
             "5"
+        ]
+    },
+    {
+        "titulo": "Dragonite e o carteiro",
+        "duracao": 10,
+        "classificacao": "Livre",
+        "genero": "Animação",
+        "urlFoto": "https://universonintendo.com/wp-content/uploads/2025/02/Dragonite-e-o-Carteiro-06-02-2025-1.jpg",
+        "salas": [
+            "3"
         ]
     }
 ]

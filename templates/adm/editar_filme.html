@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Editar Filme</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
     <h1>Editar Filme</h1>
-
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <ul>
-            {% for category, message in messages %}
-                <li class="flash-{{ category }}">{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
 
     <form action="{{ url_for('adm.editar_filme_view') }}" method="post">
         <div>
@@ -24,14 +16,15 @@
             <select id="titulo_original" name="titulo_original" required>
                 <option value="">-- escolha um filme --</option>
                 {% for f in filmes %}
-                    <option value="{{ f.titulo }}">{{ f.titulo }}</option>
+                <option value="{{ f.titulo }}">{{ f.titulo }}</option>
                 {% endfor %}
             </select>
         </div>
 
         <hr>
         <h3>Digite os Novos Dados do Filme</h3>
-        <p><strong>Atenção:</strong> Você deve preencher todos os campos abaixo com os valores desejados (atuais ou novos).</p>
+        <p><strong>Atenção:</strong> Você deve preencher todos os campos abaixo com os valores desejados (atuais ou
+            novos).</p>
 
         <div>
             <label>Título:
@@ -43,21 +36,27 @@
                 <input type="number" id="duracao" name="duracao" placeholder="Ex: 120" required>
             </label>
         </div>
-        <div>
-            <label>Classificação:
-                <input type="text" id="classificacao" name="classificacao" placeholder="Ex: 14 anos" required>
-            </label>
+        <div class="form-group">
+            <label>Classificação Etária:</label><br>
+             {% for classificacao_opcao in classificacoes_indicativas %} 
+            <input type="radio" id="classificacao_{{ loop.index }}" name="classificacao" value="{{ classificacao_opcao }}" required>        
+            <label for="classificacao_{{ loop.index }}">{{ classificacao_opcao }}</label><br> 
+            {% endfor %}
         </div>
-        <div>
-            <label>Gênero:
-                <input type="text" id="genero" name="genero" placeholder="Ex: Ação" required>
-            </label>
+        <div class="form-group">
+            <label for="genero">Gênero:</label> 
+            <select id="genero" name="genero"required>
+                <option value="">-- Selecione um gênero --</option>
+                {% for genero_opcao in generos_filme %}
+                <option value="{{ genero_opcao }}">{{ genero_opcao }}</option>
+                {%endfor %} 
+            </select>
         </div>
         <div>
             <label>Salas:</label><br>
             {% for sala in salas %}
-                <input type="checkbox" id="sala_{{ sala.numero }}" name="salas" value="{{ sala.numero }}">
-                <label for="sala_{{ sala.numero }}">Sala {{ sala.numero }}</label><br>
+            <input type="checkbox" id="sala_{{ sala.numero }}" name="salas" value="{{ sala.numero }}">
+            <label for="sala_{{ sala.numero }}">Sala {{ sala.numero }}</label><br>
             {% endfor %}
         </div>
         <button type="submit">Atualizar Filme</button>
@@ -66,4 +65,5 @@
     <p><a href="{{ url_for('adm.admInit') }}">← Voltar ao Painel ADM</a></p>
     <script src="{{ url_for('static', filename='editar_filme.js') }}"></script>
 </body>
+
 </html>
