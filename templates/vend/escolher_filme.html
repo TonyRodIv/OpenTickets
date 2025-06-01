@@ -6,19 +6,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="">
+    <div>
         <h3>Selecione o Filme</h3>
         <form method="POST">
             {% for filme in filmes %}
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="filme" 
+            <div>
+                <input type="radio" name="filme" 
                        id="filme{{ loop.index }}" value="{{ loop.index }}">
-                <label class="form-check-label" for="filme{{ loop.index }}">
+                <label for="filme{{ loop.index }}">
                     {{ filme.titulo }}
                 </label>
             </div>
             {% endfor %}
-            <button type="submit" class="btn btn-primary mt-3">Próximo</button>
+            <button type="submit">Próximo</button>
         </form>
     </div>
 </body>

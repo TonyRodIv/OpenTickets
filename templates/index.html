@@ -8,13 +8,13 @@
 
 </head>
 <body>
-    <div class="login-container">
+    <div>
         <h1>Realize seu login</h1>
         <p>Precisamos de alguns dados</p>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                <ul class="flashes">
+                <ul>
                 {% for category, message in messages %}
                     <li class="flash-{{ category }}">{{ message }}</li>
                 {% endfor %}
@@ -23,15 +23,15 @@
         {% endwith %}
 
         <form method="post" action="{{ url_for('login.login') }}">
-            <div class="form-group">
+            <div>
                 <label for="username">Nome de Usuário</label>
                 <input type="text" id="username" name="username" placeholder="ExemploUsuario" required>
             </div>
-            <div class="form-group">
+            <div>
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" placeholder="Senha123" required>
             </div>
-            <div class="form-group">
+            <div>
                 <label for="user_type">Tipo de Usuário</label>
                 <select id="user_type" name="user_type" required>
                     <option value="adm">Administrador</option>

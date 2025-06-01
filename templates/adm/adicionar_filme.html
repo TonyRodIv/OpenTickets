@@ -10,7 +10,7 @@
 
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-      <ul class="flashes">
+      <ul>
       {% for category, message in messages %}
         <li class="flash-{{ category }}">{{ message }}</li>
       {% endfor %}
@@ -19,11 +19,11 @@
   {% endwith %}
 
   <form method="post">
-    <div class="form-group">
+    <div>
       <label for="titulo">Título:</label>
       <input type="text" id="titulo" name="titulo" required>
     </div>
-    <div class="form-group">
+    <div>
       <label for="duracao">Duração (minutos):</label>
       <input type="number" id="duracao" name="duracao" min="1" required>
     </div>
@@ -45,18 +45,17 @@
         {% endfor %}
       </select>
     </div>
-
-    <div class="form-group">
+    <div>
       <label for="urlFoto">URL da Foto (opcional):</label>
       <input type="url" id="urlFoto" name="urlFoto" placeholder="https://exemplo.com/imagem.jpg">
     </div>
 
-    <div class="form-group">
+    <div>
       <label>Selecione as Salas:</label>
-      <div class="salas-group">
+      <div>
         {% if salas %}
           {% for sala in salas %}
-            <div class="sala-check">
+            <div>
               <input type="checkbox" id="sala{{ sala.numero }}" name="salas" value="{{ sala.numero }}">
               <label for="sala{{ sala.numero }}">
                 Sala {{ sala.numero }} ({{ sala.linhas }}x{{ sala.colunas }})
