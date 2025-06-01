@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
-from data.gerenciar_sala import listar_salas, adicionar_sala, editar_sala, carregar_salas, deletar_sala, salvar_salas
-from data.gerenciar_filmes import adicionar_filme_web, carregar_filmes, salvar_json, buscar_filme_por_titulo, editar_filme
+from data.gerenciar_sala import adicionar_sala, editar_sala, carregar_salas, deletar_sala
+from data.gerenciar_filmes import adicionar_filme_web, carregar_filmes, salvar_json, editar_filme, ARQUIVO_FILMES
 
 adm_route = Blueprint('adm', __name__, url_prefix='/adm', template_folder='../templates/adm')
 
@@ -176,13 +176,13 @@ def editar_filme_view():
                            generos_filme=GENEROS_FILME)
 
 @adm_route.route('/remover_filme/<titulo>', methods=['POST'])
-def remover_filme_view(titulo):
+def remover_filme_view(titulo): #
     """Rota para remover um filme pelo título."""
-    filmes = carregar_filmes()  
+    filmes = carregar_filmes()
     filmes_filtrados = [f for f in filmes if f['titulo'].lower() != titulo.lower()]
 
     if len(filmes_filtrados) < len(filmes):
-        salvar_json(filmes_filtrados, carregar_filmes())
+        salvar_json(filmes_filtrados, ARQUIVO_FILMES) # <--- MUDE AQUI!
         flash(f"Filme '{titulo}' removido com sucesso!", 'success')
     else:
         flash(f"Filme '{titulo}' não encontrado.", 'danger')

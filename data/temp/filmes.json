@@ -28,27 +28,19 @@
         "genero": "Aventura",
         "urlFoto": "https://m.media-amazon.com/images/M/MV5BYzE1NjVhMjItYTE2Yy00YjE5LTg2YjctMGRhNTRiMGM1ZTFkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
         "salas": [
-            "6"
-        ]
-    },
-    {
-        "titulo": "Shrek 2",
-        "duracao": 120,
-        "classificacao": "L",
-        "genero": "Aventura",
-        "urlFoto": "https://upload.wikimedia.org/wikipedia/pt/thumb/7/78/Shrek_2_Poster.jpg/250px-Shrek_2_Poster.jpg",
-        "salas": [
-            "5"
+            "3",
+            "4"
         ]
     },
     {
         "titulo": "Lilo&Stitch",
         "duracao": 140,
         "classificacao": "Livre",
-        "genero": "Policial",
+        "genero": "Animação",
         "urlFoto": "https://ingresso-a.akamaihd.net/prd/img/movie/coringa-delirio-a-dois/6eb6b44d-859b-4ffe-87fd-e728d55dc2f5.webp",
         "salas": [
-            "6"
+            "4",
+            "5"
         ]
     }
 ]
