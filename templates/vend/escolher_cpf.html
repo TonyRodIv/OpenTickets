@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Opções de Venda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div>
+        <h2>Quer registrar seu CPF na compra?</h2>
+        <p>Escolha uma opção para continuar:</p>
+        <div>
+            <a href="{{ url_for('vend.entrar_com_cpf') }}">
+                Entrar com CPF
+            </a>
+            <a href="{{ url_for('vend.escolher_filme') }}">
+                Continuar sem CPF
+            </a>
+        </div>
+    </div>
+</body>
+</html>
