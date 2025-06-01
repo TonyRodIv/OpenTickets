@@ -25,10 +25,11 @@ def admInit():
     return render_template('admHome.html', listarSala=listarSala, adicionarSala=adicionarSala,
                            editarSala=editarSala, adicionarFilme=adicionarFilme, listarFilmes=listarFilmes, editarFilme=editarFilme)
 
-@adm_route.route('/api/filmes', methods=['GET'])
-def api_listar_filmes():
+@adm_route.route('/api/dados', methods=['GET'])
+def api_listar_dados():
     filmes = carregar_filmes()
-    return jsonify(filmes) # Retorna a lista como um JSON para o JS interpretar
+    salas = carregar_salas()
+    return jsonify({'filmes': filmes, 'salas': salas}) # Retorna a lista como um JSON para o JS interpretar
 
 # GERENCIAR SALAS - a partir daqui!
 
