@@ -1,8 +1,15 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 from data.gerenciar_sala import listar_salas, adicionar_sala, editar_sala, carregar_salas, deletar_sala, salvar_salas
 from data.gerenciar_filmes import adicionar_filme_web, carregar_filmes, salvar_json, buscar_filme_por_titulo, editar_filme
 
 adm_route = Blueprint('adm', __name__, url_prefix='/adm', template_folder='../templates/adm')
+
+CLASSIFICACOES_INDICATIVAS = ["Livre", "10 anos", "12 anos", "14 anos", "16 anos", "18 anos"]
+GENEROS_FILME = [
+    "Ação", "Animação", "Aventura", "Comédia", "Documentário", "Drama",
+    "Fantasia", "Ficção Científica", "Guerra", "Musical", "Policial", "Romance",
+    "Show", "Suspense", "Terror", "Thriller"
+]
 
 @adm_route.route('/')
 def admInit():
@@ -17,6 +24,11 @@ def admInit():
     editarFilme = url_for('adm.editar_filme_view')
     return render_template('admHome.html', listarSala=listarSala, adicionarSala=adicionarSala,
                            editarSala=editarSala, adicionarFilme=adicionarFilme, listarFilmes=listarFilmes, editarFilme=editarFilme)
+
+@adm_route.route('/api/filmes', methods=['GET'])
+def api_listar_filmes():
+    filmes = carregar_filmes()
+    return jsonify(filmes) # Retorna a lista como um JSON para o JS interpretar
 
 # GERENCIAR SALAS - a partir daqui!
 
@@ -111,7 +123,10 @@ def adicionar_filme_view():
 
     # GET: Carrega as salas e exibe o formulário
     salas_disponiveis = carregar_salas()
-    return render_template('adicionar_filme.html', salas=salas_disponiveis)
+    return render_template('adicionar_filme.html',
+                           salas=salas_disponiveis,
+                           classificacoes_indicativas=CLASSIFICACOES_INDICATIVAS,
+                           generos_filme=GENEROS_FILME)
 
 @adm_route.route('/listar_filmes')
 def listar_filmes_view():
@@ -157,7 +172,8 @@ def editar_filme_view():
             return render_template('editar_filme.html', filmes=filmes, salas=salas)
 
     # GET: Apenas mostra o formulário com a lista de filmes e salas
-    return render_template('editar_filme.html', filmes=filmes, salas=salas)
+    return render_template('editar_filme.html', filmes=filmes, salas=salas, classificacoes_indicativas=CLASSIFICACOES_INDICATIVAS,
+                           generos_filme=GENEROS_FILME)
 
 @adm_route.route('/remover_filme/<titulo>', methods=['POST'])
 def remover_filme_view(titulo):

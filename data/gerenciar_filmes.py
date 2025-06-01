@@ -18,9 +18,9 @@ def carregar_json(arquivo):
                 return [] # Retorna lista vazia se o arquivo for inválido ou vazio
     return []
 
-def salvar_json(objetos, arquivo):
-    garantir_pasta(arquivo)
-    with open(arquivo, 'w', encoding='utf-8') as f:
+def salvar_json(objetos, caminho_do_arquivo): # Mudei o nome do parâmetro para clarear
+    garantir_pasta(caminho_do_arquivo) # Use o parâmetro
+    with open(caminho_do_arquivo, 'w', encoding='utf-8') as f: # <--- AQUI ESTÁ A MUDANÇA
         json.dump(objetos, f, ensure_ascii=False, indent=4)
 
 def carregar_filmes():
@@ -53,9 +53,6 @@ def adicionar_filme_web(titulo, duracao, classificacao, genero, urlFoto, salas_e
     for s_id in salas_escolhidas:
         if s_id not in numeros_salas_cadastradas:
             return False, f"❌ Sala {s_id} não cadastrada."
-        # Verifica se a sala já está ocupada por *outro* filme
-        if any(s_id in f.get('salas', []) for f in filmes):
-            return False, f"❌ Sala {s_id} já está ocupada por outro filme."
 
     # Adiciona filme
     novo_filme = {
@@ -71,7 +68,6 @@ def adicionar_filme_web(titulo, duracao, classificacao, genero, urlFoto, salas_e
     return True, f"✅ Filme '{titulo}' adicionado com sucesso!"
 
 def buscar_filme_por_titulo(titulo):
-
     filmes = carregar_json(ARQUIVO_FILMES)
     for filme in filmes:
         if filme['titulo'].lower() == titulo.lower():
@@ -83,9 +79,6 @@ def editar_filme(titulo_original, dados_novos):
     salas_todas = carregar_salas()
     filme_para_editar = buscar_filme_por_titulo(titulo_original)
 
-    if not filme_para_editar:
-        return False, f"Filme '{titulo_original}' não encontrado."
-
     novo_titulo = dados_novos['titulo'].strip()
     salas_escolhidas = dados_novos.get('salas', [])
 
@@ -94,14 +87,14 @@ def editar_filme(titulo_original, dados_novos):
         if buscar_filme_por_titulo(novo_titulo):
             return False, f"Já existe um filme com o título '{novo_titulo}'."
 
-    # Valida se as salas escolhidas existem e não estão ocupadas por OUTRO filme
+    # Valida se as salas escolhidas existem
     numeros_salas_existentes = {s['numero'] for s in salas_todas}
     for s_id in salas_escolhidas:
         if s_id not in numeros_salas_existentes:
             return False, f"A Sala {s_id} não existe."
-        for f in filmes:
-            if f['titulo'].lower() != filme_para_editar['titulo'].lower() and s_id in f.get('salas', []):
-                 return False, f"A Sala {s_id} já está ocupada por outro filme."
+        # for f in filmes:
+        #     if f['titulo'].lower() != filme_para_editar['titulo'].lower() and s_id in f.get('salas', []):
+        #          return False, f"A Sala {s_id} já está ocupada por outro filme."
 
     # Atualiza os dados
     filme_para_editar['titulo'] = novo_titulo

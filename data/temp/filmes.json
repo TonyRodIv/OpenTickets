@@ -40,5 +40,15 @@
         "salas": [
             "5"
         ]
+    },
+    {
+        "titulo": "Lilo&Stitch",
+        "duracao": 140,
+        "classificacao": "Livre",
+        "genero": "Policial",
+        "urlFoto": "https://ingresso-a.akamaihd.net/prd/img/movie/coringa-delirio-a-dois/6eb6b44d-859b-4ffe-87fd-e728d55dc2f5.webp",
+        "salas": [
+            "6"
+        ]
     }
 ]

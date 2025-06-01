@@ -27,14 +27,25 @@
       <label for="duracao">Duração (minutos):</label>
       <input type="number" id="duracao" name="duracao" min="1" required>
     </div>
+
     <div class="form-group">
-      <label for="classificacao">Classificação Etária:</label>
-      <input type="text" id="classificacao" name="classificacao" required>
+      <label>Classificação Etária:</label><br>
+      {% for classificacao_opcao in classificacoes_indicativas %}
+        <input type="radio" id="classificacao_{{ loop.index }}" name="classificacao" value="{{ classificacao_opcao }}" required>
+        <label for="classificacao_{{ loop.index }}">{{ classificacao_opcao }}</label><br>
+      {% endfor %}
     </div>
+
     <div class="form-group">
       <label for="genero">Gênero:</label>
-      <input type="text" id="genero" name="genero" required>
+      <select id="genero" name="genero" required>
+        <option value="">-- Selecione um gênero --</option>
+        {% for genero_opcao in generos_filme %}
+          <option value="{{ genero_opcao }}">{{ genero_opcao }}</option>
+        {% endfor %}
+      </select>
     </div>
+
     <div class="form-group">
       <label for="urlFoto">URL da Foto (opcional):</label>
       <input type="url" id="urlFoto" name="urlFoto" placeholder="https://exemplo.com/imagem.jpg">
