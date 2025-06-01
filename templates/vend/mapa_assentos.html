@@ -5,7 +5,28 @@
     <title>Escolher Assentos e Tipos de Ingresso</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        /* Estilos básicos para o mapa de assentos */
+        /* Estilos básicos para o mapa de assentos (mantendo e adicionando alguns) */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px; /* Aumenta a largura máxima para acomodar melhor */
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color:rgb(245, 245, 245);
+            color: #333;
+        }
+        button{
+            background-color:rgb(17, 109, 121);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: rgb(32, 89, 97);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 1s ease, box-shadow 0.5s ease;
+        }
         .screen {
             background-color: #333;
             height: 50px;
@@ -24,7 +45,6 @@
         }
         .seat-map {
             display: inline-grid; /* Para que o grid se ajuste ao conteúdo e permita rolagem horizontal */
-            /* Isso vai ser definido via JS para ter o número correto de colunas */
             grid-template-columns: repeat(var(--num-colunas, 10), 40px); /* Padrão 10, pode ser atualizado via JS */
             gap: 10px;
             justify-content: center;
@@ -60,31 +80,56 @@
             border: 1px solid #1976D2;
         }
 
-        /* Área de seleção de ingressos e total */
-        .ticket-selection-area {
+        /* Novas Estilos para a área de seleção de ingressos (contadores) */
+        .ticket-quantity-area {
             margin-top: 30px;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 8px;
             background-color: #f9f9f9;
         }
-        .ticket-item {
+        .ticket-type-control {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
-            padding: 8px;
-            background-color: #eee;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #e0f2f7; /* Cor de fundo mais clara */
             border-radius: 5px;
         }
-        .ticket-item span {
+        .ticket-type-control span {
             font-weight: bold;
-            color: #555;
+            color: #0056b3;
+            flex-grow: 1; /* Ocupa o espaço disponível */
         }
-        .ticket-item select {
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .quantity-control button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%; /* Botões redondos */
+            width: 30px;
+            height: 30px;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .quantity-control button:hover {
+            background-color: #0056b3;
+        }
+        .quantity-control span.count {
+            width: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #333;
         }
         .total-info {
             margin-top: 20px;
@@ -101,6 +146,12 @@
             font-weight: bold;
             color: #333;
         }
+        .validation-message {
+            color: #f44336; /* Vermelho para erros */
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -116,15 +167,14 @@
             {% endif %}
         {% endwith %}
 
-        <p>Filme: <strong>{{ filme.titulo }}</strong> | Sala: <strong>{{ sala_num }}</strong></p>
+        <p>Filme: <strong>{{ filme.titulo }}</strong> | Sala: <strong>{{ sala_num }}</strong> | Horário: <strong>{{ horario }}</strong></p>
 
         <div class="screen">TELA</div>
 
         <form method="POST" id="form-venda">
             <div class="seat-map-container">
                 <div class="seat-map" id="seat-map" 
-                     style="--num-colunas: {{ sala_obj.colunas if sala_obj else 10 }};"> {# Define a variável CSS aqui #}
-                    {# O mapa de assentos será renderizado aqui pelo Flask #}
+                     style="--num-colunas: {{ sala_obj.colunas if sala_obj else 10 }};">
                     {% for row_seats in mapa %}
                         <div class="seat-row">
                             {% for assento_code in row_seats %}
@@ -139,21 +189,36 @@
                 </div>
             </div>
 
-            <div class="ticket-selection-area">
-                <h4>Tipos de Ingresso e Preço Total</h4>
-                <div id="selected-tickets-list">
-                    {# Assentos selecionados e seus tipos de ingresso serão adicionados aqui via JS #}
-                    <p>Nenhum assento selecionado ainda. Clique nos assentos no mapa!</p>
+            <div class="ticket-quantity-area">
+                <h4>Tipo de Ingresso</h4>
+                <div class="ticket-type-control">
+                    <span>Inteira (R$ {{ "%.2f"|format(PRICES.inteira)|replace('.', ',') }})</span>
+                    <div class="quantity-control">
+                        <button type="button" class="decrease-quantity" data-type="inteira">-</button>
+                        <span class="count" id="count-inteira">0</span>
+                        <button type="button" class="increase-quantity" data-type="inteira">+</button>
+                    </div>
+                </div>
+                <div class="ticket-type-control">
+                    <span>Meia-Entrada (R$ {{ "%.2f"|format(PRICES.meia)|replace('.', ',') }})</span>
+                    <div class="quantity-control">
+                        <button type="button" class="decrease-quantity" data-type="meia">-</button>
+                        <span class="count" id="count-meia">0</span>
+                        <button type="button" class="increase-quantity" data-type="meia">+</button>
+                    </div>
                 </div>
 
                 <div class="total-info">
-                    <h4>Total da Compra:</h4>
+                    <h4>Assentos Selecionados: <span id="num-assentos-selecionados">0</span></h4>
                     <p id="total-price">R$ 0,00</p>
                 </div>
+                <p class="validation-message" id="quantity-validation-message" style="display: none;">
+                    O número de ingressos inteira + meia não corresponde ao número de assentos selecionados!
+                </p>
             </div>
 
             {# Inputs hidden para enviar os dados. Serão preenchidos pelo JS #}
-            {# Ex: <input type="hidden" name="assentos_comprados[A1]" value="inteira"> #}
+            {# Ex: <input type="hidden" name="assentos_selecionados_final[]" value="A1:inteira"> #}
             <div id="hidden-inputs-container"></div>
 
             <button type="submit" style="margin-top: 20px;">Finalizar Compra</button>
@@ -163,62 +228,48 @@
 
     <script>
         const seatMap = document.getElementById('seat-map');
-        const selectedTicketsList = document.getElementById('selected-tickets-list');
+        const numAssentosSelecionadosDisplay = document.getElementById('num-assentos-selecionados');
         const totalPriceDisplay = document.getElementById('total-price');
         const formVenda = document.getElementById('form-venda');
         const hiddenInputsContainer = document.getElementById('hidden-inputs-container');
+        const quantityValidationMessage = document.getElementById('quantity-validation-message');
 
         const PRICES = {
             'inteira': 25.00,
             'meia': 12.50
         };
 
-        // Objeto para armazenar os assentos selecionados e seus tipos de ingresso
-        // Ex: { 'A1': { type: 'inteira', element: null }, 'B2': { type: 'meia', element: null } }
-        let selectedSeats = {}; 
+        let selectedSeatCodes = []; // Armazena apenas os códigos dos assentos selecionados
+        let ticketQuantities = {
+            'inteira': 0,
+            'meia': 0
+        };
 
-        function updateTicketListAndTotalPrice() {
-            // Limpa a lista atual
-            selectedTicketsList.innerHTML = '';
-            hiddenInputsContainer.innerHTML = ''; // Limpa os inputs hidden antigos
+        function updateCountsAndTotal() {
+            // Atualiza os contadores de inteira/meia
+            document.getElementById('count-inteira').textContent = ticketQuantities.inteira;
+            document.getElementById('count-meia').textContent = ticketQuantities.meia;
 
-            let total = 0;
-            const seatCodes = Object.keys(selectedSeats).sort((a, b) => {
-                // Ordena assentos: A1, A2, B1, B2...
-                const rowA = a.charCodeAt(0);
-                const rowB = b.charCodeAt(0);
-                if (rowA !== rowB) return rowA - rowB;
-                return parseInt(a.substring(1)) - parseInt(b.substring(1));
-            });
+            // Atualiza o número de assentos selecionados
+            numAssentosSelecionadosDisplay.textContent = selectedSeatCodes.length;
 
-            if (seatCodes.length === 0) {
-                selectedTicketsList.innerHTML = '<p>Nenhum assento selecionado ainda. Clique nos assentos no mapa!</p>';
-            } else {
-                seatCodes.forEach(seatCode => {
-                    const currentSeat = selectedSeats[seatCode];
-
-                    const ticketItem = document.createElement('div');
-                    ticketItem.classList.add('ticket-item');
-                    ticketItem.innerHTML = `
-                        <span>Assento: ${seatCode}</span>
-                        <select class="ticket-type-select" data-assento-code="${seatCode}">
-                            <option value="inteira" ${currentSeat.type === 'inteira' ? 'selected' : ''}>Inteira (R$ ${PRICES['inteira'].toFixed(2).replace('.', ',')})</option>
-                            <option value="meia" ${currentSeat.type === 'meia' ? 'selected' : ''}>Meia (R$ ${PRICES['meia'].toFixed(2).replace('.', ',')})</option>
-                        </select>
-                    `;
-                    selectedTicketsList.appendChild(ticketItem);
-
-                    // Adiciona o input hidden para envio ao backend
-                    const hiddenInput = document.createElement('input');
-                    hiddenInput.type = 'hidden';
-                    hiddenInput.name = `assentos_comprados[${seatCode}]`;
-                    hiddenInput.value = currentSeat.type;
-                    hiddenInputsContainer.appendChild(hiddenInput);
-
-                    total += PRICES[currentSeat.type];
-                });
-            }
+            // Calcula e atualiza o preço total
+            let total = (ticketQuantities.inteira * PRICES.inteira) + (ticketQuantities.meia * PRICES.meia);
             totalPriceDisplay.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+
+            // Validação visual (esconde/mostra a mensagem)
+            validateQuantities();
+        }
+
+        function validateQuantities() {
+            const totalTickets = ticketQuantities.inteira + ticketQuantities.meia;
+            if (selectedSeatCodes.length === 0) {
+                quantityValidationMessage.style.display = 'none'; // Não mostra mensagem se nenhum assento foi selecionado
+            } else if (totalTickets !== selectedSeatCodes.length) {
+                quantityValidationMessage.style.display = 'block'; // Mostra a mensagem de erro
+            } else {
+                quantityValidationMessage.style.display = 'none'; // Esconde a mensagem
+            }
         }
 
         // Evento de clique no mapa de assentos
@@ -231,28 +282,86 @@
                 if (clickedSeat.classList.contains('selected')) {
                     // Desselecionar assento
                     clickedSeat.classList.remove('selected');
-                    delete selectedSeats[assentoCode];
+                    selectedSeatCodes = selectedSeatCodes.filter(code => code !== assentoCode);
                 } else {
-                    // Selecionar assento (padrão como inteira)
+                    // Selecionar assento
                     clickedSeat.classList.add('selected');
-                    selectedSeats[assentoCode] = { type: 'inteira' }; // Default para 'inteira'
+                    selectedSeatCodes.push(assentoCode);
                 }
-                updateTicketListAndTotalPrice();
+                updateCountsAndTotal(); // Atualiza tudo
             }
         });
 
-        // Evento de mudança nos selects de tipo de ingresso
-        selectedTicketsList.addEventListener('change', function(event) {
-            const target = event.target;
-            if (target.classList.contains('ticket-type-select')) {
-                const assentoCode = target.dataset.assentoCode;
-                selectedSeats[assentoCode].type = target.value;
-                updateTicketListAndTotalPrice();
+        // Eventos para os botões de quantidade (+/-)
+        document.querySelectorAll('.increase-quantity').forEach(button => {
+            button.addEventListener('click', function() {
+                const type = this.dataset.type;
+                if ((ticketQuantities.inteira + ticketQuantities.meia) < selectedSeatCodes.length) {
+                    ticketQuantities[type]++;
+                    updateCountsAndTotal();
+                } else {
+                    alert('Você já atingiu o número máximo de ingressos para os assentos selecionados.');
+                }
+            });
+        });
+
+        document.querySelectorAll('.decrease-quantity').forEach(button => {
+            button.addEventListener('click', function() {
+                const type = this.dataset.type;
+                if (ticketQuantities[type] > 0) {
+                    ticketQuantities[type]--;
+                    updateCountsAndTotal();
+                }
+            });
+        });
+
+        // Evento de submit do formulário
+        formVenda.addEventListener('submit', function(event) {
+            const totalTickets = ticketQuantities.inteira + ticketQuantities.meia;
+
+            if (selectedSeatCodes.length === 0) {
+                alert('Por favor, selecione pelo menos um assento.');
+                event.preventDefault();
+                return;
+            }
+
+            if (totalTickets !== selectedSeatCodes.length) {
+                alert('O número de ingressos (inteira + meia) não corresponde ao número de assentos selecionados. Por favor, ajuste.');
+                event.preventDefault();
+                return;
+            }
+
+            // Preenche os inputs hidden para o Flask
+            hiddenInputsContainer.innerHTML = ''; // Limpa antigos
+            
+            // Distribui os tipos de ingresso para os assentos
+            let finalAssentosComTipo = [];
+            let inteiraCount = ticketQuantities.inteira;
+            let meiaCount = ticketQuantities.meia;
+
+            // Atribui inteira primeiro, depois meia, ou como preferir
+            for (let i = 0; i < selectedSeatCodes.length; i++) {
+                const assentoCode = selectedSeatCodes[i];
+                let type = '';
+                if (inteiraCount > 0) {
+                    type = 'inteira';
+                    inteiraCount--;
+                } else if (meiaCount > 0) {
+                    type = 'meia';
+                    meiaCount--;
+                }
+                finalAssentosComTipo.push({ code: assentoCode, type: type });
+
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = `assentos_comprados[${assentoCode}]`; // Ex: assentos_comprados[A1]
+                input.value = type; // Ex: inteira ou meia
+                hiddenInputsContainer.appendChild(input);
             }
         });
 
-        // Chamada inicial para preencher o mapa de assentos (se houver dados iniciais)
-        updateTicketListAndTotalPrice();
+        // Chamada inicial
+        updateCountsAndTotal();
     </script>
 </body>
 </html>

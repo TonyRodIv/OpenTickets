@@ -11,11 +11,12 @@ def carregar_assentos():
     if os.path.exists(ARQUIVO):
         with open(ARQUIVO, 'r', encoding='utf-8') as f:
             try:
-                # Converte chaves de sala para string ao carregar, se necessário
-                assentos = json.load(f)
-                return {str(k): v for k, v in assentos.items()} 
+                # Converte chaves de sala e horário para string ao carregar
+                assentos_data = json.load(f)
+                return {str(k_sala): {str(k_horario): v_horario for k_horario, v_horario in v_sala.items()}
+                        for k_sala, v_sala in assentos_data.items()}
             except json.JSONDecodeError:
-                return {} # Retorna dicionário vazio se o arquivo for inválido ou vazio
+                return {} 
     return {} 
 
 def salvar_assentos(assentos):
@@ -23,32 +24,36 @@ def salvar_assentos(assentos):
     with open(ARQUIVO, 'w', encoding='utf-8') as f:
         json.dump(assentos, f, ensure_ascii=False, indent=4)
 
-def init_sala(assentos, sala_num, linhas, colunas):
-    # Garante que sala_num seja string
+# A função init_sala agora também precisa do horário
+def init_sala(assentos_globais, sala_num: str, horario: str, linhas: int, colunas: int):
+    # Garante que sala_num e horario sejam string
     sala_num_str = str(sala_num) 
-    if sala_num_str not in assentos:
+    horario_str = str(horario)
+
+    if sala_num_str not in assentos_globais:
+        assentos_globais[sala_num_str] = {} # Inicializa a sala se ela não existe
+
+    if horario_str not in assentos_globais[sala_num_str]:
         m = {}
-        # Gera os assentos no formato A1, A2, B1, B2...
         for r in range(linhas):
             letra = chr(ord('A') + r)
             for c in range(1, colunas + 1):
                 m[f"{letra}{c}"] = False  # False = livre
-        assentos[sala_num_str] = m # Usa a chave como string
+        assentos_globais[sala_num_str][horario_str] = m # Inicializa o horário dentro da sala
 
-def gerar_mapa(assentos_sala):
-    if not assentos_sala: # Se não tiver assentos, retorna um mapa vazio
+# A função gerar_mapa agora recebe os assentos para um horário específico
+def gerar_mapa(assentos_horario):
+    if not assentos_horario:
         return []
 
-    # Extrai e ordena as linhas (letras) e colunas (números)
-    linhas = sorted(list(set(code[0] for code in assentos_sala)))
-    colunas = sorted(list(set(int(code[1:]) for code in assentos_sala)))
+    linhas = sorted(list(set(code[0] for code in assentos_horario)))
+    colunas = sorted(list(set(int(code[1:]) for code in assentos_horario)))
     
     mapa = []
     for letra in linhas:
         row = []
         for num in colunas:
             key = f"{letra}{num}"
-            # Usa 'XX' para ocupado, o próprio código do assento para livre
-            row.append("XX" if assentos_sala.get(key, False) else key) 
+            row.append("XX" if assentos_horario.get(key, False) else key) 
         mapa.append(row)
     return mapa

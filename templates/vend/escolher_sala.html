@@ -2,24 +2,154 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Escolher Sala</title>
+    <title>Escolher Sala e Horário</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .sala-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .sala-item h4 {
+            margin-top: 0;
+            color: #333;
+        }
+        .horario-group {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #ccc;
+        }
+        .horario-group label {
+            display: inline-block; /* Para rádio e label ficarem na mesma linha */
+            margin-right: 15px; /* Espaçamento entre os horários */
+            cursor: pointer;
+        }
+        .horario-group input[type="radio"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .horario-option {
+            background-color: #e0f2f7; /* Um azul clarinho para cada opção de horário */
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+        .horario-option:hover {
+            background-color: #c0e0e8;
+        }
+        .horario-option input[type="radio"]:checked + span {
+            font-weight: bold;
+            color: #0056b3;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
     <div>
-        <h3>Selecione a Sala</h3>
+        <h3>Selecione a Sala e o Horário</h3>
         <form method="POST">
             {% for sala in salas %}
-            <div>
-                <input type="radio" name="sala" 
-                       id="sala{{ sala.numero }}" value="{{ sala.numero }}">
-                <label for="sala{{ sala.numero }}">
-                    Sala {{ sala.numero }} ({{ sala.linhas }}x{{ sala.colunas }})
-                </label>
+            <div class="sala-item">
+                <div class="form-group">
+                    <input type="radio" name="sala" 
+                           id="sala_{{ sala.numero }}" value="{{ sala.numero }}" 
+                           data-sala-horarios="{{ sala.horarios|tojson }}" required>
+                    <label for="sala_{{ sala.numero }}">
+                        <h4>Sala {{ sala.numero }} ({{ sala.linhas }}x{{ sala.colunas }} - {{ sala.linhas * sala.colunas }} lugares)</h4>
+                    </label>
+                </div>
+                
+                <div class="horario-group" id="horarios-sala-{{ sala.numero }}" style="display: none;">
+                    <strong>Horários disponíveis:</strong><br>
+                    {% if sala.horarios %}
+                        {% for horario in sala.horarios %}
+                            <label class="horario-option">
+                                <input type="radio" name="horario_selecionado" value="{{ horario }}" 
+                                       data-sala-radio="sala_{{ sala.numero }}" disabled>
+                                <span>{{ horario }}</span>
+                            </label>
+                        {% endfor %}
+                    {% else %}
+                        <p>Nenhum horário cadastrado para esta sala.</p>
+                    {% endif %}
+                </div>
             </div>
+            {% else %}
+                <p>Nenhuma sala disponível para este filme. 😭</p>
             {% endfor %}
-            <button type="submit">Próximo</button>
+
+            <button type="submit" style="margin-top: 20px;">Próximo</button>
         </form>
+        <p><a href="{{ url_for('vend.escolher_filme') }}">← Voltar para Escolher Filme</a></p>
     </div>
+
+    <script>
+        const salaRadios = document.querySelectorAll('input[name="sala"]');
+        const horarioRadios = document.querySelectorAll('input[name="horario_selecionado"]');
+        const form = document.querySelector('form');
+
+        salaRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Esconde todos os grupos de horários e desabilita seus rádios
+                document.querySelectorAll('.horario-group').forEach(group => {
+                    group.style.display = 'none';
+                    group.querySelectorAll('input[type="radio"]').forEach(hradio => {
+                        hradio.checked = false; // Desseleciona todos os horários
+                        hradio.disabled = true; // Desabilita todos os horários
+                    });
+                });
+
+                // Mostra o grupo de horários da sala selecionada e habilita seus rádios
+                const selectedSalaNum = this.value;
+                const horariosGroup = document.getElementById(`horarios-sala-${selectedSalaNum}`);
+                if (horariosGroup) {
+                    horariosGroup.style.display = 'block';
+                    horariosGroup.querySelectorAll('input[type="radio"]').forEach(hradio => {
+                        hradio.disabled = false; // Habilita os horários da sala selecionada
+                    });
+                }
+            });
+        });
+
+        form.addEventListener('submit', function(event) {
+            // Verifica se uma sala foi selecionada
+            const selectedSala = document.querySelector('input[name="sala"]:checked');
+            if (!selectedSala) {
+                alert('Por favor, selecione uma sala.');
+                event.preventDefault(); // Impede o envio
+                return;
+            }
+
+            // Verifica se um horário foi selecionado para a sala ativa
+            const activeHorariosGroup = document.getElementById(`horarios-sala-${selectedSala.value}`);
+            if (activeHorariosGroup) {
+                const selectedHorario = activeHorariosGroup.querySelector('input[name="horario_selecionado"]:checked');
+                if (!selectedHorario) {
+                    alert('Por favor, selecione um horário para a sala.');
+                    event.preventDefault(); // Impede o envio
+                    return;
+                }
+            } else {
+                 // Caso raro onde não há horários ou grupo de horários para a sala selecionada
+                alert('Nenhum horário disponível para a sala selecionada.');
+                event.preventDefault();
+                return;
+            }
+        });
+
+        // Tenta preencher a seleção se já houver algo na sessão (para quando volta da tela de mapa)
+        // Isso é um pouco mais complexo se a página for recarregada sem sessão limpa.
+        // Por agora, o foco é na funcionalidade.
+    </script>
 </body>
 </html>
