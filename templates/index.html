@@ -12,16 +12,6 @@
         <h1>Realize seu login</h1>
         <p>Precisamos de alguns dados</p>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <ul>
-                {% for category, message in messages %}
-                    <li class="flash-{{ category }}">{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-
         <form method="post" action="{{ url_for('login.login') }}">
             <div>
                 <label for="username">Nome de Usuário</label>
