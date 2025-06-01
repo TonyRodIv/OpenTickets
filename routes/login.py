@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 
 login_route = Blueprint('login', __name__, template_folder='../templates')
 
-@login_route.route('/', methods=['GET', 'POST'])
-def login():
-    
-    return render_template('index.html')
+@login_route.route('/', methods=['GET', 'POST']) 
+def loginUser(): 
+
+    return render_template('index.html') 

@@ -10,6 +10,21 @@ GENEROS_FILME = [
     "Fantasia", "Ficção Científica", "Guerra", "Musical", "Policial", "Romance",
     "Show", "Suspense", "Terror", "Thriller"
 ]
+@adm_route.route('/', methods=['GET', 'POST'])
+def login(): # Essa é a função de login do ADM, que vai estar em /adm/
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        if username == 'adm' and password == 'adm':
+            flash('Login de administrador bem-sucedido! ✨', 'success')
+            return redirect(url_for('adm.admInit'))
+
+        else:
+            flash('Usuário ou senha inválidos. Tenta de novo, amg! 💅', 'danger')
+            return redirect(url_for('adm.login')) # <<<<< AQUI A MUDANÇA! Redireciona para a própria rota de login do ADM
+
+    return render_template('login.html') # Renderiza a tela de login do ADM
 
 @adm_route.route('/home')
 def admInit():
@@ -25,21 +40,6 @@ def admInit():
     return render_template('admHome.html', listarSala=listarSala, adicionarSala=adicionarSala,
                            editarSala=editarSala, adicionarFilme=adicionarFilme, listarFilmes=listarFilmes, editarFilme=editarFilme)
     
-@adm_route.route('/', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        
-        if username == 'adm' and password == 'adm':
-            flash('Login de administrador bem-sucedido!', 'success')
-            return redirect(url_for('adm.admInit'))
-
-        else:
-            flash('Usuário ou senha inválidos.', 'danger')
-            return redirect(url_for('login.login'))
-
-    return render_template('login.html')
 
 @adm_route.route('/api/dados', methods=['GET'])
 def api_listar_dados():
