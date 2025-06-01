@@ -8,12 +8,12 @@
 </head>
 
 <body>
-    <div class="">
+    <div>
         <h2>Venda Confirmada!</h2>
         <p><strong>Filme:</strong> {{ filme.titulo }}</p>
         <p><strong>Sala:</strong> {{ sala_num }}</p>
         <p><strong>Assento:</strong> {{ assento }}</p>
-        <a href="{{ url_for('vend.vendInit') }}" class="btn btn-secondary">Nova Venda</a>
+        <a href="{{ url_for('vend.vendInit') }}">Nova Venda</a>
     </div>
 </body>
 

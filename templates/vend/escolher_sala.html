@@ -6,19 +6,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container mt-5">
+    <div>
         <h3>Selecione a Sala</h3>
         <form method="POST">
             {% for sala in salas %}
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="sala" 
+            <div>
+                <input type="radio" name="sala" 
                        id="sala{{ sala.numero }}" value="{{ sala.numero }}">
-                <label class="form-check-label" for="sala{{ sala.numero }}">
+                <label for="sala{{ sala.numero }}">
                     Sala {{ sala.numero }} ({{ sala.linhas }}x{{ sala.colunas }})
                 </label>
             </div>
             {% endfor %}
-            <button type="submit" class="btn btn-primary mt-3">Próximo</button>
+            <button type="submit">Próximo</button>
         </form>
     </div>
 </body>
