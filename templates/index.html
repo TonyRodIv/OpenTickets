@@ -1,35 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <title>Login - Bilheteria OpenTickets</title>
+    <title>OpenTickets</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
-
 </head>
-<body>
-    <div class="login-container">
-        <h1>Realize seu login</h1>
-        <p>Precisamos de alguns dados</p>
 
-        <form method="post" action="{{ url_for('login.login') }}">
-            <div class="form-group">
-                <label for="username">Nome de Usuário</label>
-                <input type="text" id="username" name="username" placeholder="ExemploUsuario" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" name="password" placeholder="Senha123" required>
-            </div>
-            <div class="form-group">
-                <label for="user_type">Tipo de Usuário</label>
-                <select id="user_type" name="user_type" required>
-                    <option value="adm">Administrador</option>
-                    <option value="vend">Vendedor</option>
-                </select>
-            </div>
-            <button type="submit">Entrar</button>
-        </form>
+<body>
+    <div>
+        <h1>Bem vindo ao CineUnima</h1>
+        <p>Entre com seu CPF para ter acesso a benefícios!</p>
+        <div>
+            <button>
+                Continuar com CPF
+            </button>
+            <a href="{{ url_for('vend.escolher_filme') }}">
+                <button>
+                    Continuar sem CPF
+                </button>
+            </a>
+        </div>
     </div>
 </body>
+
 </html>

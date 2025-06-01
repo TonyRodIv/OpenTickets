@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify, session
 from data.gerenciar_sala import adicionar_sala, editar_sala, carregar_salas, deletar_sala
 from data.gerenciar_filmes import adicionar_filme_web, carregar_filmes, salvar_json, editar_filme, ARQUIVO_FILMES
 
@@ -11,7 +11,7 @@ GENEROS_FILME = [
     "Show", "Suspense", "Terror", "Thriller"
 ]
 
-@adm_route.route('/')
+@adm_route.route('/home')
 def admInit():
     # Salas - adm
     listarSala = url_for('adm.listar_salas_view')
@@ -24,6 +24,22 @@ def admInit():
     editarFilme = url_for('adm.editar_filme_view')
     return render_template('admHome.html', listarSala=listarSala, adicionarSala=adicionarSala,
                            editarSala=editarSala, adicionarFilme=adicionarFilme, listarFilmes=listarFilmes, editarFilme=editarFilme)
+    
+@adm_route.route('/', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        
+        if username == 'adm' and password == 'adm':
+            flash('Login de administrador bem-sucedido!', 'success')
+            return redirect(url_for('adm.admInit'))
+
+        else:
+            flash('Usuário ou senha inválidos.', 'danger')
+            return redirect(url_for('login.login'))
+
+    return render_template('login.html')
 
 @adm_route.route('/api/dados', methods=['GET'])
 def api_listar_dados():
