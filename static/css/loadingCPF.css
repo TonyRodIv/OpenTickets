@@ -1,0 +1,64 @@
+.mainContainer {
+   background: linear-gradient(144deg,var(--bg-mid-blue) 0%, rgba(91, 104, 223, 0.123) 35%, rgba(115, 224, 169, 0.123) 100%);
+}
+
+.cpfContent article {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.display{
+    padding: 20px;
+    width: 19rem;
+    height: 5rem;
+    background-color: #11182796;
+    border: 3px solid #9db6dc3a;
+    border-radius: 1.6rem;
+    color: var(--text-primary-color);
+    font-size: 1.2rem;
+}
+.btnCPF{
+    padding: 20px;
+    width: 5.3rem;
+    height: 5.3rem;
+    border: 3px solid #9db6dc3a;
+    border-radius: 1.6rem;
+    font-size: 1.2rem;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btnCPFcolor:hover {
+    background-color: var(--btn-high-blue);
+    transform: scale(1.04); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); 
+}
+.btnCPFcolor {
+    background-color: #11182796;
+}
+#cpf_keyboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  
+    gap: 15px; 
+}
+
+#cpf_keyboard button[data-key="del"]:hover {
+    background-color: #b91d0b;
+    transform: scale(1.04); 
+}
+
+#continueCPFbtn { 
+    background-color: var(btn-low-blue); 
+    cursor: not-allowed; 
+}
+
+#continueCPFbtn:not([disabled]) {
+    background-color: var(--btn-high-blue); 
+    cursor: pointer;
+}
+
+#continueCPFbtn:not([disabled]):hover {
+    background-color: var(--btn-high-blue-hover);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.04); 
+}

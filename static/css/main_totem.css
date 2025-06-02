@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --bg-deep-blue: #080B12;
+  --bg-mid-blue: #111827;
+
+  --btn-high-blue: #4672b1;
+  --btn-high-blue-hover: rgb(34, 76, 148);
+  --btn-low-blue: #172135;
+  --btn-low-blue-hover: rgb(31, 44, 73);
+
+
+  --text-primary-color: #E9E9E9;
+  --text-secondary-color: #9C9C9C;
+}
+
+body {
+  color: var(--text-primary-color);
+  background-color: var(--bg-deep-blue);
+  font-family: Onest;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  padding: 0 16px 16px 16px;
+}
+
+.navTotem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem;
+}
+
+.mainContainer {
+  flex-grow: 1;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 22px;
+  background-color: var(--bg-mid-blue);
+  /* padding: 3rem; */
+  display: flex;
+  flex-direction: column;
+}
+
+.logoNav {
+  width: 10rem;
+  min-width: 180px;
+  max-width: fit-content;
+}
+
+.titlePage h1 {
+  font-size: 2.5rem;
+  color: var(--text-primary-color);
+}
+
+.titlePage p {
+  font-size: 1.1rem;
+  color: var(--text-secondary-color);
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  color: var(--text-primary-color);
+  background-color: var(--btn-high-blue);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btnHigh {
+  background-color: var(--btn-high-blue);
+}
+
+.btnLow {
+    background-color: var(--btn-low-blue);
+}
+
+.btnHigh:hover {
+  background-color: var(--btn-high-blue-hover);
+}
+
+.btnLow:hover {
+  background-color: var(--btn-low-blue-hover);
+}

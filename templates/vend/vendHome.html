@@ -1,17 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Venda de Ingressos</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loadingCPF.css') }}">
 </head>
-<body>
-    <div>
-        <h2>Venda de Ingressos</h2>
-        <a href="{{ url_for('vend.escolher_filme') }}">
-            Iniciar Nova Venda
-        </a>
-    </div>
-</body>
-</html>
 
+<body>
+    <nav class="navTotem">
+        <img src="../static/img/LogoOpenTickets.svg" alt="logo do open tickets" class="logoNav">
+    </nav>
+    <main class="mainContainer">
+        <article class="titlePage">
+            <h1>Digite o seu CPF</h1>
+            <p>Ao entrar com seu cpf você terá acesso há diversos benefícios</p>
+        </article>
+        <section id="cpf_section" class="cpfContent">
+            <article>
+                <input type="text" id="cpfDisplay" class="display" disabled placeholder="Digite o CPF">
+                <div id="cpf_keyboard" style="text-align: center; margin-top: 20px;">
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="1">1</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="2">2</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="3">3</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="4">4</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="5">5</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="6">6</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="7">7</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="8">8</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="9">9</button>
+                        <button type="button" class="btnCPF btnLow" data-key="del">⌫</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="0">0</button>
+                        <button type="button" id="continueCPFbtn" class="btnCPF btnLow" data-number="0" disabled>></button>
+                </div>
+            </article>
+        </section>
+        
+    </main>
+    <script src="{{ url_for('static', filename='js/totem_init.js') }}"></script>
+</body>
+
+</html>

@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Escolher Sala e Horário</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
     <style>
         .sala-item {
             border: 1px solid #ddd;
             padding: 15px;
             margin-bottom: 15px;
             border-radius: 8px;
-            background-color: #f9f9f9;
+            background-color: #303030;
         }
         .sala-item h4 {
             margin-top: 0;
-            color: #333;
+            color: #ffffff;
         }
         .horario-group {
             margin-top: 10px;
@@ -31,17 +31,17 @@
             cursor: pointer;
         }
         .horario-option {
-            background-color: #e0f2f7; /* Um azul clarinho para cada opção de horário */
+            background-color: #027797; /* Um azul clarinho para cada opção de horário */
             padding: 5px 10px;
             border-radius: 5px;
             transition: background-color 0.2s ease;
         }
         .horario-option:hover {
-            background-color: #c0e0e8;
+            background-color: #004e61;
         }
         .horario-option input[type="radio"]:checked + span {
             font-weight: bold;
-            color: #0056b3;
+            color: #ffffff;
         }
         .form-group {
             margin-bottom: 20px;
