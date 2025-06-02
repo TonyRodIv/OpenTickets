@@ -23,9 +23,42 @@
         </div>
 
         <article>
-            
+        <input type="text"id="display"class="display"disabled>
+        <div id="cpf_keyboard" style="text-align: center; margin-top: 20px;">
+            <div>
+                <button type="button" data-number="1">1</button>
+                <button type="button" data-number="2">2</button>
+                <button type="button" data-number="3">3</button>
+            </div>
+            <div>
+                <button type="button" data-number="4">4</button>
+                <button type="button" data-number="5">5</button>
+                <button type="button" data-number="6">6</button>
+            </div>
+            <div>
+                <button type="button" data-number="7">7</button>
+                <button type="button" data-number="8">8</button>
+                <button type="button" data-number="9">9</button>
+            </div>
+            <div>
+                <button type="button" data-number="0">0</button>
+                <button type="button" data-key="del">⌫</button>
+            </div>
+        </div>
+    </div>
         </article>
     </div>
+    <script>
+        const numbersBtn = document.querySelectorAll('[data-number]');
+        const display = document.getElementById('display');
+        
+        numbersBtn.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                display.value += btn.innerHTML;
+                console.log(display.value)
+            });
+        });
+    </script>
 </body>
 
 </html>
