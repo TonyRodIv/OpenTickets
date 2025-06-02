@@ -11,11 +11,11 @@
         ]
     },
     {
-        "titulo": "Coringa: Delírio a Dois",
+        "titulo": "Pearl",
         "duracao": 146,
         "classificacao": "18 anos",
         "genero": "Ação",
-        "urlFoto": "https://ingresso-a.akamaihd.net/prd/img/movie/coringa-delirio-a-dois/6eb6b44d-859b-4ffe-87fd-e728d55dc2f5.webp",
+        "urlFoto": "https://wp.ufpel.edu.br/empauta/files/2022/11/imagem1.jpg",
         "salas": [
             "1",
             "7"
@@ -36,19 +36,29 @@
         "duracao": 140,
         "classificacao": "Livre",
         "genero": "Animação",
-        "urlFoto": "https://ingresso-a.akamaihd.net/prd/img/movie/coringa-delirio-a-dois/6eb6b44d-859b-4ffe-87fd-e728d55dc2f5.webp",
+        "urlFoto": "https://m.media-amazon.com/images/S/pv-target-images/82358a68004ba7346674d1b392509258eaef1add6192f032454a619e8e51b9a0.jpg",
         "salas": [
             "5"
         ]
     },
     {
-        "titulo": "Dragonite e o carteiro",
-        "duracao": 10,
-        "classificacao": "Livre",
-        "genero": "Animação",
-        "urlFoto": "https://universonintendo.com/wp-content/uploads/2025/02/Dragonite-e-o-Carteiro-06-02-2025-1.jpg",
+        "titulo": "Wicked",
+        "duracao": 180,
+        "classificacao": "14 anos",
+        "genero": "Aventura",
+        "urlFoto": "https://s2-gshow.glbimg.com/uPsGo1YjYQN9tf2cdmEIHF_1Phc=/0x0:1350x1687/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2024/b/N/GnFH3LQtOcr4OcECzvtA/wickedmovie-1715698806-3367848142826665088-3421676539.jpg",
         "salas": [
             "3"
+        ]
+    },
+    {
+        "titulo": "Turma da Mônica: Uma Aventura no Tempo",
+        "duracao": 120,
+        "classificacao": "Livre",
+        "genero": "Animação",
+        "urlFoto": "https://m.media-amazon.com/images/M/MV5BNGViODFjYTgtYzkyYi00YmM3LTlhMWYtZWZhNTNlN2M5MTRmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        "salas": [
+            "8"
         ]
     }
 ]

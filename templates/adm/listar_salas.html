@@ -11,7 +11,8 @@
     <ul>
         {% for sala in salas %}
             <li>
-                <strong>Sala {{ sala.numero }}</strong> – {{ sala.linhas * sala.colunas }} cadeiras
+                <strong>Sala {{ sala.numero }}</strong> – {{ sala.linhas * sala.colunas }} cadeiras 
+                
 
                 <a href="{{ url_for('adm.editar_sala_view')}}">
                     <button>Editar</button>

@@ -8,7 +8,7 @@
         /* Estilos básicos para o mapa de assentos (mantendo e adicionando alguns) */
         body {
             font-family: Arial, sans-serif;
-            max-width: 800px; /* Aumenta a largura máxima para acomodar melhor */
+            max-width: 1000px; /* Aumenta a largura máxima para acomodar melhor */
             margin: 40px auto;
             padding: 0 20px;
             background-color:rgb(245, 245, 245);
@@ -30,8 +30,8 @@
         .screen {
             background-color: #333;
             height: 50px;
-            width: 80%;
-            margin: 20px auto;
+            width: 90%;
+            margin: 0 auto;
             border-radius: 5px;
             color: #fff;
             display: flex;
@@ -45,10 +45,10 @@
         }
         .seat-map {
             display: inline-grid; /* Para que o grid se ajuste ao conteúdo e permita rolagem horizontal */
-            grid-template-columns: repeat(var(--num-colunas, 10), 40px); /* Padrão 10, pode ser atualizado via JS */
-            gap: 10px;
+            grid-template-columns: repeat(var(--num-colunas, 10), 25px); /* Padrão 10, pode ser atualizado via JS */
+            gap: 5px;
             justify-content: center;
-            margin: 30px auto; /* Centraliza o mapa */
+            margin: 0 auto; /* Centraliza o mapa */
             border: 1px solid #ccc; /* Só para visualização */
             padding: 10px;
         }
@@ -56,18 +56,18 @@
             display: contents; /* Faz com que os filhos sejam colocados diretamente no grid do pai */
         }
         .seat {
-            width: 40px;
-            height: 40px;
+            width: 25px;
+            height: 25px;
             background-color: #4CAF50; /* Assento livre */
             border: 1px solid #388E3C;
-            border-radius: 5px;
+            border-radius: 8px 8px 4px 4px;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             font-weight: bold;
-            color: #fff;
-            font-size: 0.9em;
+            color: #ffffff73;
+            font-size: 0.6em;
             transition: background-color 0.2s ease; /* Transição suave */
         }
         .seat.occupied {

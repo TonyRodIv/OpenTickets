@@ -17,11 +17,9 @@ def login(): # Essa é a função de login do ADM, que vai estar em /adm/
         password = request.form.get('password')
         
         if username == 'adm' and password == 'adm':
-            flash('Login de administrador bem-sucedido! ✨', 'success')
             return redirect(url_for('adm.admInit'))
 
         else:
-            flash('Usuário ou senha inválidos. Tenta de novo, amg! 💅', 'danger')
             return redirect(url_for('adm.login')) # <<<<< AQUI A MUDANÇA! Redireciona para a própria rota de login do ADM
 
     return render_template('login.html') # Renderiza a tela de login do ADM

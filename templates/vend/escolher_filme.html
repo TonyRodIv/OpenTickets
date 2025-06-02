@@ -1,25 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <title>Escolher Filme</title>
+    <title>Filmes em Cartaz</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/movies.css') }}">
 </head>
+
 <body>
-    <div>
-        <h3>Selecione o Filme</h3>
-        <form method="POST">
-            {% for filme in filmes %}
-            <div>
-                <input type="radio" name="filme" 
-                       id="filme{{ loop.index }}" value="{{ loop.index }}">
-                <label for="filme{{ loop.index }}">
-                    {{ filme.titulo }}
-                </label>
+    <nav class="navTotem">
+        <img src="../static/img/LogoOpenTickets.svg" alt="logo do open tickets" class="logoNav">
+    </nav>
+    <main class="mainContainer">
+        <h3>Filmes em cartaz</h3>
+        <form method="POST" id="formEscolherFilme"> {# <<-- ID ADICIONADO AQUI --#}
+            <div class="filmes-grid">
+                {% for filme in filmes %}
+                <div class="filme-card">
+                    <input type="radio" name="filme"
+                           id="filme{{ loop.index }}"
+                           value="{{ loop.index }}"
+                           class="radio-invisivel">
+                    <label for="filme{{ loop.index }}" class="filme-label">
+                        <img src="{{ filme.urlFoto if filme.urlFoto else url_for('static', filename='images/placeholder.png') }}"
+                             alt="Pôster do filme {{ filme.titulo }}"
+                             class="filme-poster">
+                        <span class="filme-titulo">{{ filme.titulo }}</span>
+                    </label>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-            <button type="submit">Próximo</button>
+            {# O BOTÃO "PRÓXIMO" FOI REMOVIDO DAQUI #}
+            {% if not filmes %}
+                <p>Ops! Nenhum filme em cartaz no momento. 😢</p>
+                <a href="{{ url_for('vend.vendInit') }}" class="botao-voltar">Voltar</a>
+            {% endif %}
         </form>
-    </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('formEscolherFilme');
+            const radios = document.querySelectorAll('.radio-invisivel');
+
+            radios.forEach(function(radio) {
+                radio.addEventListener('change', function() { // Usar 'change' é mais semântico pra radios
+                    if (this.checked) {
+                        form.submit(); // Envia o formulário! ✨
+                    }
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>
