@@ -30,23 +30,9 @@ def adicionar_filme_web(titulo, duracao, classificacao, genero, urlFoto, salas_e
     filmes = carregar_json(ARQUIVO_FILMES)
     salas_cadastradas = carregar_salas()
 
-    # Validações
-    if not titulo:
-        return False, "❌ O título do filme é obrigatório."
+    # Validações (talvez seja apagada por redundância  )
     if any(f['titulo'].lower() == titulo.lower() for f in filmes):
         return False, f"❌ Filme '{titulo}' já existe."
-    try:
-        duracao_int = int(duracao)
-        if duracao_int <= 0:
-            return False, "❌ A duração deve ser um número positivo."
-    except ValueError:
-        return False, "❌ A duração deve ser um número."
-    if not classificacao:
-        return False, "❌ A classificação etária é obrigatória."
-    if not genero:
-        return False, "❌ O gênero é obrigatório."
-    if not salas_escolhidas:
-        return False, "❌ Selecione pelo menos uma sala."
 
     numeros_salas_cadastradas = [s['numero'] for s in salas_cadastradas]
 
@@ -57,7 +43,7 @@ def adicionar_filme_web(titulo, duracao, classificacao, genero, urlFoto, salas_e
     # Adiciona filme
     novo_filme = {
         "titulo": titulo,
-        "duracao": duracao_int,
+        "duracao": int(duracao), # Converte para inteiro
         "classificacao": classificacao,
         "genero": genero,
         "urlFoto": urlFoto or "", # Garante que seja string vazia se None

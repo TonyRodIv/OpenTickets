@@ -77,16 +77,6 @@ def adicionar_sala(linhas: int, colunas: int) -> dict:
     else:
         numero_sala_escolhido = "1"
 
-    # Validações
-    if linhas < 1:
-        raise ValueError("❌ Quantidade de fileiras inválida. Deve ser >= 1.")
-    if linhas > 20:
-        raise ValueError("⚠️ Atenção: fileiras acima de 20 podem não ser exibidas corretamente.")
-    if colunas < 1:
-        raise ValueError("❌ Quantidade de poltronas inválida. Deve ser >= 1.")
-    if colunas > 30:
-        raise ValueError("⚠️ Atenção: poltronas acima de 30 podem não ser exibidas corretamente.")
-
     # Gera os horários para a nova sala
     horarios_gerados = gerar_horarios_sala()
 
@@ -119,16 +109,6 @@ def editar_sala(numero: str,linhas: int,colunas: int) -> Tuple[Optional[dict], O
         return None, "Nenhuma sala cadastrada."
     for s in salas:
         if s["numero"] == numero:
-            # Validações
-            if linhas < 1:
-                return None, "❌ Quantidade de fileiras inválida. Deve ser >= 1."
-            if linhas > 20:
-                return None, "⚠️ Atenção: fileiras acima de 20 podem não ser exibidas corretamente."
-            if colunas < 1:
-                return None, "❌ Quantidade de colunas inválida. Deve ser >= 1."
-            if colunas > 30:
-                return None, "⚠️ Atenção: colunas acima de 30 podem não ser exibidas corretamente."
-
             # Atualiza e salva
             s["linhas"] = linhas
             s["colunas"] = colunas
