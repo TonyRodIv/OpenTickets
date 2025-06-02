@@ -36,3 +36,11 @@
     align-items: center;
     justify-content: space-between;
 }
+
+@media (max-width: 1100px) {
+    .mainContainer {
+    background-image: url(/static/img/mainBgTotemALT.png);
+    background-size: cover;
+    background-position: center;
+}
+}
