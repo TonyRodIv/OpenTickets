@@ -1,0 +1,100 @@
+[
+    {
+        "filme": "Taylor Swift: Já Eras Tuor",
+        "sala": "2",
+        "assento": "D8",
+        "tipo": "inteira",
+        "data_hora": "2025-06-03T19:55:00.996581"
+    },
+    {
+        "filme": "Taylor Swift: Já Eras Tuor",
+        "sala": "2",
+        "assento": "D9",
+        "tipo": "inteira",
+        "data_hora": "2025-06-03T19:55:01.023287"
+    },
+    {
+        "filme": "Taylor Swift: Já Eras Tuor",
+        "sala": "2",
+        "assento": "D10",
+        "tipo": "meia",
+        "data_hora": "2025-06-03T19:55:01.048816"
+    },
+    {
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
+        "assento": "F16",
+        "tipo": "inteira",
+        "data_hora": "2025-06-03T19:55:56.465016"
+    },
+    {
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
+        "assento": "F13",
+        "tipo": "inteira",
+        "data_hora": "2025-06-03T19:55:56.496759"
+    },
+    {
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
+        "assento": "F14",
+        "tipo": "meia",
+        "data_hora": "2025-06-03T19:55:56.527710"
+    },
+    {
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
+        "assento": "F15",
+        "tipo": "meia",
+        "data_hora": "2025-06-03T19:55:56.565207"
+    },
+    {
+        "filme": "Shrek 4",
+        "sala": "4",
+        "assento": "E10",
+        "tipo": "inteira",
+        "data_hora": "2025-06-03T20:00:01.370352"
+    },
+    {
+        "filme": "Shrek 4",
+        "sala": "4",
+        "assento": "E11",
+        "tipo": "meia",
+        "data_hora": "2025-06-03T20:00:01.413960"
+    },
+    {
+        "filme": "Lilo&Stitch",
+        "sala": "5",
+        "assento": "G11",
+        "tipo": "inteira",
+        "data_hora": "2025-06-03T20:12:31.422093"
+    },
+    {
+        "filme": "Lilo&Stitch",
+        "sala": "5",
+        "assento": "G12",
+        "tipo": "inteira",
+        "data_hora": "2025-06-03T20:12:31.456450"
+    },
+    {
+        "filme": "Lilo&Stitch",
+        "sala": "5",
+        "assento": "G13",
+        "tipo": "inteira",
+        "data_hora": "2025-06-03T20:12:31.488221"
+    },
+    {
+        "filme": "Lilo&Stitch",
+        "sala": "5",
+        "assento": "G14",
+        "tipo": "meia",
+        "data_hora": "2025-06-03T20:12:31.515921"
+    },
+    {
+        "filme": "Lilo&Stitch",
+        "sala": "5",
+        "assento": "G10",
+        "tipo": "meia",
+        "data_hora": "2025-06-03T20:12:31.544346"
+    }
+]

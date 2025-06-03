@@ -23,7 +23,7 @@ def salvar_vendas(vendas):
     with open(ARQUIVO_VENDAS, 'w', encoding='utf-8') as f:
         json.dump(vendas, f, ensure_ascii=False, indent=4)
 
-def registrar_venda(filme_titulo, sala_num, assento, data_hora_venda=None):
+def registrar_venda(filme_titulo, sala_num, assento, tipo_ingresso, data_hora_venda=None):
     vendas = carregar_vendas()
     if data_hora_venda is None:
         data_hora_venda = datetime.now().isoformat()
