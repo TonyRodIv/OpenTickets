@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from data.gerenciar_sala import carregar_salas
 from data.gerenciar_filmes import carregar_filmes
 from data.gerenciar_assentos import carregar_assentos, salvar_assentos, init_sala, gerar_mapa
+from data.gerenciar_vendas import registrar_venda
 
 vend_route = Blueprint('vend', __name__, url_prefix='/vend', template_folder='../templates/vend')
 
@@ -100,6 +101,14 @@ def mapa_assentos():
                 continue 
             
             assentos_globais[str(sala_num)][str(horario)][assento_code] = True
+            venda_realizada.append({'assento': assento_code, 'tipo': tipo_ingresso})
+
+            registrar_venda(
+                filme_titulo = filme['titulo'], 
+                sala_num = sala_num, 
+                assento = assento_code, 
+                tipo_ingresso = tipo_ingresso
+            )
             venda_realizada.append({'assento': assento_code, 'tipo': tipo_ingresso})
 
         if not venda_realizada:

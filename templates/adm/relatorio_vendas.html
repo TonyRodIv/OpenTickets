@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Vendas Diárias</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div>
+        <h1>Relatório de Vendas Diárias</h1>
+
+        <form method="POST">
+            <label for="data_relatorio">Escolher Data:</label>
+            <input type="date" id="data_relatorio" name="data_relatorio" value="{{ ' '.join(resumo.data.split('/')[::-1]) if resumo.data else '' }}">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <div>
+            <p>Data do Relatório: <strong>{{ resumo.data }}</strong></p>
+            <p>Total de Assentos Vendidos: <strong>{{ resumo.total_assentos }}</strong></p>
+            <p>Arrecadação Total: <strong>R$ {{ "%.2f"|format(resumo.total_arrecadado) }}</strong></p>
+        </div>
+
+        <div>
+            <h3>Detalhes das Vendas:</h3>
+            {% if resumo.detalhes_vendas %}
+                <ul>
+                    {% for venda in resumo.detalhes_vendas %}
+                        <li>
+                            Filme: <strong>{{ venda.filme }}</strong>, 
+                            Sala: <strong>{{ venda.sala }}</strong>, 
+                            Assento: <strong>{{ venda.assento }}</strong>, 
+                            Tipo: <strong>{{ venda.tipo|capitalize }}</strong>,
+                            Hora: <strong>{{ venda.data_hora.split('T')[1].split('.')[0] }}</strong>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Nenhuma venda registrada para esta data. 😔</p>
+            {% endif %}
+        </div>
+        <p><a href="{{ url_for('adm.admInit') }}">← Voltar ao Painel ADM</a></p>
+    </div>
+</body>
+</html>
