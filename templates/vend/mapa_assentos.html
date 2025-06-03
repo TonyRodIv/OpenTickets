@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/cinemap.css') }}">
 </head>
 
-<body>
+<body style="overflow: hidden;">
     <nav class="navTotem">
         <a href="{{ url_for('vend.escolher_sala') }}" class="botao_voltar">
             <img src="../../static/img/arrow.svg" alt="" srcset="">
@@ -17,31 +17,37 @@
         <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
     </nav>
     <main class="mainContainer">
-        <h3>Selecione os Assentos</h3>
-
-
-        <div class="screen">TELA</div>
-
         <form method="POST" id="form-venda">
-            <div class="seat-map-container">
-                <div class="seat-map" id="seat-map" style="--num-colunas: {{ sala_obj.colunas if sala_obj else 10 }};">
-                    {% for row_seats in mapa %}
-                    <div class="seat-row">
-                        {% for assento_code in row_seats %}
-                        {% if assento_code == 'XX' %}
-                        <div class="seat occupied" data-assento-code="{{ assento_code }}">X</div>
-                        {% else %}
-                        <div class="seat" data-assento-code="{{ assento_code }}">{{ assento_code }}</div>
-                        {% endif %}
-                        {% endfor %}
+            <section class="seat-selection-area">
+                <h2>Selecione os Assentos</h2>
+                <article>
+                    <span class="screen">TELA</span>
+                    <div class="seat-map-container">
+                        <div class="seat-map" id="seat-map"
+                            style="--num-colunas: {{ sala_obj.colunas if sala_obj else 10 }};">
+                            {% for row_seats in mapa %}
+                            <div class="seat-row">
+                                {% for assento_code in row_seats %}
+                                {% if assento_code == 'XX' %}
+                                <div class="seat occupied" data-assento-code="{{ assento_code }}">X</div>
+                                {% else %}
+                                <div class="seat" data-assento-code="{{ assento_code }}">{{ assento_code }}</div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                    {% endfor %}
-                </div>
-            </div>
+                </article>
+            </section>
 
-            <div class="ticket-quantity-area">
+            <aside class="ticket-quantity-area">
+                <article>
+                    <img src="{{filme.urlFoto}}" alt="" srcset="" style="width: 80px;">
+                </article>
                 <p>Filme: <strong>{{ filme.titulo }}</strong> | Sala: <strong>{{ sala_num }}</strong> | Horário:
-                    <strong>{{ horario }}</strong></p>
+                    <strong>{{ horario }}</strong>
+                </p>
                 <h4>Tipo de Ingresso</h4>
                 <div class="ticket-type-control">
                     <span>Inteira (R$ {{ "%.2f"|format(PRICES.inteira)|replace('.', ',') }})</span>
@@ -67,12 +73,13 @@
                 <p class="validation-message" id="quantity-validation-message" style="display: none;">
                     O número de ingressos inteira + meia não corresponde ao número de assentos selecionados!
                 </p>
-            </div>
+                <div id="hidden-inputs-container"></div>
+                {# INPUT INVISIVEL PARA ENVIAR DaDOS - Ex: <input type="hidden" name="assentos_selecionados_final[]"
+                    value="A1:inteira"> #}
+    
+                <button type="submit" class="btnHigh" style="margin-top: 20px;">Finalizar Compra</button>
+            </aside>
 
-            <div id="hidden-inputs-container"></div>
-            {# INPUT INVISIVEL PARA ENVIAR DaDOS - Ex: <input type="hidden" name="assentos_selecionados_final[]" value="A1:inteira"> #}
-
-            <button type="submit" style="margin-top: 20px;">Finalizar Compra</button>
         </form>
     </main>
 

@@ -1,8 +1,8 @@
 [
     {
         "numero": "1",
-        "linhas": 5,
-        "colunas": 10,
+        "linhas": 10,
+        "colunas": 20,
         "horarios": [
             "13:00",
             "15:00",
@@ -12,7 +12,7 @@
     },
     {
         "numero": "2",
-        "linhas": 8,
+        "linhas": 16,
         "colunas": 15,
         "horarios": [
             "14:10",
@@ -23,8 +23,8 @@
     },
     {
         "numero": "3",
-        "linhas": 9,
-        "colunas": 5,
+        "linhas": 16,
+        "colunas": 20,
         "horarios": [
             "13:30",
             "15:30",
@@ -35,8 +35,8 @@
     },
     {
         "numero": "4",
-        "linhas": 10,
-        "colunas": 6,
+        "linhas": 14,
+        "colunas": 15,
         "horarios": [
             "15:00",
             "17:10",
@@ -46,8 +46,8 @@
     },
     {
         "numero": "5",
-        "linhas": 8,
-        "colunas": 12,
+        "linhas": 16,
+        "colunas": 25,
         "horarios": [
             "13:20",
             "15:30",
@@ -58,12 +58,14 @@
     },
     {
         "numero": "6",
-        "linhas": 5,
-        "colunas": 15,
+        "linhas": 14,
+        "colunas": 17,
         "horarios": [
             "14:00",
             "16:00",
             "18:00",
+            "20:00",
+            "21:30",
             "23:00"
         ]
     },
@@ -80,7 +82,7 @@
     },
     {
         "numero": "8",
-        "linhas": 20,
+        "linhas": 16,
         "colunas": 30,
         "horarios": [
             "15:50",
