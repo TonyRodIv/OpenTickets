@@ -55,7 +55,14 @@
     </style>
 </head>
 <body>
-    <div>
+    <nav class="navTotem">
+        <a href="{{ url_for('vend.escolher_filme') }}" class="botao_voltar"> 
+            <img src="../../static/img/arrow.svg" alt="" srcset=""> 
+            Voltar
+        </a>
+        <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
+    </nav>
+    <main class="mainContainer">
         <h3>Selecione a Sala e o Horário</h3>
         <form method="POST">
             {% for sala in salas %}
@@ -90,8 +97,7 @@
 
             <button type="submit" style="margin-top: 20px;">Próximo</button>
         </form>
-        <p><a href="{{ url_for('vend.escolher_filme') }}">← Voltar para Escolher Filme</a></p>
-    </div>
+    </main>
 
     <script>
         const salaRadios = document.querySelectorAll('input[name="sala"]');

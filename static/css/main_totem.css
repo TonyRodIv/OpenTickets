@@ -56,6 +56,24 @@ body {
   max-width: fit-content;
 }
 
+.botao_voltar{
+  position: absolute;
+  left: 40px;
+  top: 18px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-primary-color);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.botao_voltar img{
+  rotate: 180deg;
+}
+
 .titlePage h1 {
   font-size: 2.5rem;
   color: var(--text-primary-color);

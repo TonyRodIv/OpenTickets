@@ -10,7 +10,11 @@
 
 <body>
     <nav class="navTotem">
-        <img src="../static/img/LogoOpenTickets.svg" alt="logo do open tickets" class="logoNav">
+        <a href="{{ url_for('login.loginUser') }}" class="botao_voltar"> 
+            <img src="../../static/img/arrow.svg" alt="" srcset=""> 
+            Voltar
+        </a>
+        <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
     </nav>
     <main class="mainContainer">
         <h3>Filmes em cartaz</h3>
@@ -34,7 +38,6 @@
             {# O BOTÃO "PRÓXIMO" FOI REMOVIDO DAQUI #}
             {% if not filmes %}
                 <p>Ops! Nenhum filme em cartaz no momento. 😢</p>
-                <a href="{{ url_for('vend.vendInit') }}" class="botao-voltar">Voltar</a>
             {% endif %}
         </form>
     </main>

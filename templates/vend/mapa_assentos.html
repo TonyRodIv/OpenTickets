@@ -1,195 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Escolher Assentos e Tipos de Ingresso</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
-    <style>
-        /* Estilos básicos para o mapa de assentos (mantendo e adicionando alguns) */
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1000px; /* Aumenta a largura máxima para acomodar melhor */
-            margin: 40px auto;
-            padding: 0 20px;
-            background-color:rgb(245, 245, 245);
-            color: #333;
-        }
-        button{
-            background-color:rgb(17, 109, 121);
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: rgb(32, 89, 97);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background-color 1s ease, box-shadow 0.5s ease;
-        }
-        .screen {
-            background-color: #333;
-            height: 50px;
-            width: 90%;
-            margin: 0 auto;
-            border-radius: 5px;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-        }
-        .seat-map-container {
-            overflow-x: auto; /* Para salas muito largas */
-            padding-bottom: 10px; /* Espaço para a barra de rolagem */
-        }
-        .seat-map {
-            display: inline-grid; /* Para que o grid se ajuste ao conteúdo e permita rolagem horizontal */
-            grid-template-columns: repeat(var(--num-colunas, 10), 25px); /* Padrão 10, pode ser atualizado via JS */
-            gap: 5px;
-            justify-content: center;
-            margin: 0 auto; /* Centraliza o mapa */
-            border: 1px solid #ccc; /* Só para visualização */
-            padding: 10px;
-        }
-        .seat-row {
-            display: contents; /* Faz com que os filhos sejam colocados diretamente no grid do pai */
-        }
-        .seat {
-            width: 25px;
-            height: 25px;
-            background-color: #4CAF50; /* Assento livre */
-            border: 1px solid #388E3C;
-            border-radius: 8px 8px 4px 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            font-weight: bold;
-            color: #ffffff73;
-            font-size: 0.6em;
-            transition: background-color 0.2s ease; /* Transição suave */
-        }
-        .seat.occupied {
-            background-color: #f44336; /* Assento ocupado */
-            border: 1px solid #d32f2f;
-            cursor: not-allowed;
-        }
-        .seat.selected {
-            background-color: #2196F3; /* Assento selecionado */
-            border: 1px solid #1976D2;
-        }
-
-        /* Novas Estilos para a área de seleção de ingressos (contadores) */
-        .ticket-quantity-area {
-            margin-top: 30px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-        .ticket-type-control {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #e0f2f7; /* Cor de fundo mais clara */
-            border-radius: 5px;
-        }
-        .ticket-type-control span {
-            font-weight: bold;
-            color: #0056b3;
-            flex-grow: 1; /* Ocupa o espaço disponível */
-        }
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .quantity-control button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 50%; /* Botões redondos */
-            width: 30px;
-            height: 30px;
-            font-size: 1.2em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-        .quantity-control button:hover {
-            background-color: #0056b3;
-        }
-        .quantity-control span.count {
-            width: 40px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1em;
-            color: #333;
-        }
-        .total-info {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #ddd;
-            text-align: right;
-        }
-        .total-info h4 {
-            margin: 0;
-            color: #0056b3;
-        }
-        .total-info p {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #333;
-        }
-        .validation-message {
-            color: #f44336; /* Vermelho para erros */
-            font-weight: bold;
-            margin-top: 10px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cinemap.css') }}">
 </head>
-<body>
-    <div>
-        <h3>Selecione os Assentos</h3>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <ul class="flashes">
-                {% for category, message in messages %}
-                    <li class="flash-{{ category }}">{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
 
-        <p>Filme: <strong>{{ filme.titulo }}</strong> | Sala: <strong>{{ sala_num }}</strong> | Horário: <strong>{{ horario }}</strong></p>
+<body>
+    <nav class="navTotem">
+        <a href="{{ url_for('vend.escolher_sala') }}" class="botao_voltar">
+            <img src="../../static/img/arrow.svg" alt="" srcset="">
+            Voltar
+        </a>
+        <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
+    </nav>
+    <main class="mainContainer">
+        <h3>Selecione os Assentos</h3>
+
 
         <div class="screen">TELA</div>
 
         <form method="POST" id="form-venda">
             <div class="seat-map-container">
-                <div class="seat-map" id="seat-map" 
-                     style="--num-colunas: {{ sala_obj.colunas if sala_obj else 10 }};">
+                <div class="seat-map" id="seat-map" style="--num-colunas: {{ sala_obj.colunas if sala_obj else 10 }};">
                     {% for row_seats in mapa %}
-                        <div class="seat-row">
-                            {% for assento_code in row_seats %}
-                                {% if assento_code == 'XX' %}
-                                    <div class="seat occupied" data-assento-code="{{ assento_code }}">X</div>
-                                {% else %}
-                                    <div class="seat" data-assento-code="{{ assento_code }}">{{ assento_code }}</div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
+                    <div class="seat-row">
+                        {% for assento_code in row_seats %}
+                        {% if assento_code == 'XX' %}
+                        <div class="seat occupied" data-assento-code="{{ assento_code }}">X</div>
+                        {% else %}
+                        <div class="seat" data-assento-code="{{ assento_code }}">{{ assento_code }}</div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
                     {% endfor %}
                 </div>
             </div>
 
             <div class="ticket-quantity-area">
+                <p>Filme: <strong>{{ filme.titulo }}</strong> | Sala: <strong>{{ sala_num }}</strong> | Horário:
+                    <strong>{{ horario }}</strong></p>
                 <h4>Tipo de Ingresso</h4>
                 <div class="ticket-type-control">
                     <span>Inteira (R$ {{ "%.2f"|format(PRICES.inteira)|replace('.', ',') }})</span>
@@ -217,151 +69,14 @@
                 </p>
             </div>
 
-            {# Inputs hidden para enviar os dados. Serão preenchidos pelo JS #}
-            {# Ex: <input type="hidden" name="assentos_selecionados_final[]" value="A1:inteira"> #}
             <div id="hidden-inputs-container"></div>
+            {# INPUT INVISIVEL PARA ENVIAR DaDOS - Ex: <input type="hidden" name="assentos_selecionados_final[]" value="A1:inteira"> #}
 
             <button type="submit" style="margin-top: 20px;">Finalizar Compra</button>
         </form>
-        <p><a href="{{ url_for('vend.escolher_sala') }}">← Voltar para Escolher Sala</a></p>
-    </div>
+    </main>
 
-    <script>
-        const seatMap = document.getElementById('seat-map');
-        const numAssentosSelecionadosDisplay = document.getElementById('num-assentos-selecionados');
-        const totalPriceDisplay = document.getElementById('total-price');
-        const formVenda = document.getElementById('form-venda');
-        const hiddenInputsContainer = document.getElementById('hidden-inputs-container');
-        const quantityValidationMessage = document.getElementById('quantity-validation-message');
-
-        const PRICES = {
-            'inteira': 25.00,
-            'meia': 12.50
-        };
-
-        let selectedSeatCodes = []; // Armazena apenas os códigos dos assentos selecionados
-        let ticketQuantities = {
-            'inteira': 0,
-            'meia': 0
-        };
-
-        function updateCountsAndTotal() {
-            // Atualiza os contadores de inteira/meia
-            document.getElementById('count-inteira').textContent = ticketQuantities.inteira;
-            document.getElementById('count-meia').textContent = ticketQuantities.meia;
-
-            // Atualiza o número de assentos selecionados
-            numAssentosSelecionadosDisplay.textContent = selectedSeatCodes.length;
-
-            // Calcula e atualiza o preço total
-            let total = (ticketQuantities.inteira * PRICES.inteira) + (ticketQuantities.meia * PRICES.meia);
-            totalPriceDisplay.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-
-            // Validação visual (esconde/mostra a mensagem)
-            validateQuantities();
-        }
-
-        function validateQuantities() {
-            const totalTickets = ticketQuantities.inteira + ticketQuantities.meia;
-            if (selectedSeatCodes.length === 0) {
-                quantityValidationMessage.style.display = 'none'; // Não mostra mensagem se nenhum assento foi selecionado
-            } else if (totalTickets !== selectedSeatCodes.length) {
-                quantityValidationMessage.style.display = 'block'; // Mostra a mensagem de erro
-            } else {
-                quantityValidationMessage.style.display = 'none'; // Esconde a mensagem
-            }
-        }
-
-        // Evento de clique no mapa de assentos
-        seatMap.addEventListener('click', function(event) {
-            const clickedSeat = event.target.closest('.seat');
-
-            if (clickedSeat && !clickedSeat.classList.contains('occupied')) {
-                const assentoCode = clickedSeat.dataset.assentoCode;
-
-                if (clickedSeat.classList.contains('selected')) {
-                    // Desselecionar assento
-                    clickedSeat.classList.remove('selected');
-                    selectedSeatCodes = selectedSeatCodes.filter(code => code !== assentoCode);
-                } else {
-                    // Selecionar assento
-                    clickedSeat.classList.add('selected');
-                    selectedSeatCodes.push(assentoCode);
-                }
-                updateCountsAndTotal(); // Atualiza tudo
-            }
-        });
-
-        // Eventos para os botões de quantidade (+/-)
-        document.querySelectorAll('.increase-quantity').forEach(button => {
-            button.addEventListener('click', function() {
-                const type = this.dataset.type;
-                if ((ticketQuantities.inteira + ticketQuantities.meia) < selectedSeatCodes.length) {
-                    ticketQuantities[type]++;
-                    updateCountsAndTotal();
-                } else {
-                    alert('Você já atingiu o número máximo de ingressos para os assentos selecionados.');
-                }
-            });
-        });
-
-        document.querySelectorAll('.decrease-quantity').forEach(button => {
-            button.addEventListener('click', function() {
-                const type = this.dataset.type;
-                if (ticketQuantities[type] > 0) {
-                    ticketQuantities[type]--;
-                    updateCountsAndTotal();
-                }
-            });
-        });
-
-        // Evento de submit do formulário
-        formVenda.addEventListener('submit', function(event) {
-            const totalTickets = ticketQuantities.inteira + ticketQuantities.meia;
-
-            if (selectedSeatCodes.length === 0) {
-                alert('Por favor, selecione pelo menos um assento.');
-                event.preventDefault();
-                return;
-            }
-
-            if (totalTickets !== selectedSeatCodes.length) {
-                alert('O número de ingressos (inteira + meia) não corresponde ao número de assentos selecionados. Por favor, ajuste.');
-                event.preventDefault();
-                return;
-            }
-
-            // Preenche os inputs hidden para o Flask
-            hiddenInputsContainer.innerHTML = ''; // Limpa antigos
-            
-            // Distribui os tipos de ingresso para os assentos
-            let finalAssentosComTipo = [];
-            let inteiraCount = ticketQuantities.inteira;
-            let meiaCount = ticketQuantities.meia;
-
-            // Atribui inteira primeiro, depois meia, ou como preferir
-            for (let i = 0; i < selectedSeatCodes.length; i++) {
-                const assentoCode = selectedSeatCodes[i];
-                let type = '';
-                if (inteiraCount > 0) {
-                    type = 'inteira';
-                    inteiraCount--;
-                } else if (meiaCount > 0) {
-                    type = 'meia';
-                    meiaCount--;
-                }
-                finalAssentosComTipo.push({ code: assentoCode, type: type });
-
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = `assentos_comprados[${assentoCode}]`; // Ex: assentos_comprados[A1]
-                input.value = type; // Ex: inteira ou meia
-                hiddenInputsContainer.appendChild(input);
-            }
-        });
-
-        // Chamada inicial
-        updateCountsAndTotal();
-    </script>
+    <script src="{{ url_for('static', filename='js/cinemap.js')}}"></script>
 </body>
+
 </html>

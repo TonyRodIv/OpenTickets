@@ -2,6 +2,14 @@
    background: linear-gradient(144deg,var(--bg-mid-blue) 0%, rgba(91, 104, 223, 0.123) 35%, rgba(115, 224, 169, 0.123) 100%);
 }
 
+.titlePage{
+    color: var(--text-primary-color);
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 40px 0;
+}
+
 .cpfContent article {
     flex-grow: 1;
     display: flex;
@@ -61,4 +69,21 @@
     background-color: var(--btn-high-blue-hover);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transform: scale(1.04); 
+}
+
+@media (max-height: 700px) {
+    .display {
+        width: 15rem;
+        height: 4.5rem;
+        font-size: 1rem;
+    }
+    .btnCPF {
+        width: 4.5rem;
+        height: 4.5rem;
+        font-size: 1rem;
+    }
+    #cpf_keyboard {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
 }

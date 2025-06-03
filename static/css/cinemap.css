@@ -1,0 +1,137 @@
+button{
+            background-color:rgb(17, 109, 121);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: rgb(32, 89, 97);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 1s ease, box-shadow 0.5s ease;
+        }
+        .screen {
+            background-color: #333;
+            height: 50px;
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 5px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+        .seat-map-container {
+            overflow-x: auto; /* Para salas muito largas */
+            padding-bottom: 10px; /* Espaço para a barra de rolagem */
+        }
+        .seat-map {
+            display: inline-grid; /* Para que o grid se ajuste ao conteúdo e permita rolagem horizontal */
+            grid-template-columns: repeat(var(--num-colunas, 10), 25px); /* Padrão 10, pode ser atualizado via JS */
+            gap: 5px;
+            justify-content: center;
+            margin: 0 auto; /* Centraliza o mapa */
+            border: 1px solid #ccc; /* Só para visualização */
+            padding: 10px;
+        }
+        .seat-row {
+            display: contents; /* Faz com que os filhos sejam colocados diretamente no grid do pai */
+        }
+        .seat {
+            width: 25px;
+            height: 25px;
+            background-color: #4CAF50; /* Assento livre */
+            border: 1px solid #388E3C;
+            border-radius: 8px 8px 4px 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffffff73;
+            font-size: 0.6em;
+            transition: background-color 0.2s ease; /* Transição suave */
+        }
+        .seat.occupied {
+            background-color: #f44336; /* Assento ocupado */
+            border: 1px solid #d32f2f;
+            cursor: not-allowed;
+        }
+        .seat.selected {
+            background-color: #2196F3; /* Assento selecionado */
+            border: 1px solid #1976D2;
+        }
+
+        /* Novas Estilos para a área de seleção de ingressos (contadores) */
+        .ticket-quantity-area {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .ticket-type-control {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #e0f2f7; /* Cor de fundo mais clara */
+            border-radius: 5px;
+        }
+        .ticket-type-control span {
+            font-weight: bold;
+            color: #0056b3;
+            flex-grow: 1; /* Ocupa o espaço disponível */
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .quantity-control button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%; /* Botões redondos */
+            width: 30px;
+            height: 30px;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .quantity-control button:hover {
+            background-color: #0056b3;
+        }
+        .quantity-control span.count {
+            width: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #333;
+        }
+        .total-info {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            text-align: right;
+        }
+        .total-info h4 {
+            margin: 0;
+            color: #0056b3;
+        }
+        .total-info p {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        .validation-message {
+            color: #f44336; /* Vermelho para erros */
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
+        }

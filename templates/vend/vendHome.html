@@ -6,11 +6,17 @@
     <title>Venda de Ingressos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/loadingCPF.css') }}">
+    <link rel="stylesheet" href="../../static/css/main_totem.css">
+    <link rel="stylesheet" href="../../static/css/loadingCPF.css">
 </head>
 
 <body>
     <nav class="navTotem">
-        <img src="../static/img/LogoOpenTickets.svg" alt="logo do open tickets" class="logoNav">
+        <a href="{{ url_for('login.loginUser') }}" class="botao_voltar"> 
+            <img src="../../static/img/arrow.svg" alt="" srcset=""> 
+            Voltar
+        </a>
+        <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
     </nav>
     <main class="mainContainer">
         <article class="titlePage">
@@ -32,13 +38,13 @@
                         <button type="button" class="btnCPF btnCPFcolor" data-number="9">9</button>
                         <button type="button" class="btnCPF btnLow" data-key="del">⌫</button>
                         <button type="button" class="btnCPF btnCPFcolor" data-number="0">0</button>
-                        <button type="button" id="continueCPFbtn" class="btnCPF btnLow" data-number="0" disabled>></button>
+                        <button type="button" id="continueCPFbtn" class="btnCPF btnLow" data-number="0" disabled>⫸</button>
                 </div>
             </article>
         </section>
-        
     </main>
     <script src="{{ url_for('static', filename='js/totem_init.js') }}"></script>
+    <script src="../../static/js/totem_init.js"></script>
 </body>
 
 </html>
