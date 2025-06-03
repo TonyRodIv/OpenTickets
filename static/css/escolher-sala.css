@@ -1,0 +1,109 @@
+.mainContainer{
+    background: linear-gradient(356deg,rgba(2, 0, 36, 0) 0%, rgba(91, 113, 223, 0.315) 100%);
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: auto 2fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.movie{
+    background-color: #080b126e;
+    width: fit-content;
+    height: fit-content;
+    padding: 15px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.movie img{
+    width: 100%;
+    max-width: 400px;
+    max-height: 500px;
+    border-radius: 10px;
+}
+
+.movie article{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+}
+.movie article p{
+    background-color: var(--bg-mid-light-blue);
+    color: #fff;
+    padding: 10px 5px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.salas h2{
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.salas form{
+    background-color: #080b126e;
+    border-radius: 16px;
+    padding: 10px;
+    /* min-height: 500px; */
+}
+
+.sala-item {
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.sala-item label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sala-item h4 span{
+    margin-left: 10px;
+    background-color: #fff;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.sala-item h4{
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+.sala-item h4 span{
+    font-size: 0.8rem;
+}
+
+.horario-group {
+    display: flex;
+    gap: 10px;
+}
+
+.horario-group label {
+    padding: 6px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.horario-group input[type="radio"] {
+    display: none;
+    cursor: pointer;
+}
+
+.horario-option {
+    background-color: var(--bg-mid-light-blue);
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.horario-option input[type="radio"]:checked+span {
+    font-weight: bold;
+    color: #ffffff;
+}

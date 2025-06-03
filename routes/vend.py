@@ -23,7 +23,6 @@ def escolher_filme():
 def escolher_sala():
     filme = session.get('filme_selecionado')
     if not filme:
-        flash("Por favor, selecione um filme primeiro. 🎬", "danger")
         return redirect(url_for('vend.escolher_filme'))
 
     salas_cadastradas = carregar_salas()
@@ -52,7 +51,7 @@ def escolher_sala():
         session['horario_selecionado'] = horario_selecionado # Salva o horário na sessão
         return redirect(url_for('vend.mapa_assentos'))
     
-    return render_template('escolher_sala.html', salas=salas_disponiveis_para_filme)
+    return render_template('escolher_sala.html', salas=salas_disponiveis_para_filme, filme=filme)
 
 @vend_route.route('/mapa_assentos', methods=['GET', 'POST'])
 def mapa_assentos():
