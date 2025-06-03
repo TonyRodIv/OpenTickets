@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify, session
 from data.gerenciar_sala import adicionar_sala, editar_sala, carregar_salas, deletar_sala
 from data.gerenciar_filmes import adicionar_filme_web, carregar_filmes, salvar_json, editar_filme, ARQUIVO_FILMES
+from data.gerenciar_vendas import calcular_vendas
 
 adm_route = Blueprint('adm', __name__, url_prefix='/adm', template_folder='../templates/adm')
 
@@ -203,6 +204,13 @@ def remover_filme_view(titulo): #
         flash(f"Filme '{titulo}' não encontrado.", 'danger')
 
     return redirect(url_for('adm.listar_filmes_view'))
+
+@adm_route.route('/relatorio_vendas_diarias', methods=['GET', 'POST'])
+def relatorio_vendas_diarias_view():
+    data_para_buscar = request.form.get('data_relatorio') if request.method == 'POST' else None
+    resumo = calcular_vendas(data_para_buscar)
+    
+    return render_template('relatorio_vendas.html', resumo=resumo)
 
 # GERENCIAR ASSENTOS
 
