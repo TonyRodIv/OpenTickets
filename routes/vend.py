@@ -7,12 +7,7 @@ vend_route = Blueprint('vend', __name__, url_prefix='/vend', template_folder='..
 
 @vend_route.route('/')
 def vendInit():
-    session.pop('filme_selecionado', None)
-    session.pop('sala_selecionada_num', None)
-    session.pop('horario_selecionado', None) 
-    session.pop('venda_detalhes', None)
-    escolher_filme = url_for('vend.escolher_filme')
-    return render_template('vendHome.html', escolher_filme=escolher_filme)
+    return render_template('vendHome.html')
 
 @vend_route.route('/escolher_filme', methods=['GET', 'POST'])
 def escolher_filme():
@@ -59,10 +54,6 @@ def escolher_sala():
     
     return render_template('escolher_sala.html', salas=salas_disponiveis_para_filme)
 
-# Rota /escolher_horario foi REMOVIDA!
-
-# ... (imports e rota vend_route, etc.) ...
-
 @vend_route.route('/mapa_assentos', methods=['GET', 'POST'])
 def mapa_assentos():
     sala_num = session.get('sala_selecionada_num')
@@ -86,7 +77,7 @@ def mapa_assentos():
     
     mapa_visual = gerar_mapa(assentos_globais.get(str(sala_num), {}).get(str(horario), {}))
 
-    # Definir os preços dos ingressos para passar ao template
+    
     PRICES = {
         'inteira': 25.00,
         'meia': 12.50

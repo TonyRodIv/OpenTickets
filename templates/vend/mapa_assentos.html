@@ -42,42 +42,59 @@
             </section>
 
             <aside class="ticket-quantity-area">
-                <article>
-                    <img src="{{filme.urlFoto}}" alt="" srcset="" style="width: 80px;">
-                </article>
-                <p>Filme: <strong>{{ filme.titulo }}</strong> | Sala: <strong>{{ sala_num }}</strong> | Horário:
-                    <strong>{{ horario }}</strong>
-                </p>
-                <h4>Tipo de Ingresso</h4>
-                <div class="ticket-type-control">
-                    <span>Inteira (R$ {{ "%.2f"|format(PRICES.inteira)|replace('.', ',') }})</span>
-                    <div class="quantity-control">
-                        <button type="button" class="decrease-quantity" data-type="inteira">-</button>
-                        <span class="count" id="count-inteira">0</span>
-                        <button type="button" class="increase-quantity" data-type="inteira">+</button>
-                    </div>
-                </div>
-                <div class="ticket-type-control">
-                    <span>Meia-Entrada (R$ {{ "%.2f"|format(PRICES.meia)|replace('.', ',') }})</span>
-                    <div class="quantity-control">
-                        <button type="button" class="decrease-quantity" data-type="meia">-</button>
-                        <span class="count" id="count-meia">0</span>
-                        <button type="button" class="increase-quantity" data-type="meia">+</button>
-                    </div>
-                </div>
+                <div>
+                    <h2 style="margin: 0 0 10px 0;">Resumo do Pedido</h2>
+                    <article class="movie-details">
+                        <img src="{{filme.urlFoto}}" alt="" srcset="" style="width: 80px;">
+                        <div>
+                            <h3 style="border-radius: 14px 14px 7px 7px;">{{ filme.titulo }}</h3>
+                            <span>
+                                <p>Sala: {{ sala_num }}</p>
+                                <p>{{ horario }}</p>
+                            </span>
 
-                <div class="total-info">
-                    <h4>Assentos Selecionados: <span id="num-assentos-selecionados">0</span></h4>
-                    <p id="total-price">R$ 0,00</p>
+                            <p style="border-radius: 7px 7px 14px 14px;">A FAZER</p>
+                        </div>
+                    </article>
+                    <h4 style="margin: 20px 0 10px 5px;">Tipo de Ingresso</h4>
+                    <div class="quantity-group">
+                        <div class="ticket-type-control" style="border-radius: 18px 18px 7px 7px;">
+                            <span>Inteira (R$ {{ "%.2f"|format(PRICES.inteira)|replace('.', ',') }})</span>
+                            <div class="quantity-control">
+                                <button type="button" class="decrease-quantity" data-type="inteira"
+                                    style="border-radius: 14px 7px 7px 14px;">-</button>
+                                <span class="count" id="count-inteira">0</span>
+                                <button type="button" class="increase-quantity" data-type="inteira"
+                                    style="border-radius: 7px 14px 14px 7px;">+</button>
+                            </div>
+                        </div>
+                        <div class="ticket-type-control" style="border-radius: 7px 7px 18px 18px;">
+                            <span>Meia-Entrada (R$ {{ "%.2f"|format(PRICES.meia)|replace('.', ',') }})</span>
+                            <div class="quantity-control">
+                                <button type="button" class="decrease-quantity" data-type="meia"
+                                    style="border-radius: 14px 7px 7px 14px;">-</button>
+                                <span class="count" id="count-meia">0</span>
+                                <button type="button" class="increase-quantity" data-type="meia"
+                                    style="border-radius: 7px 14px 14px 7px;">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="validation-message" id="quantity-validation-message" style="display: none;">
+                        Escolha os tipos de ingresso e a quantidade antes de finalizar a compra.
+                    </p>
                 </div>
-                <p class="validation-message" id="quantity-validation-message" style="display: none;">
-                    O número de ingressos inteira + meia não corresponde ao número de assentos selecionados!
-                </p>
-                <div id="hidden-inputs-container"></div>
-                {# INPUT INVISIVEL PARA ENVIAR DaDOS - Ex: <input type="hidden" name="assentos_selecionados_final[]"
-                    value="A1:inteira"> #}
-    
-                <button type="submit" class="btnHigh" style="margin-top: 20px;">Finalizar Compra</button>
+                <div>
+                    <div class="total-info">
+                        <h4>Assentos Selecionados: <span id="num-assentos-selecionados">0</span></h4>
+                        <p id="total-price">R$ 0,00</p>
+                    </div>
+                    <div id="hidden-inputs-container"></div>
+                    {# INPUT INVISIVEL PARA ENVIAR DaDOS - Ex: <input type="hidden" name="assentos_selecionados_final[]"
+                        value="A1:inteira"> #}
+
+                    <button type="submit" class="btnHigh" style="padding: 15px 0; width: 100%; margin-top: 15px;">Finalizar Compra</button>
+                </div>
             </aside>
 
         </form>

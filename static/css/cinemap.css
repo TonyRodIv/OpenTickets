@@ -99,44 +99,76 @@
     border: 1px solid #388E3C;
 }
 
-/* Novas Estilos para a área de seleção de ingressos (contadores) */
+/*  */
+
+.ticket-quantity-area{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movie-details{
+    display: grid;
+    grid-template-columns: 0.4fr 1.6fr;
+    gap: 10px;
+    padding: 0.75rem;
+    background-color: var(--bg-mid-light-blue);
+    border-radius: 18px;
+}
+
+.movie-details img {
+    width: 100%;
+    min-width: 100px;
+    min-height: 120px;
+    height: auto;
+    border-radius: 12px;
+}
+
+.movie-details div {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 2px;
+}
+.movie-details div span{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+}
+.movie-details div p, .movie-details div h3 {
+    background-color: var(--bg-deep-blue);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .ticket-type-control {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     align-items: center;
-    margin-bottom: 15px;
     padding: 10px;
-    background-color: #e0f2f7;
-    /* Cor de fundo mais clara */
-    border-radius: 5px;
+    background-color: var(--bg-mid-light-blue);
+    border-radius: 14px;
 }
 
 .ticket-type-control span {
     font-weight: bold;
-    color: #0056b3;
     flex-grow: 1;
-    /* Ocupa o espaço disponível */
 }
 
 .quantity-control {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
 }
 
 .quantity-control button {
-    background-color: #007bff;
+    background-color: var(--bg-deep-blue);
     color: white;
     border: none;
-    border-radius: 50%;
-    /* Botões redondos */
-    width: 30px;
-    height: 30px;
+    border-radius: 14px;
     font-size: 1.2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
@@ -146,11 +178,21 @@
 }
 
 .quantity-control span.count {
-    width: 40px;
     text-align: center;
     font-weight: bold;
     font-size: 1.1em;
-    color: #333;
+    background-color: var(--bg-deep-blue);
+    flex-grow: 1;
+    border-radius: 7px;
+    width: 1.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.quantity-group{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
 }
 
 .total-info {
@@ -168,7 +210,6 @@
 .total-info p {
     font-size: 1.5em;
     font-weight: bold;
-    color: #333;
 }
 
 .validation-message {
