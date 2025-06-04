@@ -16,10 +16,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    opacity: 0;
-    transform: translateX(30px);
-    animation: deslizarDireitaRapido 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; /* Curva de timing mais "snappy" */
-    animation-delay: var(--delay, 0s);
 }
 
 .movie img{
@@ -47,10 +43,6 @@
 .salas h2{
     font-size: 2rem;
     margin-bottom: 20px;
-    opacity: 0;
-    transform: translateX(30px);
-    animation: deslizarDireitaRapido 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; /* Curva de timing mais "snappy" */
-    animation-delay: var(0.2s, 0s);
 }
 
 .salas form{
@@ -58,10 +50,6 @@
     border-radius: 16px;
     padding: 10px;
     /* min-height: 500px; */
-    opacity: 0;
-    transform: translateX(30px);
-    animation: deslizarDireitaRapido 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; /* Curva de timing mais "snappy" */
-    animation-delay: var(0.25s, 0s);
 }
 
 .sala-item {

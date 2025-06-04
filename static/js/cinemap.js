@@ -125,10 +125,11 @@
 
                 const input = document.createElement('input');
                 input.type = 'hidden';
-                input.name = `assentos_comprados[${assentoCode}]`;
-                input.value = type;
+                input.name = `assentos_comprados[${assentoCode}]`; // Ex: assentos_comprados[A1]
+                input.value = type; // Ex: inteira ou meia
                 hiddenInputsContainer.appendChild(input);
             }
         });
 
+        // Chamada inicial
         updateCountsAndTotal();

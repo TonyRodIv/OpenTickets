@@ -12,40 +12,33 @@
 
 <body>
     <nav class="navTotem">
-        <a href="{{ url_for('login.loginUser') }}" class="botao_voltar">
-            <img src="../../static/img/arrow.svg" alt="" srcset="">
+        <a href="{{ url_for('login.loginUser') }}" class="botao_voltar"> 
+            <img src="../../static/img/arrow.svg" alt="" srcset=""> 
             Voltar
         </a>
         <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
     </nav>
     <main class="mainContainer">
-        <article class="titlePage" id="titlePage">
+        <article class="titlePage">
             <h1>Digite o seu CPF</h1>
             <p>Ao entrar com seu cpf você terá acesso há diversos benefícios</p>
         </article>
-        <figure id="loader" style="display: none;">
-            <div class="container">
-                <div class="loader"></div>
-                <div class="loader"></div>
-                <div class="loader"></div>
-            </div>
-        </figure>
         <section id="cpf_section" class="cpfContent">
             <article>
                 <input type="text" id="cpfDisplay" class="display" disabled placeholder="Digite o CPF">
                 <div id="cpf_keyboard" style="text-align: center; margin-top: 20px;">
-                    <button type="button" class="btnCPF btnCPFcolor" data-number="1">1</button>
-                    <button type="button" class="btnCPF btnCPFcolor" data-number="2">2</button>
-                    <button type="button" class="btnCPF btnCPFcolor" data-number="3">3</button>
-                    <button type="button" class="btnCPF btnCPFcolor" data-number="4">4</button>
-                    <button type="button" class="btnCPF btnCPFcolor" data-number="5">5</button>
-                    <button type="button" class="btnCPF btnCPFcolor" data-number="6">6</button>
-                    <button type="button" class="btnCPF btnCPFcolor" data-number="7">7</button>
-                    <button type="button" class="btnCPF btnCPFcolor" data-number="8">8</button>
-                    <button type="button" class="btnCPF btnCPFcolor" data-number="9">9</button>
-                    <button type="button" class="btnCPF btnLow" data-key="del">⌫</button>
-                    <button type="button" class="btnCPF btnCPFcolor" data-number="0">0</button>
-                    <button type="button" id="continueCPFbtn" class="btnCPF btnLow" data-number="0" disabled>⫸</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="1">1</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="2">2</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="3">3</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="4">4</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="5">5</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="6">6</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="7">7</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="8">8</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="9">9</button>
+                        <button type="button" class="btnCPF btnLow" data-key="del">⌫</button>
+                        <button type="button" class="btnCPF btnCPFcolor" data-number="0">0</button>
+                        <button type="button" id="continueCPFbtn" class="btnCPF btnLow" data-number="0" disabled>⫸</button>
                 </div>
             </article>
         </section>

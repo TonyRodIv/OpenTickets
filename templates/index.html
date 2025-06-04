@@ -23,7 +23,7 @@
             </article>
             <article class="btnContainer">
                 <a href="{{ url_for('vend.vendInit') }}">
-                    <button class=" btnLow" onclick="noCPF()">
+                    <button class=" btnLow">
                         Continuar sem CPF
                     </button>
                 </a>
@@ -35,12 +35,6 @@
             </article>
         </section>
     </main>
-    <script>
-        function noCPF() {
-            localStorage.setItem('CPF', 'true');
-            window.location.href = "{{ url_for('vend.vendInit') }}";
-        }
-    </script>
 </body>
 
 </html>

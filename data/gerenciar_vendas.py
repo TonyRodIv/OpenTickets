@@ -1,6 +1,7 @@
 import json
 import os
 from datetime import datetime
+from collections import Counter
 
 ARQUIVO_VENDAS = os.path.join('data', 'temp', 'vendas.json')
 
@@ -48,7 +49,7 @@ def obter_vendas(data_str=None):
     
     vendas_do_dia = [
         venda for venda in vendas 
-        if venda['data_hora'].startswith(hoje)
+        if venda['data_hora'].startswith(hoje) or venda['data_hora'].split('T')[0] == hoje
     ]
     return vendas_do_dia
 
@@ -72,3 +73,11 @@ def calcular_vendas(data_str=None):
         'total_arrecadado': total_arrecadado,
         'detalhes_vendas': vendas_feitas
     }
+
+def filmes_populares(top_n=5):
+    vendas = carregar_vendas()
+    
+    titulos_vendidos = [venda['filme'] for venda in vendas]
+    contagem_filmes = Counter(titulos_vendidos)
+    
+    return contagem_filmes.most_common(top_n)
