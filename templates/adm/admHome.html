@@ -13,7 +13,7 @@
     <nav class="navTotem">
         <a href="{{ url_for('adm.login') }}" class="botao_voltar">
             <img src="../../static/img/arrow.svg" alt="" srcset="">
-            Voltar
+            Sair
         </a>
         <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
     </nav>
@@ -51,7 +51,7 @@
                 <h2 style="margin: 5px 15px 15px 15px;">Filmes Mais Populares</h2>
                 {% if filmes_populares %}
                     {% for filme, vendas in filmes_populares %}
-                    <p><span>{{ filme }} </span> {{ vendas }} vendas</p>
+                    <p><span>{{ filme }} </span> {{ vendas }} Vendas</p>
                     {% endfor %}
                 {% else %}
                 <p>Ainda não há vendas registradas para calcular a popularidade dos filmes. Bora vender uns ingressos!

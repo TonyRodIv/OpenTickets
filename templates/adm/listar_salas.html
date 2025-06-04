@@ -3,30 +3,39 @@
 <head>
     <meta charset="utf-8">
     <title>Salas Cadastradas</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
 </head>
 <body>
-    <h1>Lista de Salas</h1>
-    <hr>
-    <ul>
-        {% for sala in salas %}
-            <li>
-                <strong>Sala {{ sala.numero }}</strong> – {{ sala.linhas * sala.colunas }} cadeiras 
-                
+    <nav class="navTotem">
+        <a href="{{ url_for('adm.admInit') }}" class="botao_voltar">
+            <img src="../../static/img/arrow.svg" alt="" srcset="">
+            Voltar
+        </a>
+        <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
+    </nav>
+    <main class="mainContainer" style="background-color: #fff; color: black; padding: 20px;">
 
-                <a href="{{ url_for('adm.editar_sala_view')}}">
-                    <button>Editar</button>
-                </a>
-
-                <form action="{{ url_for('adm.deletar_sala_view') }}" method="post" style="display:inline;">
-                    <input type="hidden" name="numero" value="{{ sala.numero }}">
-                    <button type="submit" onclick="return confirm('Tem certeza que deseja remover a Sala {{ sala.numero }}?')">Remover</button>
-                </form>
-            </li>
-        {% else %}
-            <li>Nenhuma sala cadastrada.</li>
-        {% endfor %}
-    </ul>
-    <a href="{{ url_for('adm.admInit') }}">Voltar</a>
+        <h1>Lista de Salas</h1>
+        <hr>
+        <ul>
+            {% for sala in salas %}
+                <li>
+                    <strong>Sala {{ sala.numero }}</strong> – {{ sala.linhas * sala.colunas }} cadeiras 
+                    
+    
+                    <a href="{{ url_for('adm.editar_sala_view')}}">
+                        <button>Editar</button>
+                    </a>
+    
+                    <form action="{{ url_for('adm.deletar_sala_view') }}" method="post" style="display:inline;">
+                        <input type="hidden" name="numero" value="{{ sala.numero }}">
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja remover a Sala {{ sala.numero }}?')">Remover</button>
+                    </form>
+                </li>
+            {% else %}
+                <li>Nenhuma sala cadastrada.</li>
+            {% endfor %}
+        </ul>
+    </main>
 </body>
 </html>

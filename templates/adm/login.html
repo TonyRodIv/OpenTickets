@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Login - Bilheteria OpenTickets</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/loginADM.css') }}">
 
 </head>
 <body>
+    <nav class="navTotem">
+        <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
+    </nav>
     <div class="login-container">
-        <h1>Realize seu login</h1>
-        <p>Precisamos de alguns dados</p>
-
+        
         <form method="post" action="{{ url_for('adm.login') }}"> 
+            <h1>Realize seu login</h1>
+            <p>Precisamos de alguns dados</p>
             <div class="form-group">
                 <label for="username">Nome de Usuário</label>
                 <input type="text" id="username" name="username" placeholder="ExemploUsuario" required>

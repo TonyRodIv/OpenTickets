@@ -4,65 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Filme</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
 </head>
 
 <body>
-    <h1>Editar Filme</h1>
+    <nav class="navTotem">
+        <a href="{{ url_for('adm.admInit') }}" class="botao_voltar">
+            <img src="../../static/img/arrow.svg" alt="" srcset="">
+            Voltar
+        </a>
+        <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
+    </nav>
+    <main class="mainContainer" style="background-color: #fff; color: black; padding: 20px;">
 
-    <form action="{{ url_for('adm.editar_filme_view') }}" method="post">
-        <div>
-            <label for="titulo_original">Selecione o filme para editar:</label>
-            <select id="titulo_original" name="titulo_original" required>
-                <option value="">-- escolha um filme --</option>
-                {% for f in filmes %}
-                <option value="{{ f.titulo }}">{{ f.titulo }}</option>
+        <h1>Editar Filme</h1>
+
+        <form action="{{ url_for('adm.editar_filme_view') }}" method="post">
+            <div>
+                <label for="titulo_original">Selecione o filme para editar:</label>
+                <select id="titulo_original" name="titulo_original" required>
+                    <option value="">-- escolha um filme --</option>
+                    {% for f in filmes %}
+                    <option value="{{ f.titulo }}">{{ f.titulo }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <hr>
+            <h3>Digite os Novos Dados do Filme</h3>
+            <p><strong>Atenção:</strong> Você deve preencher todos os campos abaixo com os valores desejados (atuais ou
+                novos).</p>
+
+            <div>
+                <label>Título:
+                    <input type="text" id="titulo" name="titulo" placeholder="Digite o título" required>
+                </label>
+            </div>
+            <div>
+                <label>Duração (min):
+                    <input type="number" id="duracao" name="duracao" placeholder="Ex: 120" required>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Classificação Etária:</label><br>
+                {% for classificacao_opcao in classificacoes_indicativas %}
+                <input type="radio" id="classificacao_{{ loop.index }}" name="classificacao"
+                    value="{{ classificacao_opcao }}" required>       
+                <label for="classificacao_{{ loop.index }}">{{ classificacao_opcao }}</label><br>
                 {% endfor %}
-            </select>
-        </div>
-
-        <hr>
-        <h3>Digite os Novos Dados do Filme</h3>
-        <p><strong>Atenção:</strong> Você deve preencher todos os campos abaixo com os valores desejados (atuais ou
-            novos).</p>
-
-        <div>
-            <label>Título:
-                <input type="text" id="titulo" name="titulo" placeholder="Digite o título" required>
-            </label>
-        </div>
-        <div>
-            <label>Duração (min):
-                <input type="number" id="duracao" name="duracao" placeholder="Ex: 120" required>
-            </label>
-        </div>
-        <div class="form-group">
-            <label>Classificação Etária:</label><br>
-             {% for classificacao_opcao in classificacoes_indicativas %} 
-            <input type="radio" id="classificacao_{{ loop.index }}" name="classificacao" value="{{ classificacao_opcao }}" required>        
-            <label for="classificacao_{{ loop.index }}">{{ classificacao_opcao }}</label><br> 
-            {% endfor %}
-        </div>
-        <div class="form-group">
-            <label for="genero">Gênero:</label> 
-            <select id="genero" name="genero"required>
-                <option value="">-- Selecione um gênero --</option>
-                {% for genero_opcao in generos_filme %}
-                <option value="{{ genero_opcao }}">{{ genero_opcao }}</option>
-                {%endfor %} 
-            </select>
-        </div>
-        <div>
-            <label>Salas:</label><br>
-            {% for sala in salas %}
-            <input type="checkbox" id="sala_{{ sala.numero }}" name="salas" value="{{ sala.numero }}">
-            <label for="sala_{{ sala.numero }}">Sala {{ sala.numero }}</label><br>
-            {% endfor %}
-        </div>
-        <button type="submit">Atualizar Filme</button>
-    </form>
-
-    <p><a href="{{ url_for('adm.admInit') }}">← Voltar ao Painel ADM</a></p>
+            </div>
+            <div class="form-group">
+                <label for="genero">Gênero:</label>
+                <select id="genero" name="genero" required>
+                    <option value="">-- Selecione um gênero --</option>
+                    {% for genero_opcao in generos_filme %}
+                    <option value="{{ genero_opcao }}">{{ genero_opcao }}</option>
+                    {%endfor %}
+                </select>
+            </div>
+            <div>
+                <label>Salas:</label><br>
+                {% for sala in salas %}
+                <input type="checkbox" id="sala_{{ sala.numero }}" name="salas" value="{{ sala.numero }}">
+                <label for="sala_{{ sala.numero }}">Sala {{ sala.numero }}</label><br>
+                {% endfor %}
+            </div>
+            <button type="submit">Atualizar Filme</button>
+        </form>
+    </main>
     <script src="{{ url_for('static', filename='js/editar_filme.js') }}"></script>
 </body>
 

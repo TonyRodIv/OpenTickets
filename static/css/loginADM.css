@@ -1,62 +1,83 @@
 body {
-font-family: 'Arial', sans-serif;
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100vh;
-margin: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
+
 .login-container {
-background-color: #ffffff;
-padding: 40px;
-border-radius: 8px;
-/* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
-width: 350px;
-text-align: left;
+    flex-grow: 1;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 22px;
+    background-color: #fff;
+    /* padding: 3rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
 .login-container h1 {
-font-size: 2.5em;
-font-weight: bold;
-margin-bottom: 5px;
-color: #333;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
 }
+
 .login-container p {
-color: #666;
-margin-bottom: 30px;
+    color: #666;
+    margin-bottom: 30px;
 }
+
+.login-container form{
+    max-width: 400px;
+    margin: 0 auto;
+}
+
 .form-group {
-margin-bottom: 20px;
+    margin-bottom: 20px;
 }
+
 .form-group label {
-display: block;
-margin-bottom: 8px;
-font-weight: bold;
-color: #555;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
 }
+
 .form-group input,
 .form-group select {
-width: 100%;
-padding: 12px 15px;
-border: 1px solid #e0e0e0;
-border-radius: 6px;
-background-color: #f7f7f7;
-box-sizing: border-box; /* Garante que padding não aumente a largura */
-font-size: 1em;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+    /* Garante que padding não aumente a largura */
+    font-size: 1em;
 }
+
 .form-group input::placeholder {
-color: #aaa;
+    color: #aaa;
 }
+
 .login-container button {
-width: 100%;
-padding: 15px;
-background-color: #4a90e2; /* Azul similar ao da imagem */
-color: white;
-border: none;
-border-radius: 12px;
-font-size: 1.1em;
-cursor: pointer;
-transition: background-color 0.3s ease;
+    width: 100%;
+    padding: 15px;
+    background-color: #4a90e2;
+    /* Azul similar ao da imagem */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
 .login-container button:hover {
-background-color: #357abd; /* Tom mais escuro para hover */
+    background-color: #357abd;
+    /* Tom mais escuro para hover */
 }

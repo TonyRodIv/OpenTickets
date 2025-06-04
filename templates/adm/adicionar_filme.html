@@ -1,66 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Adicionar Filme</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta charset="UTF-8">
+  <title>Adicionar Filme</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
 </head>
+
 <body>
-     <h1>Adicionar Novo Filme</h1>
+  <nav class="navTotem">
+    <a href="{{ url_for('adm.admInit') }}" class="botao_voltar">
+      <img src="../../static/img/arrow.svg" alt="" srcset="">
+      Voltar
+    </a>
+    <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
+  </nav>
+  <main class="mainContainer" style="background-color: #fff; color: black; padding: 20px;">
 
-  <form method="post">
-    <div>
-      <label for="titulo">Título:</label>
-      <input type="text" id="titulo" name="titulo" required>
-    </div>
-    <div>
-      <label for="duracao">Duração (minutos):</label>
-      <input type="number" id="duracao" name="duracao" min="1" required>
-    </div>
+    <h1>Adicionar Novo Filme</h1>
 
-    <div class="form-group">
-      <label>Classificação Etária:</label><br>
-      {% for classificacao_opcao in classificacoes_indicativas %}
-        <input type="radio" id="classificacao_{{ loop.index }}" name="classificacao" value="{{ classificacao_opcao }}" required>
-        <label for="classificacao_{{ loop.index }}">{{ classificacao_opcao }}</label><br>
-      {% endfor %}
-    </div>
-
-    <div class="form-group">
-      <label for="genero">Gênero:</label>
-      <select id="genero" name="genero" required>
-        <option value="">-- Selecione um gênero --</option>
-        {% for genero_opcao in generos_filme %}
-          <option value="{{ genero_opcao }}">{{ genero_opcao }}</option>
-        {% endfor %}
-      </select>
-    </div>
-    <div>
-      <label for="urlFoto">URL da Foto (opcional):</label>
-      <input type="url" id="urlFoto" name="urlFoto" placeholder="https://exemplo.com/imagem.jpg">
-    </div>
-
-    <div>
-      <label>Selecione as Salas:</label>
+    <form method="post">
       <div>
-        {% if salas %}
-          {% for sala in salas %}
-            <div>
-              <input type="checkbox" id="sala{{ sala.numero }}" name="salas" value="{{ sala.numero }}">
-              <label for="sala{{ sala.numero }}">
-                Sala {{ sala.numero }} ({{ sala.linhas }}x{{ sala.colunas }})
-              </label>
-            </div>
-          {% endfor %}
-        {% else %}
-          <p>Nenhuma sala cadastrada. Adicione salas antes de adicionar filmes.</p>
-        {% endif %}
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required>
       </div>
-    </div>
+      <div>
+        <label for="duracao">Duração (minutos):</label>
+        <input type="number" id="duracao" name="duracao" min="1" required>
+      </div>
 
-    <button type="submit">Adicionar Filme</button>
-  </form>
+      <div class="form-group">
+        <label>Classificação Etária:</label><br>
+        {% for classificacao_opcao in classificacoes_indicativas %}
+        <input type="radio" id="classificacao_{{ loop.index }}" name="classificacao" value="{{ classificacao_opcao }}"
+          required>
+        <label for="classificacao_{{ loop.index }}">{{ classificacao_opcao }}</label><br>
+        {% endfor %}
+      </div>
 
-  <p><a href="{{ url_for('adm.admInit') }}">← Voltar</a></p>
+      <div class="form-group">
+        <label for="genero">Gênero:</label>
+        <select id="genero" name="genero" required>
+          <option value="">-- Selecione um gênero --</option>
+          {% for genero_opcao in generos_filme %}
+          <option value="{{ genero_opcao }}">{{ genero_opcao }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label for="urlFoto">URL da Foto (opcional):</label>
+        <input type="url" id="urlFoto" name="urlFoto" placeholder="https://exemplo.com/imagem.jpg">
+      </div>
+
+      <div>
+        <label>Selecione as Salas:</label>
+        <div>
+          {% if salas %}
+          {% for sala in salas %}
+          <div>
+            <input type="checkbox" id="sala{{ sala.numero }}" name="salas" value="{{ sala.numero }}">
+            <label for="sala{{ sala.numero }}">
+              Sala {{ sala.numero }} ({{ sala.linhas }}x{{ sala.colunas }})
+            </label>
+          </div>
+          {% endfor %}
+          {% else %}
+          <p>Nenhuma sala cadastrada. Adicione salas antes de adicionar filmes.</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <button type="submit">Adicionar Filme</button>
+    </form>
+  </main>
 </body>
+
 </html>

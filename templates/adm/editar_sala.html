@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <title>Editar Sala</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
+
 </head>
+
 <body>
-  <h1>Editar Sala</h1>
-  <form action="{{ url_for('adm.editar_sala_view') }}" method="post">
-    <div>
-      <label for="numero">Selecione a sala:</label>
-      <select id="numero" name="numero" required>
-        <option value="">-- escolha --</option>
-        {% for s in salas %}
+  <nav class="navTotem">
+    <a href="{{ url_for('adm.admInit') }}" class="botao_voltar">
+      <img src="../../static/img/arrow.svg" alt="" srcset="">
+      Voltar
+    </a>
+    <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
+  </nav>
+  <main class="mainContainer" style="background-color: #fff; color: black; padding: 20px;">
+    <h1>Editar Sala</h1>
+    <form action="{{ url_for('adm.editar_sala_view') }}" method="post">
+      <div>
+        <label for="numero">Selecione a sala:</label>
+        <select id="numero" name="numero" required>
+          <option value="">-- escolha --</option>
+          {% for s in salas %}
           <option value="{{ s.numero }}">
             Sala {{ s.numero }} —> {{ s.linhas }}×{{ s.colunas }} || {{s.linhas * s.colunas}} lugares
           </option>
-        {% endfor %}
-      </select>
-    </div>
-    <div>
-      <label for="linhas">Novo número de fileiras (linhas):</label>
-      <input type="number" id="linhas" name="linhas"
-             min="1" max="20" required>
-    </div>
-    <div>
-      <label for="colunas">Novo número de colunas:</label>
-      <input type="number" id="colunas" name="colunas"
-             min="1" max="30" required>
-    </div>
-    <button type="submit">Atualizar Sala</button>
-  </form>
-
-  <p><a href="{{ url_for('adm.admInit') }}">
-    ← Voltar
-  </a></p>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label for="linhas">Novo número de fileiras (linhas):</label>
+        <input type="number" id="linhas" name="linhas" min="1" max="20" required>
+      </div>
+      <div>
+        <label for="colunas">Novo número de colunas:</label>
+        <input type="number" id="colunas" name="colunas" min="1" max="30" required>
+      </div>
+      <button type="submit">Atualizar Sala</button>
+    </form>
+  </main>
 </body>
+
 </html>
