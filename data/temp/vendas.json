@@ -173,5 +173,124 @@
         "assento": "E15",
         "tipo": "meia",
         "data_hora": "2025-06-04T19:01:48.606551"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "D15",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T19:38:36.326201"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "D14",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T19:38:36.360906"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "D13",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T19:38:36.404126"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "D12",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T19:38:36.429220"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "D11",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T19:38:36.460170"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "E12",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T19:50:21.909730"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "E11",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T19:50:21.958281"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "E10",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T19:50:21.975248"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "E13",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T19:50:22.007292"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "E14",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T19:50:22.040731"
+    },
+    {
+        "filme": "Wicked",
+        "sala": "3",
+        "assento": "G13",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T19:50:49.075777"
+    },
+    {
+        "filme": "Wicked",
+        "sala": "3",
+        "assento": "G12",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T19:50:49.092437"
+    },
+    {
+        "filme": "Wicked",
+        "sala": "3",
+        "assento": "G11",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T19:50:49.109299"
+    },
+    {
+        "filme": "Wicked",
+        "sala": "3",
+        "assento": "G10",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T19:50:49.156071"
+    },
+    {
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
+        "assento": "E17",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T19:51:10.594094"
+    },
+    {
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
+        "assento": "E18",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T19:51:10.626262"
+    },
+    {
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
+        "assento": "E19",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T19:51:10.643465"
     }
 ]

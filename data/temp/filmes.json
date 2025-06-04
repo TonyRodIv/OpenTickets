@@ -1,16 +1,5 @@
 [
     {
-        "titulo": "Taylor Swift: Já Eras Tuor",
-        "duracao": 190,
-        "classificacao": "14 anos",
-        "genero": "Show",
-        "urlFoto": "https://br.web.img3.acsta.net/pictures/23/09/11/09/10/4295874.jpg",
-        "salas": [
-            "2",
-            "6"
-        ]
-    },
-    {
         "titulo": "Pearl",
         "duracao": 146,
         "classificacao": "18 anos",
@@ -77,16 +66,6 @@
         "classificacao": "10 anos",
         "genero": "Aventura",
         "urlFoto": "https://static.claquete.com.br/fotos/filmes/poster/8485_medio.jpg",
-        "salas": [
-            "11"
-        ]
-    },
-    {
-        "titulo": "FIlme bom",
-        "duracao": 50,
-        "classificacao": "18 anos",
-        "genero": "Suspense",
-        "urlFoto": "https://cdn.ome.lt/CefcPyFSNGuhdYPKcMVP9k5N3Es=/987x0/smart/uploads/conteudo/fotos/9bf38857ac8122919f58e516a4.jpg",
         "salas": [
             "11"
         ]
