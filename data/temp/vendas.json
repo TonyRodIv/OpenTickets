@@ -341,5 +341,201 @@
         "assento": "H22",
         "tipo": "meia",
         "data_hora": "2025-06-03T22:04:57.506250"
+    },
+    {
+        "filme": "Taylor Swift: Já Eras Tuor",
+        "sala": "2",
+        "assento": "F8",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T09:40:41.777640"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "D14",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T11:52:06.670293"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "D13",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T11:52:06.702773"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "D12",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T11:52:06.736115"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "D11",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T11:52:06.770433"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "D10",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T11:52:06.808811"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "D9",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T11:52:06.845360"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "E12",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T11:52:06.877363"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "E11",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T11:52:06.910319"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "H5",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T11:52:06.942720"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "H4",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T11:52:06.975545"
+    },
+    {
+        "filme": "Wicked",
+        "sala": "3",
+        "assento": "G8",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T11:52:45.164715"
+    },
+    {
+        "filme": "Wicked",
+        "sala": "3",
+        "assento": "G9",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T11:52:45.202537"
+    },
+    {
+        "filme": "Wicked",
+        "sala": "3",
+        "assento": "G10",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T11:52:45.236697"
+    },
+    {
+        "filme": "Wicked",
+        "sala": "3",
+        "assento": "F9",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T11:52:45.274235"
+    },
+    {
+        "filme": "Wicked",
+        "sala": "3",
+        "assento": "F8",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T11:52:45.306176"
+    },
+    {
+        "filme": "Wicked",
+        "sala": "3",
+        "assento": "G7",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T11:52:45.342437"
+    },
+    {
+        "filme": "Wicked",
+        "sala": "3",
+        "assento": "I16",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T11:52:45.369782"
+    },
+    {
+        "filme": "Wicked",
+        "sala": "3",
+        "assento": "I17",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T11:52:45.404762"
+    },
+    {
+        "filme": "Pearl",
+        "sala": "1",
+        "assento": "D11",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T15:06:03.702802"
+    },
+    {
+        "filme": "Pearl",
+        "sala": "1",
+        "assento": "D10",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T15:06:03.737221"
+    },
+    {
+        "filme": "Pearl",
+        "sala": "1",
+        "assento": "D9",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T15:06:03.775758"
+    },
+    {
+        "filme": "Pearl",
+        "sala": "1",
+        "assento": "D8",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T15:06:03.808772"
+    },
+    {
+        "filme": "Pearl",
+        "sala": "1",
+        "assento": "D12",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T15:06:03.841979"
+    },
+    {
+        "filme": "Pearl",
+        "sala": "1",
+        "assento": "D13",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T15:06:03.873759"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "K22",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T15:34:55.663309"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "K21",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T15:34:55.699799"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "K20",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T15:34:55.729257"
     }
 ]

@@ -1,10 +1,20 @@
 body {
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     height: 100vh;
     margin: 0;
+    background-color: var(--bg-deep-blue);
+    gap: 15px;
+    padding: 16px;
+}
+
+aside{
+    background-image: url('../img/bg_adm_login.png');
+    background-size: cover;
+    background-position: left;
+    border-radius: 30px;
+    opacity: 0;
+    animation: fadeInTitulo 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .login-container {
@@ -13,11 +23,13 @@ body {
     margin: 0 auto;
     border-radius: 22px;
     background-color: #fff;
-    /* padding: 3rem; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    animation: fadeInTitulo 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation-delay: 0.1s;
 }
 
 .login-container h1 {
@@ -33,7 +45,7 @@ body {
 }
 
 .login-container form{
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
 }
 

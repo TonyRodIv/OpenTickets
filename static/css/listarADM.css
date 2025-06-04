@@ -1,0 +1,99 @@
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card-sala {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 18px;
+            padding: 20px;
+            width: 350px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-sala h3 {
+            margin-top: 0;
+            color: rgb(17, 109, 121);
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .card-sala p {
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        .secao-info {
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .secao-info strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .horarios-sala span {
+            display: inline-block;
+            background-color: #f0f0f0;
+            color: #555;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-right: 6px;
+            margin-top: 6px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .filme-item {
+            display: flex;
+            align-items: center;
+            background-color: #e9f5f7;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .filme-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .filme-item img {
+            width: 50px;
+            height: 75px;
+            border-radius: 6px;
+            margin-right: 12px;
+            object-fit: cover;
+            border: 1px solid #d0e0e3;
+        }
+
+        .filme-item .filme-titulo {
+            font-size: 1em;
+            color: #116d79;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        .card-actions {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .card-actions button {
+            padding: 8px 15px;
+            font-size: 0.9em;
+            width: 100%;
+        }

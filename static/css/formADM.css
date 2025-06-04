@@ -1,0 +1,147 @@
+   .mainContainer {
+       background-color: #fff;
+       color: #000;
+   }
+
+   .sala-ocupada-label {
+       color: #999;
+       text-decoration: line-through;
+   }
+
+   h1 {
+       text-align: center;
+       margin: 10px 0;
+       font-size: 2.2em;
+   }
+
+   form {
+       max-width: 800px;
+       margin: 0 auto;
+       padding: 20px;
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       gap: 20px;
+   }
+
+   form div {
+       margin-bottom: 10px;
+   }
+
+   label {
+       display: block;
+       margin-bottom: 8px;
+       font-weight: 600;
+       color: #555;
+   }
+
+   input[type="text"],
+   input[type="number"],
+   input[type="url"],
+   select {
+       width: 100%;
+       padding: 12px 15px;
+       border: 1px solid #ddd;
+       border-radius: 12px;
+       font-size: 1em;
+       transition: border-color 0.3s ease, box-shadow 0.3s ease;
+   }
+
+   input[type="text"]:focus,
+   input[type="number"]:focus,
+   input[type="url"]:focus,
+   select:focus {
+       border-color: #3498db;
+       box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+       outline: none;
+   }
+
+   .form-group label {
+       margin-bottom: 12px;
+   }
+
+   .form-group div {
+       margin-bottom: 8px;
+   }
+
+   .form-group input[type="radio"],
+   .form-group input[type="checkbox"] {
+       margin-right: 8px;
+       transform: scale(1.1);
+       accent-color: #3498db;
+   }
+
+   .form-group input[type="radio"]+label,
+   .form-group input[type="checkbox"]+label {
+       font-weight: normal;
+       color: #333;
+       display: inline;
+       margin-bottom: 0;
+   }
+
+
+   .salas-disponiveis-container>div {
+       padding: 5px 0;
+       display: flex;
+       align-items: center;
+   }
+
+   .salas-disponiveis-container input[type="checkbox"] {
+       margin-right: 10px;
+       transform: scale(1.2);
+       accent-color: #2ecc71;
+   }
+
+   .salas-disponiveis-container input[type="checkbox"]+label {
+       font-weight: normal;
+       color: #333;
+   }
+
+   .mainContainer p {
+       background-color: #f8d7da;
+       color: #721c24;
+       border: 1px solid #f5c6cb;
+       padding: 10px 15px;
+       border-radius: 12px;
+       text-align: center;
+   }
+
+
+   button[type="submit"] {
+       background-color: #3498db;
+       color: white;
+       padding: 16px 45px;
+       border: none;
+       border-radius: 18px;
+       font-size: 1.1em;
+       font-weight: 600;
+       cursor: pointer;
+       transition: background-color 0.3s ease, transform 0.2s ease;
+   }
+
+   button[type="submit"]:hover {
+       background-color: #2980b9;
+       transform: translateY(-2px);
+   }
+
+   button[type="submit"]:active {
+       transform: translateY(0);
+   }
+
+   input[type="radio"] {
+       accent-color: #007bff;
+       width: 18px;
+       height: 18px;
+       margin-right: 8px;
+       vertical-align: middle;
+   }
+
+
+   input[type="radio"]:focus-visible {
+       outline: 2px solid #007bff;
+       outline-offset: 2px;
+   }
+
+   input[type="radio"]+label {
+       vertical-align: middle;
+       cursor: pointer;
+   }

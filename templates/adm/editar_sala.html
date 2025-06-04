@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Editar Sala</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/formADM.css') }}">
 
 </head>
 
@@ -18,7 +19,7 @@
   </nav>
   <main class="mainContainer" style="background-color: #fff; color: black; padding: 20px;">
     <h1>Editar Sala</h1>
-    <form action="{{ url_for('adm.editar_sala_view') }}" method="post">
+    <form action="{{ url_for('adm.editar_sala_view') }}" method="post" style="grid-template-columns: 1fr;">
       <div>
         <label for="numero">Selecione a sala:</label>
         <select id="numero" name="numero" required>

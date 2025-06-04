@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Adicionar Sala</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/formADM.css') }}">
 </head>
 
 <body>
@@ -19,7 +20,7 @@
 
     <h1>Adicionar Nova Sala</h1>
 
-    <form action="{{ url_for('adm.adicionar_sala_view') }}" method="post">
+    <form action="{{ url_for('adm.adicionar_sala_view') }}" method="post" style="grid-template-columns: 1fr;">
       <div>
         <label for="linhas">Quantidade de fileiras (linhas):</label>
         <input type="number" id="linhas" name="linhas" min="6" max="16" required>

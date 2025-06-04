@@ -3,6 +3,7 @@
     background-color: #fff;
     padding: 6vh 50px;
     color: black;
+    
 }
 
 .cardPopular {
@@ -13,6 +14,7 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    animation: deslizarDireitaRapido 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .cardPopular p{
@@ -61,6 +63,7 @@
     flex-direction: column;
     gap: 10px;
     flex-grow: 1;
+    animation: deslizarDireitaRapido 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 .gerenciarC h2 {
    margin: 2px 15px 2px 0;

@@ -5,26 +5,60 @@
     <meta charset="UTF-8">
     <title>Confirmação de Venda</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/confirmarVenda.css') }}">
 </head>
 
 <body>
-    <div>
-        <h2>Venda Confirmada! 🎉</h2>
-        <p><strong>Filme:</strong> {{ filme.titulo }}</p>
-        <p><strong>Sala:</strong> {{ sala_num }}</p>
-        <p><strong>Horário:</strong> {{ horario }}</p> {# Adiciona a exibição do horário #}
-        
-        <h3>Assentos Vendidos:</h3>
-        <ul>
-            {% for item in assentos_vendidos %}
-                <li><strong>Assento:</strong> {{ item.assento }} | <strong>Tipo:</strong> {{ item.tipo|capitalize }}</li>
-            {% endfor %}
-        </ul>
+    <nav class="navTotem">
+        <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
+    </nav>
+    <main class="mainContainer">
+        <div class="content">
+            <h1 class="title">Venda Confirmada!
+                <div class="aurora">
+                    <div class="aurora__item"></div>
+                    <div class="aurora__item"></div>
+                    <div class="aurora__item"></div>
+                    <div class="aurora__item"></div>
+                </div>
+            </h1>
+        </div>
+        <div class="ticket-container">
+            <div class="movie-poster-container">
+                <img src="{{filme.urlFoto}}"
+                    alt="Poster do Filme {{ filme.titulo }}" class="movie-poster">
+            </div>
 
-        <h3>Total da Compra: <span style="color: #0056b3;">R$ {{ "%.2f"|format(total_compra)|replace('.', ',') }}</span></h3>
+            <div class="ticket-body">
+                <div class="ticket-section movie-info">
+                    <h2 class="movie-title">{{ filme.titulo }}</h2>
+                    <div style="display: flex; justify-content: space-around;">
+                        <p><strong>Sala:</strong> {{ sala_num }}</p>
+                        <p><strong>Horário:</strong> {{ horario }}</p>
+                    </div>
+                </div>
 
-        <a href="{{ url_for('vend.escolher_filme') }}">Nova Venda</a>
-    </div>
+                <div class="ticket-section seats-info">
+                    <h3 class="section-title">Assentos Vendidos:</h3>
+                    <ul class="seats-list">
+                        {% for item in assentos_vendidos %}
+                        <li><strong>{{ item.assento }}</strong> ↔ {{
+                            item.tipo|capitalize }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="total-section">
+                    <h3 class="total-compra-text">Total da Compra:
+                        <span class="total-amount">R$ {{ "%.2f"|format(total_compra)|replace('.', ',') }}</span>
+                    </h3>
+                </div>
+            </div>
+            <div class="ticket-body" style="padding-top: 0; padding-bottom: 24px;"> <a
+                    href="{{ url_for('login.loginUser') }}" class="btn-sair">Sair</a>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>

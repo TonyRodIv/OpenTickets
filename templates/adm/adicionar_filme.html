@@ -5,24 +5,18 @@
   <meta charset="UTF-8">
   <title>Adicionar Filme</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
-  <style>
-    .sala-ocupada-label {
-      color: #999;
-      text-decoration: line-through;
-    }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/formADM.css') }}">
 </head>
 
 <body>
   <nav class="navTotem">
     <a href="{{ url_for('adm.admInit') }}" class="botao_voltar">
-      <img src="{{ url_for('static', filename='img/arrow.svg') }}" alt="" srcset="">
+      <img src="{{ url_for('static', filename='img/arrow.svg') }}" alt="Voltar">
       Voltar
     </a>
     <img src="{{ url_for('static', filename='img/LogoOpenTickets.svg') }}" alt="Open Tickets logo" class="logoNav">
   </nav>
-  <main class="mainContainer" style="background-color: #fff; color: black; padding: 20px;">
-
+  <main class="mainContainer">
     <h1>Adicionar Novo Filme</h1>
 
     <form method="post">
@@ -34,15 +28,6 @@
         <label for="duracao">Duração (minutos):</label>
         <input type="number" id="duracao" name="duracao" min="1" required
           value="{{ request.form.duracao if request.form else '' }}">
-      </div>
-
-      <div class="form-group">
-        <label>Classificação Etária:</label><br>
-        {% for classificacao_opcao in classificacoes_indicativas %}
-        <input type="radio" id="classificacao_{{ loop.index }}" name="classificacao" value="{{ classificacao_opcao }}"
-          {% if request.form and request.form.classificacao==classificacao_opcao %}checked{% endif %} required>
-        <label for="classificacao_{{ loop.index }}">{{ classificacao_opcao }}</label><br>
-        {% endfor %}
       </div>
 
       <div class="form-group">
@@ -61,18 +46,26 @@
           value="{{ request.form.urlFoto if request.form else '' }}">
       </div>
 
+      <div class="form-group">
+        <label>Classificação Etária:</label>
+        {% for classificacao_opcao in classificacoes_indicativas %}
+        <div> <input type="radio" id="classificacao_{{ loop.index }}" name="classificacao" value="{{ classificacao_opcao }}"
+            {% if request.form and request.form.classificacao==classificacao_opcao %}checked{% endif %} required>
+            <label for="classificacao_{{ loop.index }}">{{ classificacao_opcao }}</label>
+        </div>
+        {% endfor %}
+      </div>
+
       <div>
         <label>Salas disponíveis para exibição:</label>
-        <div>
-          {% if salas %}
+        <div class="salas-disponiveis-container"> {% if salas %}
           {% for sala in salas %}
           {% set sala_numero_str = sala.numero|string %}
           {% set is_ocupada = sala_numero_str in salas_ocupadas %}
           <div {% if is_ocupada %}style="display: none;" {% endif %}>
             <input type="checkbox" id="sala{{ sala.numero }}" name="salas" value="{{ sala.numero }}" {% if request_form
               and sala.numero|string in request_form.getlist('salas') %}checked{% endif %}>
-            <label for="sala{{ sala.numero }}">
-              Sala {{ sala.numero }} ({{ sala.linhas }}x{{ sala.colunas }})
+            <label for="sala{{ sala.numero }}" class="{{ 'sala-ocupada-label' if is_ocupada else '' }}"> Sala {{ sala.numero }} ({{ sala.linhas }}x{{ sala.colunas }})
             </label>
           </div>
           {% endfor %}

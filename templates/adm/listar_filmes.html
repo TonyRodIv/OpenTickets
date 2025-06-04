@@ -3,45 +3,186 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Filmes Cadastrados</title>
+    <title>Filmes Cadastrados - OpenTickets ADM</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/listarADM.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .mainContainer {
+            background-color: #fff;
+            color: black;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card-filme {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            width: 350px;
+        }
+
+        .card-filme img.poster {
+            width: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 5px;
+        }
+
+        .card-filme-content {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-filme h3 {
+            margin-top: 0;
+            color: rgb(17, 109, 121);
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .card-filme p {
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .secao-info {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .secao-info strong {
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .salas-exibicao span {
+            display: inline-block;
+            background-color: #f0f0f0;
+            color: #555;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-right: 6px;
+            margin-top: 6px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .card-actions {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            gap: 10px;
+
+        }
+
+        .card-actions button {
+            padding: 8px 15px;
+            font-size: 0.9em;
+            width: 100%;
+        }
+
+        button {
+            background-color: rgb(17, 109, 121);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            background-color: rgb(32, 89, 97);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-adicionar-filme {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 25px;
+            font-size: 1em;
+            text-decoration: none;
+        }
+
+        hr {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
 
     <nav class="navTotem">
         <a href="{{ url_for('adm.admInit') }}" class="botao_voltar">
-            <img src="../../static/img/arrow.svg" alt="" srcset="">
-            Voltar
+            <img src="{{ url_for('static', filename='img/arrow.svg') }}" alt="Voltar"> Voltar
         </a>
-        <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
+        <img src="{{ url_for('static', filename='img/LogoOpenTickets.svg') }}" alt="Open Tickets logo" class="logoNav">
     </nav>
-    <main class="mainContainer" style="background-color: #fff; color: black; padding: 20px;">
 
-        <h1>Filmes Cadastrados</h1>
-        <a href="{{ url_for('adm.adicionar_filme_view') }}">Adicionar Novo Filme</a>
-        <hr>
-
+    <main class="mainContainer" style="padding: 20px;">
+        <h1 style="margin: 0 auto;">Filmes Cadastrados</h1>
         {% if filmes %}
-        <ul>
+        <div class="cards-container">
             {% for filme in filmes %}
-            <li>
-                <strong>{{ filme.titulo }}</strong> |
-                {{ filme.duracao }}min |
-                {{ filme.genero }} |
-                Classificação: {{ filme.classificacao }} |
-                Salas: {{ filme.salas|join(', ') }} <a
-                    href="{{ url_for('adm.editar_filme_view', titulo=filme.titulo) }}"><button>Editar</button></a>
-                <form action="{{ url_for('adm.remover_filme_view', titulo=filme.titulo) }}" method="post"
-                    style="display:inline;">
-                    <button type="submit"
-                        onclick="return confirm('Tem certeza que deseja remover este filme?')">Remover</button>
-                </form>
-            </li>
+            <div class="card-filme">
+
+                <div class="card-filme-content">
+                    <div style="display: flex;gap: 15px;">
+                        <img src="{{ filme.urlFoto }}" alt="Pôster do filme {{ filme.titulo }}" class="poster">
+                        <h3>{{ filme.titulo }}</h3>
+                    </div>
+
+                    <div class="secao-info">
+                        <p><strong>Duração:</strong> {{ filme.duracao }} min ⏳</p>
+                        <p><strong>Gênero:</strong> {{ filme.genero }} 🎭</p>
+                        <p><strong>Classificação:</strong> {{ filme.classificacao }} 🔞</p>
+                    </div>
+
+                    <div class="secao-info">
+                        <div class="salas-exibicao">
+                            <strong>Salas Disponíveis:</strong>
+                            {% for sala_num in filme.salas %}
+                            <span>Sala {{ sala_num }}</span>
+                            {% else %}
+                            <span>Nenhuma sala associada no momento.</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <a href="{{ url_for('adm.editar_filme_view', titulo=filme.titulo) }}" style="width:100%;">
+                        <button>✏️ Editar</button>
+                    </a>
+                    <form action="{{ url_for('adm.remover_filme_view', titulo=filme.titulo) }}" method="post"
+                        style="display:inline; width: 100%;">
+                        <button type="submit"
+                            onclick="return confirm('Tem certeza que deseja remover o filme \'{{ filme.titulo }}\'?')">🗑️
+                            Remover</button>
+                    </form>
+                </div>
+            </div>
             {% endfor %}
-        </ul>
+        </div>
         {% else %}
-        <p>⚠️ Nenhum filme cadastrado no momento.</p>
+        <p>⚠️ Nenhum filme cadastrado no momento. Que tal adicionar alguns? 🚀</p>
         {% endif %}
     </main>
 </body>
