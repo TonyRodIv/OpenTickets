@@ -63,10 +63,12 @@
                 </select>
             </div>
             <div>
-                <label>Salas:</label><br>
+                <label>Salas Disponíveis:</label><br>
                 {% for sala in salas %}
-                <input type="checkbox" id="sala_{{ sala.numero }}" name="salas" value="{{ sala.numero }}">
-                <label for="sala_{{ sala.numero }}">Sala {{ sala.numero }}</label><br>
+                <div>
+                    <input type="checkbox" id="sala_{{ sala.numero }}" name="salas" value="{{ sala.numero }}">
+                    <label for="sala_{{ sala.numero }}">Sala {{ sala.numero }}</label><br>
+                </div>
                 {% endfor %}
             </div>
             <button type="submit">Atualizar Filme</button>

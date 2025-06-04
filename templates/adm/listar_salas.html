@@ -4,38 +4,176 @@
     <meta charset="utf-8">
     <title>Salas Cadastradas</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
+<style>
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card-sala {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 18px;
+            padding: 20px;
+            width: 350px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-sala h3 {
+            margin-top: 0;
+            color: rgb(17, 109, 121);
+            font-size: 1.4em; 
+            margin-bottom: 10px;
+        }
+
+        .card-sala p {
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            color: #555;
+        }
+        
+        .secao-info {
+            margin-top: 15px;
+            margin-bottom: 10px; 
+        }
+
+        .secao-info strong { 
+            display: block;
+            margin-bottom: 8px; 
+            color: #333;
+            font-size: 1em;
+            font-weight: 600; 
+        }
+
+        .horarios-sala span { 
+            display: inline-block;
+            background-color: #f0f0f0; 
+            color: #555;
+            padding: 5px 12px;
+            border-radius: 20px; 
+            margin-right: 6px;
+            margin-top: 6px;
+            font-size: 0.85em; 
+            font-weight: 500;
+        }
+        
+        .filme-item {
+            display: flex; 
+            align-items: center; 
+            background-color: #e9f5f7; 
+            padding: 10px;
+            border-radius: 10px; 
+            margin-bottom: 10px; 
+        }
+        
+        .filme-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .filme-item img {
+            width: 50px; 
+            height: 75px; 
+            border-radius: 6px; 
+            margin-right: 12px; 
+            object-fit: cover; 
+            border: 1px solid #d0e0e3; 
+        }
+
+        .filme-item .filme-titulo {
+            font-size: 1em;
+            color: #116d79; 
+            font-weight: 600;
+            flex-grow: 1;
+        }
+        
+        .card-actions {
+            margin-top: auto; 
+            padding-top: 15px; 
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .card-actions button {
+            padding: 8px 15px;
+            font-size: 0.9em;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <nav class="navTotem">
         <a href="{{ url_for('adm.admInit') }}" class="botao_voltar">
-            <img src="../../static/img/arrow.svg" alt="" srcset="">
+            <img src="{{ url_for('static', filename='img/arrow.svg') }}" alt="<-"> 
             Voltar
         </a>
-        <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
+        <img src="{{ url_for('static', filename='img/LogoOpenTickets.svg') }}" alt="Open Tickets" class="logoNav">
     </nav>
+
     <main class="mainContainer" style="background-color: #fff; color: black; padding: 20px;">
 
-        <h1>Lista de Salas</h1>
-        <hr>
-        <ul>
-            {% for sala in salas %}
-                <li>
-                    <strong>Sala {{ sala.numero }}</strong> – {{ sala.linhas * sala.colunas }} cadeiras 
+        <h1 style="text-align: center; margin-bottom: 20px;">Salas Cadastradas</h1>
+
+        {% if salas %}
+            <div class="cards-container">
+                {% for sala_info in salas %}
+                    <div class="card-sala">
+                        <div> 
+                            <h3>Sala {{ sala_info.numero }}</h3>
+                            <p><strong>Capacidade:</strong> {{ sala_info.capacidade }} cadeiras</p>
+
+                            <div class="secao-info">
+                                <strong>Horários Disponíveis da Sala:</strong>
+                                <div class="horarios-sala">
+                                    {% if sala_info.horarios_disponiveis %}
+                                        {% for horario in sala_info.horarios_disponiveis %}
+                                            <span>{{ horario }}</span>
+                                        {% endfor %}
+                                    {% else %}
+                                        <p style="color: #777; font-style: italic; font-size: 0.9em;">Nenhum horário cadastrado para esta sala.</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            {% if sala_info.filmes_em_exibicao %}
+                                <div class="secao-info filmes-em-exibicao-container"> <strong class="secao-info-titulo">Filme em Exibição:</strong>
+                                    {% for filme in sala_info.filmes_em_exibicao %}
+                                        <div class="filme-item"> {% if filme.urlFoto %}
+                                                <img src="{{ filme.urlFoto }}" alt="Pôster de {{ filme.titulo }}">
+                                            {% else %}
+                                                <div style="width:50px; height:75px; background-color:#ddd; border-radius:6px; margin-right:12px; display:flex; align-items:center; justify-content:center; font-size:0.7em; color:#888; text-align:center;">Sem Img</div>
+                                            {% endif %}
+                                            <span class="filme-titulo">{{ filme.titulo }}</span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="secao-info">
+                                     <p style="color: #777; font-style: italic; font-size: 0.9em;">Nenhum filme programado.</p>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="{{ url_for('adm.editar_sala_view', numero_sala=sala_info.numero) }}"> <button>Editar Sala</button>
+                            </a>
                     
-    
-                    <a href="{{ url_for('adm.editar_sala_view')}}">
-                        <button>Editar</button>
-                    </a>
-    
-                    <form action="{{ url_for('adm.deletar_sala_view') }}" method="post" style="display:inline;">
-                        <input type="hidden" name="numero" value="{{ sala.numero }}">
-                        <button type="submit" onclick="return confirm('Tem certeza que deseja remover a Sala {{ sala.numero }}?')">Remover</button>
-                    </form>
-                </li>
-            {% else %}
-                <li>Nenhuma sala cadastrada.</li>
-            {% endfor %}
-        </ul>
+                            <form action="{{ url_for('adm.deletar_sala_view') }}" method="post">
+                                <input type="hidden" name="numero" value="{{ sala_info.numero }}">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja remover a Sala {{ sala_info.numero }}?')">Remover Sala</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p style="text-align: center; font-size: 1.1em;">Nenhuma sala cadastrada no momento. Que tal <a href="{{ url_for('adm.adicionar_sala_view') }}">adicionar uma nova</a>?</p>
+        {% endif %}
     </main>
 </body>
 </html>

@@ -61,8 +61,29 @@ def api_listar_dados():
 
 @adm_route.route('/listar_salas')
 def listar_salas_view():
-    salas_dados = carregar_salas() 
-    return render_template('listar_salas.html', salas=salas_dados) 
+    salas_cadastradas = carregar_salas() #
+    filmes_cadastrados = carregar_filmes() #
+    
+    salas_para_template = []
+
+    for sala_data in salas_cadastradas:
+        sala_com_info = {
+            'numero': sala_data['numero'],
+            'capacidade': int(sala_data['linhas']) * int(sala_data['colunas']),
+            'horarios_disponiveis': sala_data.get('horarios', []),
+            'filmes_em_exibicao': [] 
+        }
+        
+        for filme_data in filmes_cadastrados:
+            if str(sala_data['numero']) in filme_data.get('salas', []):
+                sala_com_info['filmes_em_exibicao'].append({
+                    'titulo': filme_data['titulo'],
+                    'urlFoto': filme_data.get('urlFoto', '')
+                })
+        
+        salas_para_template.append(sala_com_info)
+        
+    return render_template('listar_salas.html', salas=salas_para_template)
 
 @adm_route.route('/adicionar_sala', methods=['GET', 'POST'])
 def adicionar_sala_view():
@@ -95,18 +116,34 @@ def editar_sala_view():
 
 @adm_route.route('/deletar_sala', methods=['POST'])
 def deletar_sala_view():
-    numero_str = request.form.get('numero', '').strip()
+    numero_sala_para_deletar = request.form.get('numero', '').strip()
 
-    if not numero_str:
-        return redirect(url_for('adm.listar_salas_view'))
-        
+    deletar_sala(numero_sala_para_deletar) 
+    
+    filmes = carregar_filmes() 
+    filmes_foram_modificados = False
+
+    for filme_atual in filmes:
+        salas_deste_filme = filme_atual.get('salas', []) #
+        if numero_sala_para_deletar in salas_deste_filme:
+            salas_deste_filme.remove(numero_sala_para_deletar)
+            filmes_foram_modificados = True
+    
+    if filmes_foram_modificados:
+        salvar_json(filmes, ARQUIVO_FILMES) #
+            
     return redirect(url_for('adm.listar_salas_view'))
-
 
 # GERENCIAR FILMES -------------------
 
 @adm_route.route('/adicionar_filme', methods=['GET', 'POST'])
 def adicionar_filme_view():
+    todos_os_filmes = carregar_filmes()
+    salas_ocupadas = set()
+    for filme in todos_os_filmes:
+        for sala_id in filme.get('salas', []): 
+            salas_ocupadas.add(str(sala_id))
+
     if request.method == 'POST':
         titulo = request.form.get('titulo', '').strip()
         duracao = request.form.get('duracao', '').strip()
@@ -123,13 +160,18 @@ def adicionar_filme_view():
             return redirect(url_for('adm.admInit'))
         else:
             salas_disponiveis = carregar_salas()
-            return render_template('adicionar_filme.html', salas=salas_disponiveis)
+            return render_template('adicionar_filme.html', 
+                                   salas=salas_disponiveis,
+                                   classificacoes_indicativas=CLASSIFICACOES_INDICATIVAS,
+                                   generos_filme=GENEROS_FILME,
+                                   salas_ocupadas=salas_ocupadas) 
 
     salas_disponiveis = carregar_salas()
     return render_template('adicionar_filme.html',
                            salas=salas_disponiveis,
                            classificacoes_indicativas=CLASSIFICACOES_INDICATIVAS,
-                           generos_filme=GENEROS_FILME)
+                           generos_filme=GENEROS_FILME,
+                           salas_ocupadas=salas_ocupadas)
 
 @adm_route.route('/listar_filmes')
 def listar_filmes_view():

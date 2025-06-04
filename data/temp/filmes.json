@@ -17,8 +17,7 @@
         "genero": "Ação",
         "urlFoto": "https://wp.ufpel.edu.br/empauta/files/2022/11/imagem1.jpg",
         "salas": [
-            "1",
-            "7"
+            "1"
         ]
     },
     {
@@ -59,6 +58,17 @@
         "urlFoto": "https://m.media-amazon.com/images/M/MV5BNGViODFjYTgtYzkyYi00YmM3LTlhMWYtZWZhNTNlN2M5MTRmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
         "salas": [
             "8"
+        ]
+    },
+    {
+        "titulo": "Ainda Estou Aqui",
+        "duracao": 180,
+        "classificacao": "16 anos",
+        "genero": "Drama",
+        "urlFoto": "https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2024/09/02/51755745-mv5bzmixmwvmzdytodnmny00yjhkltg2mmutotqxzti3ztmxzgyxxkeyxkfqcgcv1.jpg",
+        "salas": [
+            "9",
+            "10"
         ]
     }
 ]
