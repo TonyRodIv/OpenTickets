@@ -2,7 +2,7 @@
     background-image: url(/static/img/mainBgTotem.png);
     background-size: cover;
     background-position: center;
-    animation: fadeInBackground 1.5s ease-in-out forwards;
+    animation: fadeInBackground 1.8s ease-in-out forwards;
     opacity: 0;
 }
 
@@ -13,7 +13,7 @@
     justify-content: space-between;
     padding: 60px 60px;
     animation: fadeInTitulo 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    animation-delay: var(0.5, 0s);
+    animation-delay: var(0.8, 0s);
 }
 
 a {
