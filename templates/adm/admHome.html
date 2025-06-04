@@ -22,17 +22,6 @@
     <a href={{editarFilme}}><button>Editar Filme</button></a>
     <h2>Relatórios</h2>
     <a href={{relatorioVendas}}><button>Vendas Diárias</button></a>
-    
-    <h2>🏆 Top 5 Filmes Mais Populares 🏆</h2>
-    {% if filmes_populares %}
-        <ol>
-            {% for filme, vendas in filmes_populares %}
-                <li>{{ filme }} ({{ vendas }} vendas)</li>
-            {% endfor %}
-        </ol>
-    {% else %}
-        <p>Ainda não há vendas registradas para calcular a popularidade dos filmes. Bora vender uns ingressos!</p>
-    {% endif %}
 </body>
 
 </html>

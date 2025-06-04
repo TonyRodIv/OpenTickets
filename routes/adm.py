@@ -1,20 +1,18 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify, session
 from data.gerenciar_sala import adicionar_sala, editar_sala, carregar_salas, deletar_sala
 from data.gerenciar_filmes import adicionar_filme_web, carregar_filmes, salvar_json, editar_filme, ARQUIVO_FILMES
-from data.gerenciar_vendas import calcular_vendas, filmes_populares
+from data.gerenciar_vendas import calcular_vendas
 
 adm_route = Blueprint('adm', __name__, url_prefix='/adm', template_folder='../templates/adm')
 
-
 CLASSIFICACOES_INDICATIVAS = ["Livre", "10 anos", "12 anos", "14 anos", "16 anos", "18 anos"]
-
-GENEROS_FILME = ["Ação", "Animação", "Aventura", "Comédia", "Documentário", "Drama",
-                 "Fantasia", "Ficção Científica", "Guerra", "Musical", "Policial", "Romance",
-                 "Show", "Suspense", "Terror", "Thriller"]
-
-
+GENEROS_FILME = [
+    "Ação", "Animação", "Aventura", "Comédia", "Documentário", "Drama",
+    "Fantasia", "Ficção Científica", "Guerra", "Musical", "Policial", "Romance",
+    "Show", "Suspense", "Terror", "Thriller"
+]
 @adm_route.route('/', methods=['GET', 'POST'])
-def login(): # Função de login do ADM, está em /adm/
+def login(): # Essa é a função de login do ADM, que vai estar em /adm/
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
@@ -23,9 +21,9 @@ def login(): # Função de login do ADM, está em /adm/
             return redirect(url_for('adm.admInit'))
 
         else:
-            return redirect(url_for('adm.login'))
+            return redirect(url_for('adm.login')) # <<<<< AQUI A MUDANÇA! Redireciona para a própria rota de login do ADM
 
-    return render_template('login.html')
+    return render_template('login.html') # Renderiza a tela de login do ADM
 
 @adm_route.route('/home')
 def admInit():
@@ -38,19 +36,18 @@ def admInit():
     adicionarFilme = url_for('adm.adicionar_filme_view')
     listarFilmes = url_for('adm.listar_filmes_view')
     editarFilme = url_for('adm.editar_filme_view')
-    relatorioVendas = url_for('adm.relatorio_vendas_view')
+    relatorioVendas = url_for('adm.relatorio_vendas_diarias_view')
     return render_template('admHome.html', listarSala=listarSala, adicionarSala=adicionarSala,
-                           editarSala=editarSala, adicionarFilme=adicionarFilme, listarFilmes=listarFilmes,
-                           editarFilme=editarFilme, relatorioVendas=relatorioVendas)
+                           editarSala=editarSala, adicionarFilme=adicionarFilme, listarFilmes=listarFilmes, editarFilme=editarFilme, relatorioVendas=relatorioVendas)
     
 
 @adm_route.route('/api/dados', methods=['GET'])
 def api_listar_dados():
     filmes = carregar_filmes()
     salas = carregar_salas()
-    return jsonify({'filmes': filmes, 'salas': salas})
+    return jsonify({'filmes': filmes, 'salas': salas}) # Retorna a lista como um JSON para o JS interpretar
 
-# GERENCIAR SALAS -----------
+# GERENCIAR SALAS - a partir daqui!
 
 @adm_route.route('/listar_salas')
 def listar_salas_view():
@@ -95,9 +92,7 @@ def deletar_sala_view():
         
     return redirect(url_for('adm.listar_salas_view'))
 
-
-# GERENCIAR FILMES -------------------
-
+# GERENCIAR FILMES
 @adm_route.route('/adicionar_filme', methods=['GET', 'POST'])
 def adicionar_filme_view():
     if request.method == 'POST':
@@ -106,14 +101,14 @@ def adicionar_filme_view():
         classificacao = request.form.get('classificacao', '').strip()
         genero = request.form.get('genero', '').strip()
         urlFoto = request.form.get('urlFoto', '').strip()
-        salas_escolhidas = request.form.getlist('salas')
+        salas_escolhidas = request.form.getlist('salas') # Usa getlist para váaaarios checkbox
 
         sucesso, mensagem = adicionar_filme_web(
             titulo, duracao, classificacao, genero, urlFoto, salas_escolhidas
         )
 
         if sucesso:
-            return redirect(url_for('adm.admInit'))
+            return redirect(url_for('adm.admInit')) # Redireciona para o início por enquanto (lemnbrar mudar depois)
         else:
             salas_disponiveis = carregar_salas()
             return render_template('adicionar_filme.html', salas=salas_disponiveis)
@@ -166,23 +161,17 @@ def remover_filme_view(titulo):
     filmes_filtrados = [f for f in filmes if f['titulo'].lower() != titulo.lower()]
 
     if len(filmes_filtrados) < len(filmes):
-        salvar_json(filmes_filtrados, ARQUIVO_FILMES)
+        salvar_json(filmes_filtrados, ARQUIVO_FILMES) # <--- MUDE AQUI!
 
     return redirect(url_for('adm.listar_filmes_view'))
 
-
-# GERENCIADOR DE VENDAS --------------
-
 @adm_route.route('/relatorio_vendas_diarias', methods=['GET', 'POST'])
-def relatorio_vendas_view():
+def relatorio_vendas_diarias_view():
     data_para_buscar = request.form.get('data_relatorio') if request.method == 'POST' else None
     resumo = calcular_vendas(data_para_buscar)
     
     return render_template('relatorio_vendas.html', resumo=resumo)
 
+# GERENCIAR ASSENTOS
 
-@adm_route.route('/filmes_mais_populares')
-def filmes_mais_populares_view():
 
-    filmes_populares = filmes_populares(top_n=5)
-    return render_template('filmes_mais_populares.html', filmes_populares=filmes_populares)

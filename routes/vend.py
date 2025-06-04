@@ -37,7 +37,7 @@ def escolher_sala():
 
     if request.method == 'POST':
         sala_num = request.form.get('sala')
-        horario_selecionado = request.form.get('horario_selecionado')
+        horario_selecionado = request.form.get('horario_selecionado') # Pega o horário da sala selecionada
         
         if not sala_num:
             return redirect(url_for('vend.escolher_sala'))
