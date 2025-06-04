@@ -20,7 +20,7 @@ def carregar_json(arquivo):
 
 def salvar_json(objetos, caminho_do_arquivo): # Mudei o nome do parâmetro para clarear
     garantir_pasta(caminho_do_arquivo) # Use o parâmetro
-    with open(caminho_do_arquivo, 'w', encoding='utf-8') as f: # <--- AQUI ESTÁ A MUDANÇA
+    with open(caminho_do_arquivo, 'w', encoding='utf-8') as f:
         json.dump(objetos, f, ensure_ascii=False, indent=4)
 
 def carregar_filmes():
