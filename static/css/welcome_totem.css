@@ -10,8 +10,6 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 60px 60px;
-    animation: fadeInTitulo 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Timing function diferente pra mais impacto */
-    animation-delay: var(--delay, 0s);
 }
 
 a {

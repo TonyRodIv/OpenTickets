@@ -1,26 +1,8 @@
-const cpfSection = document.getElementById('cpf_section');
-const titlePage = document.getElementById('titlePage');
-const loader = document.getElementById('loader');
-const CPF = localStorage.getItem('CPF');
-if (CPF === 'true') {
-    showLoader();
-    localStorage.removeItem('CPF');
-}
-
-function showLoader() {
-    cpfSection.style.display = 'none';  
-    titlePage.innerHTML = 'Carregando...';
-    loader.style.display = 'flex';
-    setTimeout(() => {
-        window.location.href = '/vend/escolher_filme';
-    }, 5000);
-}
-
 document.addEventListener('DOMContentLoaded', function () {
     const cpfDisplay = document.getElementById('cpfDisplay');
     const numberButtons = document.querySelectorAll('[data-number]');
     const deleteButton = document.querySelector('[data-key="del"]');
-    const continueButton = document.getElementById('continueCPFbtn');
+    const continueButton = document.getElementById('continueCPFbtn'); 
 
     function formatarCPF(value) {
         value = value.replace(/\D/g, '');
@@ -40,10 +22,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function checkCpfCompletion() {
         const rawCpf = cpfDisplay.value.replace(/\D/g, '');
         if (rawCpf.length === 11) {
-            continueButton.disabled = false;
+            continueButton.disabled = false; 
             console.log('CPF completo:', rawCpf);
         } else {
-            continueButton.disabled = true;
+            continueButton.disabled = true; 
         }
     }
 
@@ -54,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 cpfDisplay.value += button.dataset.number;
                 cpfDisplay.value = formatarCPF(cpfDisplay.value);
             }
-            checkCpfCompletion();
+            checkCpfCompletion(); 
         });
     });
 
@@ -64,13 +46,12 @@ document.addEventListener('DOMContentLoaded', function () {
             currentCpf = currentCpf.slice(0, -1);
             cpfDisplay.value = formatarCPF(currentCpf);
         }
-        checkCpfCompletion();
+        checkCpfCompletion(); 
     });
 
     continueButton.addEventListener('click', () => {
         if (!continueButton.disabled) {
-            localStorage.setItem('CPF', 'true');
-            showLoader();
+            window.location.href = '/vend/escolher_filme'; 
         }
     });
     checkCpfCompletion();

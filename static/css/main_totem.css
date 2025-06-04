@@ -49,7 +49,6 @@ body {
   /* padding: 3rem; */
   display: flex;
   flex-direction: column;
-  
 }
 
 .logoNav {
@@ -115,26 +114,4 @@ button:hover {
 
 .btnLow:hover {
   background-color: var(--btn-low-blue-hover);
-}
-
-
-@keyframes fadeInTitulo {
-    from {
-        opacity: 0;
-        transform: translateY(10px) scale(0.8); 
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1); 
-    }
-}
-@keyframes deslizarDireitaRapido {
-    0% {
-        opacity: 0.2; /* Começa um pouco visível pra dar um efeito de "chegada" */
-        transform: translateX(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }
