@@ -1,541 +1,177 @@
 [
     {
+        "filme": "Pearl",
+        "sala": "1",
+        "assento": "D16",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T18:34:54.063989"
+    },
+    {
+        "filme": "Pearl",
+        "sala": "1",
+        "assento": "D17",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T18:34:54.095538"
+    },
+    {
+        "filme": "Taylor Swift: Já Eras Tuor",
+        "sala": "2",
+        "assento": "E10",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T18:35:12.170640"
+    },
+    {
+        "filme": "Taylor Swift: Já Eras Tuor",
+        "sala": "2",
+        "assento": "E9",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T18:35:12.189660"
+    },
+    {
+        "filme": "Taylor Swift: Já Eras Tuor",
+        "sala": "2",
+        "assento": "E8",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T18:35:12.214082"
+    },
+    {
         "filme": "Taylor Swift: Já Eras Tuor",
         "sala": "2",
         "assento": "E7",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:03:20.829338"
-    },
-    {
-        "filme": "Taylor Swift: Já Eras Tuor",
-        "sala": "2",
-        "assento": "E8",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:03:20.860730"
-    },
-    {
-        "filme": "Taylor Swift: Já Eras Tuor",
-        "sala": "2",
-        "assento": "E9",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:03:20.886340"
-    },
-    {
-        "filme": "Taylor Swift: Já Eras Tuor",
-        "sala": "2",
-        "assento": "E10",
         "tipo": "meia",
-        "data_hora": "2025-06-03T22:03:20.912246"
+        "data_hora": "2025-06-04T18:35:12.246934"
     },
     {
-        "filme": "Lilo&Stitch",
-        "sala": "5",
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
         "assento": "E15",
         "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:21.417175"
+        "data_hora": "2025-06-04T18:35:33.105722"
     },
     {
-        "filme": "Lilo&Stitch",
-        "sala": "5",
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
         "assento": "E14",
         "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:21.447808"
+        "data_hora": "2025-06-04T18:35:33.132653"
     },
     {
-        "filme": "Lilo&Stitch",
-        "sala": "5",
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
         "assento": "E13",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:21.479580"
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T18:35:33.166206"
     },
     {
-        "filme": "Lilo&Stitch",
-        "sala": "5",
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
         "assento": "E12",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:21.512069"
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T18:35:33.198653"
     },
     {
-        "filme": "Lilo&Stitch",
-        "sala": "5",
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
         "assento": "E11",
         "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:21.539386"
+        "data_hora": "2025-06-04T18:35:33.232518"
     },
     {
-        "filme": "Lilo&Stitch",
-        "sala": "5",
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
         "assento": "E10",
         "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:21.564090"
+        "data_hora": "2025-06-04T18:35:33.266112"
     },
     {
-        "filme": "Lilo&Stitch",
-        "sala": "5",
-        "assento": "E9",
+        "filme": "Turma da Mônica: Uma Aventura no Tempo",
+        "sala": "8",
+        "assento": "E16",
         "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:21.579466"
+        "data_hora": "2025-06-04T18:35:33.299647"
     },
     {
-        "filme": "Lilo&Stitch",
-        "sala": "5",
-        "assento": "E8",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:21.608345"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "F10",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.350189"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "F11",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.377372"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "F12",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.407728"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "F13",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.430295"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "F14",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.456741"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "F15",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.483157"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "F16",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.525775"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "F17",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.558742"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "F18",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.598321"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "F19",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.625639"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "F20",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.640653"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "D18",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.668533"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "C22",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.699287"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "D24",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.729284"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "D23",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.762991"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "D22",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.793572"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "D19",
-        "tipo": "inteira",
-        "data_hora": "2025-06-03T22:04:56.825932"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "C23",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:56.850754"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "A29",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:56.886420"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "A30",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:56.918171"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "M5",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:56.950083"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "M6",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:56.983476"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "M7",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.019259"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "M8",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.051874"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "H6",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.085541"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "H7",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.115394"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "H8",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.146519"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "H9",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.161245"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "H11",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.207189"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "H12",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.244353"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "H13",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.281790"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "H15",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.318935"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
         "assento": "H16",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.357443"
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T18:35:39.584883"
     },
     {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
         "assento": "H17",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.390467"
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T18:35:39.616766"
     },
     {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
         "assento": "H18",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.429178"
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T18:35:39.649659"
     },
     {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "H19",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T18:35:39.684106"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
+        "assento": "H20",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T18:35:39.716921"
+    },
+    {
+        "filme": "Ainda Estou Aqui",
+        "sala": "9",
         "assento": "H21",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.471215"
-    },
-    {
-        "filme": "Turma da Mônica: Uma Aventura no Tempo",
-        "sala": "8",
-        "assento": "H22",
-        "tipo": "meia",
-        "data_hora": "2025-06-03T22:04:57.506250"
-    },
-    {
-        "filme": "Taylor Swift: Já Eras Tuor",
-        "sala": "2",
-        "assento": "F8",
-        "tipo": "meia",
-        "data_hora": "2025-06-04T09:40:41.777640"
-    },
-    {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "D14",
         "tipo": "inteira",
-        "data_hora": "2025-06-04T11:52:06.670293"
-    },
-    {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "D13",
-        "tipo": "inteira",
-        "data_hora": "2025-06-04T11:52:06.702773"
-    },
-    {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "D12",
-        "tipo": "inteira",
-        "data_hora": "2025-06-04T11:52:06.736115"
-    },
-    {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "D11",
-        "tipo": "inteira",
-        "data_hora": "2025-06-04T11:52:06.770433"
-    },
-    {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "D10",
-        "tipo": "inteira",
-        "data_hora": "2025-06-04T11:52:06.808811"
-    },
-    {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "D9",
-        "tipo": "meia",
-        "data_hora": "2025-06-04T11:52:06.845360"
-    },
-    {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "E12",
-        "tipo": "meia",
-        "data_hora": "2025-06-04T11:52:06.877363"
-    },
-    {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "E11",
-        "tipo": "meia",
-        "data_hora": "2025-06-04T11:52:06.910319"
-    },
-    {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "H5",
-        "tipo": "meia",
-        "data_hora": "2025-06-04T11:52:06.942720"
-    },
-    {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "H4",
-        "tipo": "meia",
-        "data_hora": "2025-06-04T11:52:06.975545"
-    },
-    {
-        "filme": "Wicked",
-        "sala": "3",
-        "assento": "G8",
-        "tipo": "inteira",
-        "data_hora": "2025-06-04T11:52:45.164715"
-    },
-    {
-        "filme": "Wicked",
-        "sala": "3",
-        "assento": "G9",
-        "tipo": "inteira",
-        "data_hora": "2025-06-04T11:52:45.202537"
-    },
-    {
-        "filme": "Wicked",
-        "sala": "3",
-        "assento": "G10",
-        "tipo": "inteira",
-        "data_hora": "2025-06-04T11:52:45.236697"
-    },
-    {
-        "filme": "Wicked",
-        "sala": "3",
-        "assento": "F9",
-        "tipo": "inteira",
-        "data_hora": "2025-06-04T11:52:45.274235"
-    },
-    {
-        "filme": "Wicked",
-        "sala": "3",
-        "assento": "F8",
-        "tipo": "meia",
-        "data_hora": "2025-06-04T11:52:45.306176"
-    },
-    {
-        "filme": "Wicked",
-        "sala": "3",
-        "assento": "G7",
-        "tipo": "meia",
-        "data_hora": "2025-06-04T11:52:45.342437"
-    },
-    {
-        "filme": "Wicked",
-        "sala": "3",
-        "assento": "I16",
-        "tipo": "meia",
-        "data_hora": "2025-06-04T11:52:45.369782"
-    },
-    {
-        "filme": "Wicked",
-        "sala": "3",
-        "assento": "I17",
-        "tipo": "meia",
-        "data_hora": "2025-06-04T11:52:45.404762"
-    },
-    {
-        "filme": "Pearl",
-        "sala": "1",
-        "assento": "D11",
-        "tipo": "inteira",
-        "data_hora": "2025-06-04T15:06:03.702802"
-    },
-    {
-        "filme": "Pearl",
-        "sala": "1",
-        "assento": "D10",
-        "tipo": "inteira",
-        "data_hora": "2025-06-04T15:06:03.737221"
-    },
-    {
-        "filme": "Pearl",
-        "sala": "1",
-        "assento": "D9",
-        "tipo": "inteira",
-        "data_hora": "2025-06-04T15:06:03.775758"
+        "data_hora": "2025-06-04T18:35:39.748846"
     },
     {
         "filme": "Pearl",
         "sala": "1",
         "assento": "D8",
         "tipo": "inteira",
-        "data_hora": "2025-06-04T15:06:03.808772"
+        "data_hora": "2025-06-04T19:00:37.301131"
     },
     {
         "filme": "Pearl",
         "sala": "1",
-        "assento": "D12",
-        "tipo": "meia",
-        "data_hora": "2025-06-04T15:06:03.841979"
+        "assento": "D9",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T19:00:37.322172"
     },
     {
         "filme": "Pearl",
         "sala": "1",
-        "assento": "D13",
-        "tipo": "meia",
-        "data_hora": "2025-06-04T15:06:03.873759"
-    },
-    {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "K22",
+        "assento": "D10",
         "tipo": "inteira",
-        "data_hora": "2025-06-04T15:34:55.663309"
+        "data_hora": "2025-06-04T19:00:37.336702"
     },
     {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "K21",
-        "tipo": "inteira",
-        "data_hora": "2025-06-04T15:34:55.699799"
-    },
-    {
-        "filme": "Ainda Estou Aqui",
-        "sala": "9",
-        "assento": "K20",
+        "filme": "Pearl",
+        "sala": "1",
+        "assento": "D11",
         "tipo": "meia",
-        "data_hora": "2025-06-04T15:34:55.729257"
+        "data_hora": "2025-06-04T19:00:37.359267"
+    },
+    {
+        "filme": "Pearl",
+        "sala": "1",
+        "assento": "E14",
+        "tipo": "inteira",
+        "data_hora": "2025-06-04T19:01:48.580911"
+    },
+    {
+        "filme": "Pearl",
+        "sala": "1",
+        "assento": "E15",
+        "tipo": "meia",
+        "data_hora": "2025-06-04T19:01:48.606551"
     }
 ]
