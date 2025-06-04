@@ -4,35 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Adm Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main_totem.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admINIT.css') }}">
+
 </head>
 
 <body>
-    <main>
-        <!-- futuramente o código virá para cá em todfos os arquivos -->
+    <nav class="navTotem">
+        <a href="{{ url_for('adm.login') }}" class="botao_voltar">
+            <img src="../../static/img/arrow.svg" alt="" srcset="">
+            Voltar
+        </a>
+        <img src="../static/img/LogoOpenTickets.svg" alt="Open Tickets logo" class="logoNav">
+    </nav>
+    <main class="mainContainer">
+        <h1>Bem vindo Administrador</h1>
+        <p class="text-secondary" style="font-weight: bold;">O sistema ainda está em teste beta! Instabilidades são
+            possíveis</p>
+        <section class="mainCardsDiv">
+
+            <section class="buttonsContainerADM">
+                <figure class="gerenciarC" style="background-color: #95D2D8;">
+                    <h2>Gerenciar Filmes</h2>
+                    <div class="buttonsC">
+                        <a href={{adicionarFilme}}><button>Adicionar</button></a>
+                        <a href={{listarFilmes}}><button>Listar</button></a>
+                        <a href={{editarFilme}}><button>Editar</button></a>
+                    </div>
+                </figure>
+                <figure class="gerenciarC" style="background-color: #E3A686;">
+                    <h2>Gerenciar Salas</h2>
+                    <div class="buttonsC">
+                        <a href={{adicionarSala}}><button>Adicionar</button></a>
+                        <a href={{listarSala}}><button>Listar</button></a>
+                        <a href={{editarSala}}><button>Editar</button></a>
+                    </div>
+                </figure>
+                <figure class="gerenciarC">
+                    <h2>Relatórios</h2>
+                    <div class="buttonsC">
+                        <a href={{relatorioVendas}}><button>Vendas Diárias</button></a>
+                    </div>
+                </figure>
+            </section>
+            <figure class="cardPopular">
+                <h2 style="margin: 5px 15px 15px 15px;">Filmes Mais Populares</h2>
+                {% if filmes_populares %}
+                    {% for filme, vendas in filmes_populares %}
+                    <p><span>{{ filme }} </span> {{ vendas }} vendas</p>
+                    {% endfor %}
+                {% else %}
+                <p>Ainda não há vendas registradas para calcular a popularidade dos filmes. Bora vender uns ingressos!
+                </p>
+                {% endif %}
+            </figure>
+        </section>
+
     </main>
-    <h2>Gerenciar Salas</h2>
-    <a href={{adicionarSala}}><button>Adicionar Sala</button></a>
-    <a href={{listarSala}}><button>Listar Sala</button></a>
-    <a href={{editarSala}}><button>Editar Sala</button></a>
-    <hr>
-    <h2>Gerenciar Filmes</h2>
-    <a href={{adicionarFilme}}><button>Adicionar Filme</button></a>
-    <a href={{listarFilmes}}><button>Listar Filmes</button></a>
-    <a href={{editarFilme}}><button>Editar Filme</button></a>
-    <h2>Relatórios</h2>
-    <a href={{relatorioVendas}}><button>Vendas Diárias</button></a>
-    
-    <h2>🏆 Top 5 Filmes Mais Populares 🏆</h2>
-    {% if filmes_populares %}
-        <ol>
-            {% for filme, vendas in filmes_populares %}
-                <li>{{ filme }} ({{ vendas }} vendas)</li>
-            {% endfor %}
-        </ol>
-    {% else %}
-        <p>Ainda não há vendas registradas para calcular a popularidade dos filmes. Bora vender uns ingressos!</p>
-    {% endif %}
 </body>
 
 </html>

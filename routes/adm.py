@@ -29,19 +29,26 @@ def login(): # Função de login do ADM, está em /adm/
 
 @adm_route.route('/home')
 def admInit():
-    # Salas - adm
     listarSala = url_for('adm.listar_salas_view')
     adicionarSala = url_for('adm.adicionar_sala_view')
     editarSala = url_for('adm.editar_sala_view')
 
-    # Filmes - Adm
     adicionarFilme = url_for('adm.adicionar_filme_view')
     listarFilmes = url_for('adm.listar_filmes_view')
     editarFilme = url_for('adm.editar_filme_view')
     relatorioVendas = url_for('adm.relatorio_vendas_view')
-    return render_template('admHome.html', listarSala=listarSala, adicionarSala=adicionarSala,
-                           editarSala=editarSala, adicionarFilme=adicionarFilme, listarFilmes=listarFilmes,
-                           editarFilme=editarFilme, relatorioVendas=relatorioVendas)
+
+    top_filmes = filmes_populares(top_n=5)
+
+    return render_template('admHome.html',
+                           listarSala=listarSala,
+                           adicionarSala=adicionarSala,
+                           editarSala=editarSala,
+                           adicionarFilme=adicionarFilme,
+                           listarFilmes=listarFilmes,
+                           editarFilme=editarFilme,
+                           relatorioVendas=relatorioVendas,
+                           filmes_populares=top_filmes)
     
 
 @adm_route.route('/api/dados', methods=['GET'])
