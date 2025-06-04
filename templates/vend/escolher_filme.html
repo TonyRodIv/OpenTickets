@@ -21,7 +21,7 @@
         <form method="POST" id="formEscolherFilme"> {# <<-- ID ADICIONADO AQUI --#}
             <div class="filmes-grid">
                 {% for filme in filmes %}
-                <div class="filme-card">
+                <div class="filme-card" style="--delay: {{ loop.index0 * 0.1 }}s;">
                     <input type="radio" name="filme"
                            id="filme{{ loop.index }}"
                            value="{{ loop.index }}"
